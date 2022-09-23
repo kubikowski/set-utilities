@@ -1,3 +1,6 @@
+export function difference<T>(...sets: Set<T>[]): Set<T>;
+export function difference<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
+
 /**
  * The difference of two sets contains all the elements of the first set
  * that are not contained in the second (or thereafter).

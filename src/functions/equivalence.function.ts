@@ -1,5 +1,8 @@
+export function equivalence<T>(...sets: Set<T>[]): boolean;
+export function equivalence<T>(...sets: ReadonlySet<T>[]): boolean;
+
 /**
- * The equivalence of two sets is that they have the same cardinality,
+ * Sets are equivalent if they have the same cardinality,
  * and there is a bijection between the values contained in each set.
  * Set equivalence is notated A ∼ B, where not equivalence is A ≁ B.
  *
