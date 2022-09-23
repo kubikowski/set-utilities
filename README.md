@@ -2,7 +2,7 @@
 
 This library is a collection of utility functions that operate with JavaScript `Sets`.
 
-Each function that is derived from Set Theory is built to operate on n-ary sets, by accepting an array
+Each function, as derived from Set Theory, is built to operate on n-ary sets by accepting variable arguments.
 
 ### difference:
 The difference of two sets contains all the elements of the first set
