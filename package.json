@@ -6,7 +6,9 @@
 	"description": "Set Utilities for JavaScript",
 	"license": "MIT",
 	"keywords": [
-		"Sets"
+		"set",
+		"set theory",
+		"math"
 	],
 	"repository": {
 		"type": "git",
