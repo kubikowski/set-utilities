@@ -22,11 +22,6 @@
 		"module": "esnext",
 		"lib": [
 			"esnext"
-		],
-
-		"types": [
-			"jest",
-			"node"
 		]
 	},
 
@@ -35,6 +30,7 @@
 	],
 
 	"exclude": [
+		"node_modules",
 		"src/test"
 	]
 }

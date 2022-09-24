@@ -1,0 +1,254 @@
+{
+	"root": true,
+	"overrides": [
+		{
+			"files": [
+				"*.ts"
+			],
+			"parserOptions": {
+				"project": [
+					"tsconfig.json"
+				],
+				"createDefaultProgram": true
+			},
+			"extends": [
+				"eslint:recommended",
+				"plugin:@typescript-eslint/eslint-recommended",
+				"plugin:@typescript-eslint/recommended"
+			],
+			"plugins": [
+				"import"
+			],
+			"rules": {
+				"@typescript-eslint/comma-dangle": [
+					"error",
+					"always-multiline"
+				],
+				"@typescript-eslint/explicit-member-accessibility": [
+					"error",
+					{
+						"accessibility": "explicit"
+					}
+				],
+				"@typescript-eslint/member-delimiter-style": [
+					"error",
+					{
+						"multiline": {
+							"delimiter": "semi",
+							"requireLast": true
+						},
+						"singleline": {
+							"delimiter": "comma",
+							"requireLast": false
+						}
+					}
+				],
+				"@typescript-eslint/member-ordering": [
+					"error",
+					{
+						"default": [
+							"field",
+							"constructor",
+							"method"
+						]
+					}
+				],
+				"@typescript-eslint/naming-convention": [
+					"error",
+					{
+						"selector": "default",
+						"format": [
+							"camelCase"
+						]
+					},
+					{
+						"selector": "function",
+						"format": [
+							"camelCase",
+							"PascalCase"
+						]
+					},
+					{
+						"selector": "parameter",
+						"format": [
+							"camelCase"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "variable",
+						"format": [
+							"camelCase",
+							"PascalCase",
+							"UPPER_CASE"
+						],
+						"modifiers": [
+							"const"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "property",
+						"format": [
+							"camelCase"
+						],
+						"modifiers": [
+							"private"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "property",
+						"format": [
+							"camelCase"
+						],
+						"modifiers": [
+							"protected"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "property",
+						"format": [
+							"camelCase",
+							"PascalCase",
+							"UPPER_CASE"
+						],
+						"modifiers": [
+							"private",
+							"static"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "property",
+						"format": [
+							"camelCase",
+							"PascalCase",
+							"UPPER_CASE"
+						],
+						"modifiers": [
+							"protected",
+							"static"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "property",
+						"format": [
+							"camelCase",
+							"PascalCase",
+							"UPPER_CASE"
+						],
+						"modifiers": [
+							"private",
+							"readonly"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "property",
+						"format": [
+							"camelCase",
+							"PascalCase",
+							"UPPER_CASE"
+						],
+						"modifiers": [
+							"protected",
+							"readonly"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "property",
+						"format": [
+							"camelCase",
+							"PascalCase",
+							"UPPER_CASE"
+						],
+						"modifiers": [
+							"readonly"
+						]
+					},
+					{
+						"selector": "parameterProperty",
+						"format": [
+							"camelCase"
+						],
+						"modifiers": [
+							"private"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "parameterProperty",
+						"format": [
+							"camelCase"
+						],
+						"modifiers": [
+							"protected"
+						],
+						"leadingUnderscore": "allow"
+					},
+					{
+						"selector": "typeLike",
+						"format": [
+							"PascalCase"
+						]
+					},
+					{
+						"selector": "enumMember",
+						"format": [
+							"UPPER_CASE"
+						]
+					}
+				],
+				"@typescript-eslint/no-explicit-any": "error",
+				"@typescript-eslint/no-namespace": "off",
+				"@typescript-eslint/no-shadow": "error",
+				"arrow-body-style": [
+					"error",
+					"as-needed"
+				],
+				"arrow-parens": [
+					"error",
+					"as-needed"
+				],
+				"comma-dangle": "off",
+				"func-style": [
+					"error",
+					"declaration"
+				],
+				"import/order": [
+					"error",
+					{
+						"alphabetize": {
+							"order": "asc",
+							"caseInsensitive": true
+						}
+					}
+				],
+				"indent": [
+					"error",
+					"tab",
+					{
+						"SwitchCase": 1,
+						"FunctionExpression": {
+							"parameters": "off"
+						},
+						"ignoredNodes": [
+							"FunctionExpression > .params[decorators.length > 0]",
+							"FunctionExpression > .params > :matches(Decorator, :not(:first-child))",
+							"ClassBody.body > PropertyDefinition[decorators.length > 0] > .key"
+						]
+					}
+				],
+				"jsdoc/newline-after-description": "off",
+				"max-len": "off",
+				"no-shadow": "off",
+				"no-underscore-dangle": "off",
+				"semi": "error"
+			}
+		}
+	]
+}
