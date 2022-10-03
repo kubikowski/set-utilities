@@ -4,12 +4,12 @@ import { equivalence } from '../functions/equivalence.function';
 import { intersection } from '../functions/intersection.function';
 import { union } from '../functions/union.function';
 import { xor } from '../functions/xor.function';
-import { multiples, time } from './constants/scale-testing-constants';
+import { Multiples, time } from './constants/scale-testing-constants';
 
 describe('Scale Tests', () => {
-	const multiplesOf1 = time('copying 10_000_000', multiples.of1);
-	const multiplesOf2 = time('copying 5_000_000', multiples.of2);
-	const multiplesOf3 = time('copying 3_333_333', multiples.of3);
+	const multiplesOf1 = time('copying 10_000_000', Multiples.of1);
+	const multiplesOf2 = time('copying 5_000_000', Multiples.of2);
+	const multiplesOf3 = time('copying 3_333_333', Multiples.of3);
 
 	it('difference scale tests', () => {
 		const result1 = time('difference of 1', () => difference(multiplesOf1));
