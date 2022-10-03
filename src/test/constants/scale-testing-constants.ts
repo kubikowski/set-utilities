@@ -10,23 +10,21 @@ import { performance } from 'perf_hooks';
  */
 export namespace multiples {
 	export function of1(): ReadonlySet<number> {
-		return new Set<number>(Array.from(
-			{ length: 10_000_000 },
-			(_, index) => index),
-		);
+		return of(1, 10_000_000);
 	}
 
 	export function of2(): ReadonlySet<number> {
-		return new Set<number>(Array.from(
-			{ length: 5_000_000 },
-			(_, index) => index * 2),
-		);
+		return of(2, 5_000_000);
 	}
 
 	export function of3(): ReadonlySet<number> {
+		return of(3, 3_333_333);
+	}
+
+	function of(factor: number, size: number): ReadonlySet<number> {
 		return new Set<number>(Array.from(
-			{ length: 3_333_333 },
-			(_, index) => index * 3),
+			{ length: size },
+			(_, index) => index * factor),
 		);
 	}
 }
