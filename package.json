@@ -26,7 +26,8 @@
 	"scripts": {
 		"build": "rimraf dist; tsc",
 		"lint": "eslint . --ext .ts",
-		"test": "jest"
+		"test": "jest --testPathIgnorePatterns=scale",
+		"test:scale": "jest --testPathPattern=scale"
 	},
 	"dependencies": {},
 	"devDependencies": {
