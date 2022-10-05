@@ -1,10 +1,5 @@
 import { expect, it } from '@jest/globals';
-import { difference } from '../functions/difference.function';
-import { equivalence } from '../functions/equivalence.function';
-import { intersection } from '../functions/intersection.function';
-import { sort } from '../functions/sort.function';
-import { union } from '../functions/union.function';
-import { xor } from '../functions/xor.function';
+import { difference, equivalence, intersection, sort, union, xor } from '../index';
 import { Multiples, time } from './constants/scale-testing-constants';
 import { reverseComparator } from './constants/testing-constants';
 

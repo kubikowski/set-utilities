@@ -1,6 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { equivalence } from '../functions/equivalence.function';
-import { sort } from '../functions/sort.function';
+import { equivalence, sort } from '../index';
 import { empty, reverseComparator, setA, standardComparator } from './constants/testing-constants';
 
 describe('sort', () => {
