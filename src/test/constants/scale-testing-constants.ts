@@ -10,15 +10,15 @@ import { performance } from 'perf_hooks';
  */
 export abstract class Multiples {
 	public static of1(): ReadonlySet<number> {
-		return this.of(1, 10_000_000);
+		return Multiples.of(1, 10_000_000);
 	}
 
 	public static of2(): ReadonlySet<number> {
-		return this.of(2, 5_000_000);
+		return Multiples.of(2, 5_000_000);
 	}
 
 	public static of3(): ReadonlySet<number> {
-		return this.of(3, 3_333_333);
+		return Multiples.of(3, 3_333_333);
 	}
 
 	private static of(factor: number, size: number): ReadonlySet<number> {

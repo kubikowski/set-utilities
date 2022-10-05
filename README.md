@@ -3,6 +3,7 @@
 This library is a collection of utility functions that operate with JavaScript `Sets`.
 
 Each function, as derived from Set Theory, is built to operate on n-ary sets by accepting variable arguments.
+Additionally, each function operates with the principals of immutability: none of the input sets are modified in the process or result of calculation.
 
 ### difference:
 The difference of two sets contains all the elements of the first set
@@ -49,4 +50,13 @@ import { xor } from 'set-utilities';
 
 const xorAB = xor(setA, setB);
 const xorABC = xor(setA, setB, setC);
+```
+
+### sort:
+An immutable sorting operation for sets.
+```typescript
+import { sort } from 'set-utilities';
+
+const sorted = sort(setA);
+const sortedByComparator = sort(setA, comparatorFunction);
 ```
