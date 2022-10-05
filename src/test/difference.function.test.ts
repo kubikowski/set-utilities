@@ -1,6 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { difference } from '../functions/difference.function';
-import { equivalence } from '../functions/equivalence.function';
+import { difference, equivalence } from '../index';
 import { empty, setA, setB, setC } from './constants/testing-constants';
 
 describe('difference', () => {

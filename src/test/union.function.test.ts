@@ -1,6 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { equivalence } from '../functions/equivalence.function';
-import { union } from '../functions/union.function';
+import { equivalence, union } from '../index';
 import { empty, setA, setB, setC } from './constants/testing-constants';
 
 describe('union', () => {

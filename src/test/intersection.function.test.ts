@@ -1,6 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { equivalence } from '../functions/equivalence.function';
-import { intersection } from '../functions/intersection.function';
+import { equivalence, intersection } from '../index';
 import { empty, setA, setB, setC } from './constants/testing-constants';
 
 describe('intersection', () => {

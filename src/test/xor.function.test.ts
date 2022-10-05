@@ -1,6 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { equivalence } from '../functions/equivalence.function';
-import { xor } from '../functions/xor.function';
+import { equivalence, xor } from '../index';
 import { empty, setA, setB, setC } from './constants/testing-constants';
 
 describe('xor', () => {
