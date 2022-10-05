@@ -2,9 +2,11 @@ import { expect, it } from '@jest/globals';
 import { difference } from '../functions/difference.function';
 import { equivalence } from '../functions/equivalence.function';
 import { intersection } from '../functions/intersection.function';
+import { sort } from '../functions/sort.function';
 import { union } from '../functions/union.function';
 import { xor } from '../functions/xor.function';
 import { Multiples, time } from './constants/scale-testing-constants';
+import { reverseComparator } from './constants/testing-constants';
 
 describe('Scale Tests', () => {
 	const multiplesOf1 = time('copying 10_000_000', Multiples.of1);
@@ -59,5 +61,15 @@ describe('Scale Tests', () => {
 		expect(result1.size).toBe(10_000_000);
 		expect(result2.size).toBe(5_000_000);
 		expect(result3.size).toBe(3_333_334);
+	});
+
+	it('sort scale tests', () => {
+		const result1 = time('sort of 10M', () => sort(multiplesOf1, reverseComparator));
+		const result2 = time('sort of 5M', () => sort(multiplesOf2, reverseComparator));
+		const result3 = time('sort of 3M', () => sort(multiplesOf3, reverseComparator));
+
+		expect(result1.size).toBe(10_000_000);
+		expect(result2.size).toBe(5_000_000);
+		expect(result3.size).toBe(3_333_333);
 	});
 });

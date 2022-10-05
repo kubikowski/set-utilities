@@ -18,3 +18,12 @@ export const setB = new Set<number>([ 0, 1, 3, 5 ]);
 export const setC = new Set<number>([ 0, 2, 3, 6 ]);
 /* contains: none */
 export const empty = new Set<never>();
+
+
+export function standardComparator<T>(a: T, b: T): number {
+	return (a < b) ? -1 : 1;
+}
+
+export function reverseComparator<T>(a: T, b: T): number {
+	return (a > b) ? -1 : 1;
+}
