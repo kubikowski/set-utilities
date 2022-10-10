@@ -13,9 +13,9 @@ export function difference<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
 export function difference<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 	const result = new Set<T>([ ...(sets[0] ?? new Set<T>()) ]);
 
-	for (let i = 1; i < sets.length; i++) {
-		sets[i]?.forEach(t => {
-			result.delete(t);
+	for (let index = 1; index < sets.length; index++) {
+		sets[index]?.forEach(value => {
+			result.delete(value);
 		});
 	}
 
