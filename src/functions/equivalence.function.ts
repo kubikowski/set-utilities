@@ -4,20 +4,24 @@ export function equivalence<T>(...sets: ReadonlySet<T>[]): boolean;
 /**
  * Sets are equivalent if they have the same cardinality,
  * and there is a bijection between the values contained in each set.
- * Set equivalence is notated A ∼ B, where not equivalence is A ≁ B.
+ * Set equivalence is also commonly referred to as equals.
  *
- * @description A ∼ B = A ⊂ B ∧ B ⊂ A
+ * Set equivalence is notated A ∼ B,
+ * where not equivalence is A ≁ B.
+ *
+ * @description A ∼ B ⇔ (A ⊆ B) ∧ (B ⊆ A)
  */
 export function equivalence<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 	if (sets.length < 2) {
 		return true;
 	}
 
-	const setsHaveSameCardinalities = sets
-		.map(set => set.size)
-		.every((cardinality, _index, cardinalities) => cardinality === cardinalities[0]);
+	const cardinalities = sets.map(set => set.size);
+	const primaryCardinality = cardinalities[0] ?? 0;
+	const allSetsHaveEqualCardinalities = cardinalities
+		.every(cardinality => cardinality === primaryCardinality);
 
-	if (!setsHaveSameCardinalities) {
+	if (!allSetsHaveEqualCardinalities) {
 		return false;
 	}
 
