@@ -26,8 +26,8 @@ export function equivalence<T, S extends ReadonlySet<T>>(...sets: S[]): boolean 
 	}
 
 	for (const value of sets[0] ?? new Set<T>()) {
-		for (let i = 1; i < sets.length; i++) {
-			if (!sets[i]?.has(value)) {
+		for (let index = 1; index < sets.length; index++) {
+			if (!sets[index]?.has(value)) {
 				return false;
 			}
 		}
