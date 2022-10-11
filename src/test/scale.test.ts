@@ -1,5 +1,5 @@
 import { expect, it } from '@jest/globals';
-import { difference, equivalence, intersection, sort, subset, superset, union, xor } from '../index';
+import { difference, disjoint, equivalence, intersection, sort, subset, superset, union, xor } from '../index';
 import { Multiples, time } from './constants/scale-testing-constants';
 import { reverseComparator } from './constants/sort-testing-constants';
 
@@ -16,6 +16,16 @@ describe('Scale Tests', () => {
 		expect(result1.size).toBe(10_000_000);
 		expect(result2.size).toBe(5_000_000);
 		expect(result3.size).toBe(3_333_334);
+	});
+
+	it('disjoint scale tests', () => {
+		const result1 = time('disjoint of 1', () => disjoint(multiplesOf1));
+		const result2 = time('disjoint of 2', () => disjoint(multiplesOf1, multiplesOf2));
+		const result3 = time('disjoint of 3', () => disjoint(multiplesOf1, multiplesOf2, multiplesOf3));
+
+		expect(result1).toBe(true);
+		expect(result2).toBe(false);
+		expect(result3).toBe(false);
 	});
 
 	it('equivalence scale tests', () => {

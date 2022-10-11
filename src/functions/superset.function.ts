@@ -6,8 +6,9 @@ export function superset<T>(...sets: ReadonlySet<T>[]): boolean;
  * contained in the other set (and thereafter).
  *
  * Superset is notated A ⊇ B,
- * where proper superset is A ⊃ B,
- * and not superset is A ⊅ B.
+ * where not superset is A ⊉ B.
+ * Proper superset is notated A ⊃ B,
+ * and not proper superset is A ⊅ B.
  *
  * @description A ⊇ B ⇔ ∀x : (x ∈ B ⇒ x ∈ A)
  */

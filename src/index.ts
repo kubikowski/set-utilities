@@ -1,4 +1,5 @@
 export { difference } from './functions/difference.function';
+export { disjoint } from './functions/disjoint.function';
 export { equivalence } from './functions/equivalence.function';
 export { intersection } from './functions/intersection.function';
 export { sort } from './functions/sort.function';
