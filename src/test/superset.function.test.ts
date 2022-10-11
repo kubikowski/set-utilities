@@ -19,11 +19,11 @@ describe('superset', () => {
 		expect(superset(setA, setA, setA)).toBe(true);
 	});
 
-	it('two sets with different values are not superset', () => {
+	it('two sets with different values are not supersets', () => {
 		expect(superset(setA, setB)).toBe(false);
 	});
 
-	it('three sets with different values are not superset', () => {
+	it('three sets with different values are not supersets', () => {
 		expect(superset(setA, setB, setC)).toBe(false);
 	});
 
