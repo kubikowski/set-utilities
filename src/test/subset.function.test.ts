@@ -27,6 +27,10 @@ describe('subset', () => {
 		expect(subset(setA, setB, setC)).toBe(false);
 	});
 
+	it('following sets with lower cardinalities are not subsets', () => {
+		expect(subset(setA, empty)).toBe(false);
+	});
+
 	it('any set is a subset of the universal set', () => {
 		expect(subset(setA, universal)).toBe(true);
 	});

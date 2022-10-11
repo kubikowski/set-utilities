@@ -27,6 +27,7 @@
 		"build": "rimraf dist; tsc",
 		"lint": "eslint . --ext .ts",
 		"test": "jest --testPathIgnorePatterns=scale",
+		"test:coverage": "jest --collect-coverage --testPathIgnorePatterns=scale",
 		"test:scale": "jest --testPathPattern=scale"
 	},
 	"dependencies": {},

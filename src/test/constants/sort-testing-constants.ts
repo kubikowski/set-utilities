@@ -1,0 +1,25 @@
+import { expect } from '@jest/globals';
+
+/* unordered universal set, contains: 0, 1, 2, 3, 4, 5, 6 */
+export const unordered = new Set([ 4, 6, 1, 2, 5, 0, 3 ]);
+
+/* (default) less than comparator function */
+export function standardComparator<T>(a: T, b: T): number {
+	return (a < b) ? -1 : 1;
+}
+/* (reversed) greater than comparator function */
+export function reverseComparator<T>(a: T, b: T): number {
+	return (a > b) ? -1 : 1;
+}
+
+/**
+ * Iterates through values in the result set,
+ * and expects them to equal the respectively indexed
+ * value in the provided expectedOrder array.
+ */
+export function expectSortedValues<T>(result: Set<T>, expectedOrder: Array<T>): void {
+	let index = 0;
+	result.forEach(value => {
+		expect(value).toBe(expectedOrder[index++]);
+	});
+}

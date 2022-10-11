@@ -23,12 +23,3 @@ export const universal = new Set<number>([ 0, 1, 2, 3, 4, 5, 6 ]);
 export const minimal = new Set<number>([ 0 ]);
 /* the empty set: Ø, contains: none */
 export const empty = new Set<never>();
-
-
-export function standardComparator<T>(a: T, b: T): number {
-	return (a < b) ? -1 : 1;
-}
-
-export function reverseComparator<T>(a: T, b: T): number {
-	return (a > b) ? -1 : 1;
-}
