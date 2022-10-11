@@ -1,5 +1,5 @@
 import { expect, it } from '@jest/globals';
-import { difference, equivalence, intersection, sort, union, xor } from '../index';
+import { difference, equivalence, intersection, sort, subset, superset, union, xor } from '../index';
 import { Multiples, time } from './constants/scale-testing-constants';
 import { reverseComparator } from './constants/testing-constants';
 
@@ -36,6 +36,26 @@ describe('Scale Tests', () => {
 		expect(result1.size).toBe(10_000_000);
 		expect(result2.size).toBe(5_000_000);
 		expect(result3.size).toBe(1_666_667);
+	});
+
+	it('subset scale tests', () => {
+		const result1 = time('subset of 1', () => subset(multiplesOf1));
+		const result2 = time('subset of 2', () => subset(multiplesOf1, multiplesOf2));
+		const result3 = time('subset of 3', () => subset(multiplesOf1, multiplesOf2, multiplesOf3));
+
+		expect(result1).toBe(true);
+		expect(result2).toBe(false);
+		expect(result3).toBe(false);
+	});
+
+	it('superset scale tests', () => {
+		const result1 = time('superset of 1', () => superset(multiplesOf1));
+		const result2 = time('superset of 2', () => superset(multiplesOf1, multiplesOf2));
+		const result3 = time('superset of 3', () => superset(multiplesOf1, multiplesOf2, multiplesOf3));
+
+		expect(result1).toBe(true);
+		expect(result2).toBe(true);
+		expect(result3).toBe(true);
 	});
 
 	it('union scale tests', () => {
