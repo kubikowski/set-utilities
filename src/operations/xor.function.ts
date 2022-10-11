@@ -1,6 +1,3 @@
-import { difference } from './difference.function';
-import { union } from './union.function';
-
 export function xor<T>(...sets: Set<T>[]): Set<T>;
 export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
 
@@ -14,13 +11,19 @@ export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  * @description A ⊖ B ≔ { x : (x ∈ A) ⊕ (x ∈ B) }
  */
 export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
-	const differences: S[] = [];
+	const result = new Set<T>(sets[0] ?? new Set<T>());
+	const reusedValues = new Set<T>();
 
-	sets.forEach((set, index) => {
-		const otherSets = [ ...sets.slice(0, index), ...sets.slice(index + 1) ];
+	for (let index = 1; index < sets.length; index++) {
+		for (const value of sets[index]!) {
+			if (result.has(value)) {
+				result.delete(value);
+				reusedValues.add(value);
+			} else if (!reusedValues.has(value)) {
+				result.add(value);
+			}
+		}
+	}
 
-		differences.push(difference(set, ...otherSets) as S);
-	});
-
-	return union(...differences) as S;
+	return result as ReadonlySet<T> as S;
 }
