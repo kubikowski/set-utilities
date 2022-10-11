@@ -17,7 +17,7 @@ export function superset<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 	}
 
 	const cardinalities = sets.map(set => set.size);
-	const primaryCardinality = cardinalities[0] ?? 0;
+	const primaryCardinality = cardinalities[0]!;
 	const allSetsHaveLesserCardinalities = cardinalities
 		.every(cardinality => cardinality <= primaryCardinality);
 
@@ -26,7 +26,7 @@ export function superset<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 	}
 
 	for (let index = 1; index < sets.length; index++) {
-		for (const value of sets[index] ?? new Set<T>()) {
+		for (const value of sets[index]!) {
 			if (!sets[0]?.has(value)) {
 				return false;
 			}

@@ -1,7 +1,7 @@
 import { expect, it } from '@jest/globals';
 import { difference, equivalence, intersection, sort, subset, superset, union, xor } from '../index';
 import { Multiples, time } from './constants/scale-testing-constants';
-import { reverseComparator } from './constants/testing-constants';
+import { reverseComparator } from './constants/sort-testing-constants';
 
 describe('Scale Tests', () => {
 	const multiplesOf1 = time('copying 10_000_000', Multiples.of1);

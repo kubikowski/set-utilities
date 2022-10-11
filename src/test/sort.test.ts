@@ -1,6 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, sort } from '../index';
-import { empty, reverseComparator, setA, standardComparator } from './constants/testing-constants';
+import { empty, setA, universal } from './constants/testing-constants';
+import { expectSortedValues, reverseComparator, standardComparator, unordered } from './constants/sort-testing-constants';
 
 describe('sort', () => {
 	it('sorting the empty set returns the empty set', () => {
@@ -16,20 +17,30 @@ describe('sort', () => {
 	it('sorting a sorted set will result in the same ordering', () => {
 		const ordered = Array.from(setA);
 		const result = sort(setA, standardComparator);
-
-		let index = 0;
-		result.forEach(value => {
-			expect(value).toBe(ordered[index++]);
-		});
+		expectSortedValues(result, ordered);
 	});
 
 	it('sorting a reversed set will result in the reversed ordering', () => {
-		const ordered = Array.from(setA);
+		const ordered = Array.from(setA).sort(reverseComparator);
 		const result = sort(setA, reverseComparator);
+		expectSortedValues(result, ordered);
+	});
 
-		let index = ordered.length - 1;
-		result.forEach(value => {
-			expect(value).toBe(ordered[index--]);
-		});
+	it('sorting an unordered set will order it', () => {
+		const ordered = Array.from(universal);
+		const result = sort(unordered);
+		expectSortedValues(result, ordered);
+	});
+
+	it('sorting an unordered set with standard comparator will reverse order it', () => {
+		const ordered = Array.from(universal);
+		const result = sort(unordered, standardComparator);
+		expectSortedValues(result, ordered);
+	});
+
+	it('sorting an unordered set with reverse comparator will reverse order it', () => {
+		const ordered = Array.from(universal).sort(reverseComparator);
+		const result = sort(unordered, reverseComparator);
+		expectSortedValues(result, ordered);
 	});
 });

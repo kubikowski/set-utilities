@@ -27,6 +27,10 @@ describe('superset', () => {
 		expect(superset(setA, setB, setC)).toBe(false);
 	});
 
+	it('following sets with greater cardinalities are not supersets', () => {
+		expect(superset(setA, universal)).toBe(false);
+	});
+
 	it('any set is a superset of the empty set', () => {
 		expect(superset(setA, empty)).toBe(true);
 	});
