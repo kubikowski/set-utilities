@@ -6,8 +6,9 @@ export function subset<T>(...sets: ReadonlySet<T>[]): boolean;
  * are elements of the other set (and thereafter).
  *
  * Subset is notated A ⊆ B,
- * where proper subset is A ⊂ B,
- * and not subset is A ⊄ B.
+ * where not subset is A ⊈ B.
+ * Proper subset is notated A ⊂ B,
+ * and not proper subset is A ⊄ B.
  *
  * @description A ⊆ B ⇔ ∀x : (x ∈ A ⇒ x ∈ B)
  */

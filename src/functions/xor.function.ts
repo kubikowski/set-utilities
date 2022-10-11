@@ -9,7 +9,7 @@ export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  *
  * Note: the symmetric difference of 2 sets is trivially inferred from an element-wise xor.
  *
- * Set symmetric difference is notated A ⊖ B or A △ B.
+ * Set symmetric difference is notated A ⊖ B or A ∆ B.
  *
  * @description A ⊖ B ≔ { x : (x ∈ A) ⊕ (x ∈ B) }
  */
