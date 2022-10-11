@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { disjoint } from '../index';
-import { empty, setA, setB, setC, setD } from './constants/testing-constants';
+import { disjoint } from '../../src';
+import { empty, setA, setB, setC, setD } from '../constants/testing-constants';
 
 describe('disjoint', () => {
 	it('no sets are disjoint', () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { equivalence } from '../index';
-import { setA, setB, setC, universal } from './constants/testing-constants';
+import { equivalence } from '../../src';
+import { setA, setB, setC, universal } from '../constants/testing-constants';
 
 describe('equivalence', () => {
 	it('no sets are equivalent', () => {

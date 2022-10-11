@@ -1,9 +1,11 @@
-export { difference } from './functions/difference.function';
-export { disjoint } from './functions/disjoint.function';
-export { equivalence } from './functions/equivalence.function';
-export { intersection } from './functions/intersection.function';
-export { sort } from './functions/sort.function';
-export { subset } from './functions/subset.function';
-export { superset } from './functions/superset.function';
-export { union } from './functions/union.function';
-export { xor } from './functions/xor.function';
+export { disjoint } from './comparisons/disjoint.function';
+export { equivalence } from './comparisons/equivalence.function';
+export { subset } from './comparisons/subset.function';
+export { superset } from './comparisons/superset.function';
+
+export { difference } from './operations/difference.function';
+export { intersection } from './operations/intersection.function';
+export { union } from './operations/union.function';
+export { xor } from './operations/xor.function';
+
+export { sort } from './ordering/sort.function';

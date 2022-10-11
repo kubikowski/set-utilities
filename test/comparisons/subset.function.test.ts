@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { subset } from '../index';
-import { empty, setA, setB, setC, universal } from './constants/testing-constants';
+import { subset } from '../../src';
+import { empty, setA, setB, setC, universal } from '../constants/testing-constants';
 
 describe('subset', () => {
 	it('no sets are subsets', () => {
