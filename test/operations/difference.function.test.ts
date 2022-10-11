@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { difference, equivalence } from '../index';
-import { empty, setA, setB, setC } from './constants/testing-constants';
+import { difference, equivalence } from '../../src';
+import { empty, setA, setB, setC } from '../constants/testing-constants';
 
 describe('difference', () => {
 	const differenceAB = new Set<number>([ 2, 4 ]);

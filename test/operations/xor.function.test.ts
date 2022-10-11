@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { equivalence, xor } from '../index';
-import { empty, setA, setB, setC } from './constants/testing-constants';
+import { equivalence, xor } from '../../src';
+import { empty, setA, setB, setC } from '../constants/testing-constants';
 
 describe('xor', () => {
 	const xorAB = new Set<number>([ 2, 3, 4, 5 ]);
