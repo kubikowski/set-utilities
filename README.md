@@ -1,4 +1,6 @@
 # Set Utilities
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities?ref=badge_shield)
+
 
 This library is a collection of utility functions that operate with JavaScript `Sets`.
 
@@ -98,3 +100,7 @@ import { sort } from 'set-utilities';
 const sorted = sort(setA);
 const sortedByComparator = sort(setA, comparatorFunction);
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities?ref=badge_large)
