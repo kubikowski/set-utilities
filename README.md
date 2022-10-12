@@ -1,6 +1,13 @@
 # Set Utilities
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities?ref=badge_shield)
 
+[![NPM Version][npm-image]][npm-url]
+[![MIT License][license-image]][license-url]
+[![FOSSA Status][fossa-image]][fossa-url]
+[![Install Size][package-phobia-image]][package-phobia-url]
+
+[![Test Job][github-test-image]][github-test-url]
+[![Coverage][coveralls-image]][coveralls-url]
+[![Language][language-image]][language-url]
 
 This library is a collection of utility functions that operate with JavaScript `Sets`.
 
@@ -102,5 +109,23 @@ const sortedByComparator = sort(setA, comparatorFunction);
 ```
 
 
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities?ref=badge_large)
+[npm-image]: http://img.shields.io/npm/v/set-utilities
+[npm-url]: https://www.npmjs.org/package/set-utilities
+
+[license-image]: https://img.shields.io/npm/l/set-utilities?color=blue
+[license-url]: LICENSE
+
+[fossa-image]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities.svg?type=shield
+[fossa-url]: https://app.fossa.com/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities?ref=badge_shield
+
+[package-phobia-image]: https://packagephobia.com/badge?p=set-utilities
+[package-phobia-url]: https://packagephobia.com/result?p=set-utilities
+
+[github-test-image]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml/badge.svg
+[github-test-url]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml
+
+[coveralls-image]: https://coveralls.io/repos/github/kubikowski/set-utilities/badge.svg?branch=main
+[coveralls-url]: https://coveralls.io/github/kubikowski/set-utilities?branch=main
+
+[language-image]: https://img.shields.io/github/languages/top/kubikowski/set-utilities
+[language-url]: https://www.typescriptlang.org
