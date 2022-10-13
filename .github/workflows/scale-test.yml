@@ -1,0 +1,28 @@
+name: Scale Test
+
+on:
+    push:
+        branches:
+            main:
+
+jobs:
+    test:
+        name: Scale Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Branch
+              uses: actions/checkout@v3
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  cache: 'npm'
+                  cache-dependency-path: 'package-lock.json'
+
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Scale Test
+              run: npm run test:scale

@@ -4,7 +4,7 @@ import { expect } from '@jest/globals';
 export const unordered = new Set([ 4, 6, 1, 2, 5, 7, 0, 3 ]);
 
 /* (default) less than comparator function */
-export function standardComparator<T>(a: T, b: T): number {
+export function defaultComparator<T>(a: T, b: T): number {
 	return (a < b) ? -1 : 1;
 }
 /* (reversed) greater than comparator function */
