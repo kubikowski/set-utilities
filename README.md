@@ -28,7 +28,7 @@ import { difference } from 'set-utilities';
 const differenceAB = difference(setA, setB);
 const differenceABC = difference(setA, setB, setC);
 ```
-</details><br>
+</details>
 
 <details open>
 <summary><h3 style="display: inline">intersection: <code>A ∩ B</code></h3></summary>
@@ -40,7 +40,7 @@ import { intersection } from 'set-utilities';
 const intersectionAB = intersection(setA, setB);
 const intersectionABC = intersection(setA, setB, setC);
 ```
-</details><br>
+</details>
 
 <details open>
 <summary><h3 style="display: inline">union: <code>A ∪ B</code></h3></summary>
@@ -52,7 +52,7 @@ import { union } from 'set-utilities';
 const unionAB = union(setA, setB);
 const unionABC = union(setA, setB, setC);
 ```
-</details><br>
+</details>
 
 <details open>
 <summary><h3 style="display: inline">symmetric difference <i>(xor)</i>: <code>A ∆ B</code></h3></summary>
@@ -80,7 +80,7 @@ import { equivalence } from 'set-utilities';
 const isEquivalentAB = equivalence(setA, setB);
 const isEquivalentABC = equivalence(setA, setB, setC);
 ```
-</details><br>
+</details>
 
 <details open>
 <summary><h3 style="display: inline">disjoint: <code>A ∩ B = ∅</code></h3></summary>
@@ -92,7 +92,7 @@ import { disjoint } from 'set-utilities';
 const isDisjointAB = disjoint(setA, setB);
 const isDisjointABC = disjoint(setA, setB, setC);
 ```
-</details><br>
+</details>
 
 <details open>
 <summary><h3 style="display: inline">subset: <code>A ⊆ B</code></h3></summary>
@@ -105,7 +105,7 @@ import { subset } from 'set-utilities';
 const isSubsetAB = subset(setA, setB);
 const isSubsetABC = subset(setA, setB, setC);
 ```
-</details><br>
+</details>
 
 <details open>
 <summary><h3 style="display: inline">superset: <code>A ⊇ B</code></h3></summary>
