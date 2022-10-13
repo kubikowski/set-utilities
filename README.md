@@ -17,7 +17,9 @@ Additionally, each function operates with the principals of immutability: none o
 
 ## Set Operations:
 
-### difference:
+<details open>
+<summary><h3 style="display: inline">difference: <code>A - B</code></h3></summary>
+
 The difference of two sets contains all the elements of the first set
 that are not contained in the second (or thereafter).
 ```typescript
@@ -26,8 +28,11 @@ import { difference } from 'set-utilities';
 const differenceAB = difference(setA, setB);
 const differenceABC = difference(setA, setB, setC);
 ```
+</details><br>
 
-### intersection:
+<details open>
+<summary><h3 style="display: inline">intersection: <code>A ∩ B</code></h3></summary>
+
 The intersection of two sets contains all the elements each contained in both of the sets.
 ```typescript
 import { intersection } from 'set-utilities';
@@ -35,8 +40,11 @@ import { intersection } from 'set-utilities';
 const intersectionAB = intersection(setA, setB);
 const intersectionABC = intersection(setA, setB, setC);
 ```
+</details><br>
 
-### union:
+<details open>
+<summary><h3 style="display: inline">union: <code>A ∪ B</code></h3></summary>
+
 The union of two sets contains all the elements contained in either set (or both sets).
 ```typescript
 import { union } from 'set-utilities';
@@ -44,8 +52,11 @@ import { union } from 'set-utilities';
 const unionAB = union(setA, setB);
 const unionABC = union(setA, setB, setC);
 ```
+</details><br>
 
-### xor _(symmetric difference)_:
+<details open>
+<summary><h3 style="display: inline">symmetric difference <i>(xor)</i>: <code>A ∆ B</code></h3></summary>
+
 The symmetric difference of two sets contains only the unique elements of each set.
 ```typescript
 import { xor } from 'set-utilities';
@@ -53,11 +64,14 @@ import { xor } from 'set-utilities';
 const xorAB = xor(setA, setB);
 const xorABC = xor(setA, setB, setC);
 ```
+</details>
 
 
 ## Set Comparisons:
 
-### equivalence:
+<details open>
+<summary><h3 style="display: inline">equivalence: <code>A ∼ B</code></h3></summary>
+
 Sets are equivalent if they have the same cardinality,
 and there is a bijection between the values contained in each set.
 ```typescript
@@ -66,8 +80,11 @@ import { equivalence } from 'set-utilities';
 const isEquivalentAB = equivalence(setA, setB);
 const isEquivalentABC = equivalence(setA, setB, setC);
 ```
+</details><br>
 
-### disjoint:
+<details open>
+<summary><h3 style="display: inline">disjoint: <code>A ∩ B = ∅</code></h3></summary>
+
 Sets are disjoint if they have no elements in common.
 ```typescript
 import { disjoint } from 'set-utilities';
@@ -75,8 +92,11 @@ import { disjoint } from 'set-utilities';
 const isDisjointAB = disjoint(setA, setB);
 const isDisjointABC = disjoint(setA, setB, setC);
 ```
+</details><br>
 
-### subset:
+<details open>
+<summary><h3 style="display: inline">subset: <code>A ⊆ B</code></h3></summary>
+
 A set is a subset of another if all of its elements
 are elements of the other set.
 ```typescript
@@ -85,8 +105,11 @@ import { subset } from 'set-utilities';
 const isSubsetAB = subset(setA, setB);
 const isSubsetABC = subset(setA, setB, setC);
 ```
+</details><br>
 
-### superset:
+<details open>
+<summary><h3 style="display: inline">superset: <code>A ⊇ B</code></h3></summary>
+
 A set is a superset of another if it contains all the elements
 contained in the other set.
 ```typescript
@@ -95,11 +118,14 @@ import { superset } from 'set-utilities';
 const isSupersetAB = superset(setA, setB);
 const isSupersetABC = superset(setA, setB, setC);
 ```
+</details>
 
 
 ## Set Ordering:
 
-### sort:
+<details open>
+<summary><h3 style="display: inline">sort:</h3></summary>
+
 An immutable sorting operation for sets.
 ```typescript
 import { sort } from 'set-utilities';
@@ -107,6 +133,7 @@ import { sort } from 'set-utilities';
 const sorted = sort(setA);
 const sortedByComparator = sort(setA, comparatorFunction);
 ```
+</details>
 
 
 [npm-image]: http://img.shields.io/npm/v/set-utilities
