@@ -32,7 +32,7 @@ describe('sort', () => {
 		expectSortedValues(result, ordered);
 	});
 
-	it('sorting an unordered set with standard comparator will reverse order it', () => {
+	it('sorting an unordered set with default comparator will default order it', () => {
 		const ordered = Array.from(universal);
 		const result = sort(unordered, defaultComparator);
 		expectSortedValues(result, ordered);
