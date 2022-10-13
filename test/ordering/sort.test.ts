@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, sort } from '../../src';
-import { expectSortedValues, reverseComparator, standardComparator, unordered } from '../constants/sort-testing-constants';
+import { defaultComparator, expectSortedValues, reverseComparator, unordered } from '../constants/sort-testing-constants';
 import { empty, setA, universal } from '../constants/testing-constants';
 
 describe('sort', () => {
@@ -16,7 +16,7 @@ describe('sort', () => {
 
 	it('sorting a sorted set will result in the same ordering', () => {
 		const ordered = Array.from(setA);
-		const result = sort(setA, standardComparator);
+		const result = sort(setA, defaultComparator);
 		expectSortedValues(result, ordered);
 	});
 
@@ -34,7 +34,7 @@ describe('sort', () => {
 
 	it('sorting an unordered set with standard comparator will reverse order it', () => {
 		const ordered = Array.from(universal);
-		const result = sort(unordered, standardComparator);
+		const result = sort(unordered, defaultComparator);
 		expectSortedValues(result, ordered);
 	});
 
