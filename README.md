@@ -68,6 +68,8 @@ const xorABC = xor(setA, setB, setC);
 ### equivalence: `A ∼ B`
 Sets are equivalent if they have the same cardinality,
 and there is a bijection between the values contained in each set.
+
+![equivalence visual][equivalence-visual-url]
 ```typescript
 import { equivalence } from 'set-utilities';
 
@@ -77,6 +79,8 @@ const isEquivalentABC = equivalence(setA, setB, setC);
 
 ### disjoint: `A ∩ B = ∅`
 Sets are disjoint if they have no elements in common.
+
+![disjoint visual][disjoint-visual-url]
 ```typescript
 import { disjoint } from 'set-utilities';
 
@@ -87,6 +91,8 @@ const isDisjointABC = disjoint(setA, setB, setC);
 ### subset: `A ⊆ B`
 A set is a subset of another if all of its elements
 are elements of the other set.
+
+![subset visual][subset-visual-url]
 ```typescript
 import { subset } from 'set-utilities';
 
@@ -97,6 +103,8 @@ const isSubsetABC = subset(setA, setB, setC);
 ### superset: `A ⊇ B`
 A set is a superset of another if it contains all the elements
 contained in the other set.
+
+![superset visual][superset-visual-url]
 ```typescript
 import { superset } from 'set-utilities';
 
@@ -142,3 +150,8 @@ const sortedByComparator = sort(setA, comparatorFunction);
 [intersection-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/intersection.svg
 [union-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/union.svg
 [xor-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/xor.svg
+
+[equivalence-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/equivalence.svg
+[disjoint-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/disjoint.svg
+[subset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/subset.svg
+[superset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/superset.svg
