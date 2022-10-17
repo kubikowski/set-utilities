@@ -17,61 +17,55 @@ Additionally, each function operates with the principals of immutability: none o
 
 ## Set Operations:
 
-<details open>
-<summary><h3 style="display: inline">difference: <code>A - B</code></h3></summary>
-
+### difference: `A ∖ B`
 The difference of two sets contains all the elements of the first set
 that are not contained in the second (or thereafter).
+
+![difference visual][difference-visual-url]
 ```typescript
 import { difference } from 'set-utilities';
 
 const differenceAB = difference(setA, setB);
 const differenceABC = difference(setA, setB, setC);
 ```
-</details>
 
-<details open>
-<summary><h3 style="display: inline">intersection: <code>A ∩ B</code></h3></summary>
-
+### intersection: `A ∩ B`
 The intersection of two sets contains all the elements each contained in both of the sets.
+
+![intersection visual][intersection-visual-url]
 ```typescript
 import { intersection } from 'set-utilities';
 
 const intersectionAB = intersection(setA, setB);
 const intersectionABC = intersection(setA, setB, setC);
 ```
-</details>
 
-<details open>
-<summary><h3 style="display: inline">union: <code>A ∪ B</code></h3></summary>
-
+### union: `A ∪ B`
 The union of two sets contains all the elements contained in either set (or both sets).
+
+![union visual][union-visual-url]
 ```typescript
 import { union } from 'set-utilities';
 
 const unionAB = union(setA, setB);
 const unionABC = union(setA, setB, setC);
 ```
-</details>
 
-<details open>
-<summary><h3 style="display: inline">symmetric difference <i>(xor)</i>: <code>A ∆ B</code></h3></summary>
-
+### symmetric difference _(xor)_: `A ∆ B`
 The symmetric difference of two sets contains only the unique elements of each set.
+
+![xor visual][xor-visual-url]
 ```typescript
 import { xor } from 'set-utilities';
 
 const xorAB = xor(setA, setB);
 const xorABC = xor(setA, setB, setC);
 ```
-</details>
 
 
 ## Set Comparisons:
 
-<details open>
-<summary><h3 style="display: inline">equivalence: <code>A ∼ B</code></h3></summary>
-
+### equivalence: `A ∼ B`
 Sets are equivalent if they have the same cardinality,
 and there is a bijection between the values contained in each set.
 ```typescript
@@ -80,11 +74,8 @@ import { equivalence } from 'set-utilities';
 const isEquivalentAB = equivalence(setA, setB);
 const isEquivalentABC = equivalence(setA, setB, setC);
 ```
-</details>
 
-<details open>
-<summary><h3 style="display: inline">disjoint: <code>A ∩ B = ∅</code></h3></summary>
-
+### disjoint: `A ∩ B = ∅`
 Sets are disjoint if they have no elements in common.
 ```typescript
 import { disjoint } from 'set-utilities';
@@ -92,11 +83,8 @@ import { disjoint } from 'set-utilities';
 const isDisjointAB = disjoint(setA, setB);
 const isDisjointABC = disjoint(setA, setB, setC);
 ```
-</details>
 
-<details open>
-<summary><h3 style="display: inline">subset: <code>A ⊆ B</code></h3></summary>
-
+### subset: `A ⊆ B`
 A set is a subset of another if all of its elements
 are elements of the other set.
 ```typescript
@@ -105,11 +93,8 @@ import { subset } from 'set-utilities';
 const isSubsetAB = subset(setA, setB);
 const isSubsetABC = subset(setA, setB, setC);
 ```
-</details>
 
-<details open>
-<summary><h3 style="display: inline">superset: <code>A ⊇ B</code></h3></summary>
-
+### superset: `A ⊇ B`
 A set is a superset of another if it contains all the elements
 contained in the other set.
 ```typescript
@@ -118,14 +103,11 @@ import { superset } from 'set-utilities';
 const isSupersetAB = superset(setA, setB);
 const isSupersetABC = superset(setA, setB, setC);
 ```
-</details>
 
 
 ## Set Ordering:
 
-<details open>
-<summary><h3 style="display: inline">sort:</h3></summary>
-
+### sort:
 An immutable sorting operation for sets.
 ```typescript
 import { sort } from 'set-utilities';
@@ -133,7 +115,6 @@ import { sort } from 'set-utilities';
 const sorted = sort(setA);
 const sortedByComparator = sort(setA, comparatorFunction);
 ```
-</details>
 
 
 [npm-image]: http://img.shields.io/npm/v/set-utilities
@@ -156,3 +137,8 @@ const sortedByComparator = sort(setA, comparatorFunction);
 
 [language-image]: https://img.shields.io/github/languages/top/kubikowski/set-utilities
 [language-url]: https://www.typescriptlang.org
+
+[difference-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/difference.svg
+[intersection-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/intersection.svg
+[union-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/union.svg
+[xor-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/xor.svg
