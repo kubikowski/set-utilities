@@ -8,7 +8,7 @@ export function difference<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  * Set difference is notated A ∖ B,
  * or more commonly as A - B.
  *
- * @description A - B ≔ { x : (x ∈ A) ∧ (x ∉ B) }
+ * @description A ∖ B ≔ { x : (x ∈ A) ∧ (x ∉ B) }
  */
 export function difference<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 	const result = new Set<T>(sets[0] ?? new Set<T>());
