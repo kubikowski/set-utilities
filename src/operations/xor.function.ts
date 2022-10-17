@@ -8,7 +8,7 @@ export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  *
  * Set symmetric difference is notated A ⊖ B or A ∆ B.
  *
- * @description A ⊖ B ≔ { x : (x ∈ A) ⊕ (x ∈ B) }
+ * @description A ∆ B ≔ { x : (x ∈ A) ⊕ (x ∈ B) }
  */
 export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 	const result = new Set<T>(sets[0] ?? new Set<T>());

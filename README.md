@@ -17,9 +17,11 @@ Additionally, each function operates with the principals of immutability: none o
 
 ## Set Operations:
 
-### difference:
+### difference: `A ∖ B`
 The difference of two sets contains all the elements of the first set
 that are not contained in the second (or thereafter).
+
+![difference visual][difference-visual-url]
 ```typescript
 import { difference } from 'set-utilities';
 
@@ -27,8 +29,10 @@ const differenceAB = difference(setA, setB);
 const differenceABC = difference(setA, setB, setC);
 ```
 
-### intersection:
+### intersection: `A ∩ B`
 The intersection of two sets contains all the elements each contained in both of the sets.
+
+![intersection visual][intersection-visual-url]
 ```typescript
 import { intersection } from 'set-utilities';
 
@@ -36,8 +40,10 @@ const intersectionAB = intersection(setA, setB);
 const intersectionABC = intersection(setA, setB, setC);
 ```
 
-### union:
+### union: `A ∪ B`
 The union of two sets contains all the elements contained in either set (or both sets).
+
+![union visual][union-visual-url]
 ```typescript
 import { union } from 'set-utilities';
 
@@ -45,8 +51,10 @@ const unionAB = union(setA, setB);
 const unionABC = union(setA, setB, setC);
 ```
 
-### xor _(symmetric difference)_:
+### symmetric difference _(xor)_: `A ∆ B`
 The symmetric difference of two sets contains only the unique elements of each set.
+
+![xor visual][xor-visual-url]
 ```typescript
 import { xor } from 'set-utilities';
 
@@ -57,7 +65,7 @@ const xorABC = xor(setA, setB, setC);
 
 ## Set Comparisons:
 
-### equivalence:
+### equivalence: `A ∼ B`
 Sets are equivalent if they have the same cardinality,
 and there is a bijection between the values contained in each set.
 ```typescript
@@ -67,7 +75,7 @@ const isEquivalentAB = equivalence(setA, setB);
 const isEquivalentABC = equivalence(setA, setB, setC);
 ```
 
-### disjoint:
+### disjoint: `A ∩ B = ∅`
 Sets are disjoint if they have no elements in common.
 ```typescript
 import { disjoint } from 'set-utilities';
@@ -76,7 +84,7 @@ const isDisjointAB = disjoint(setA, setB);
 const isDisjointABC = disjoint(setA, setB, setC);
 ```
 
-### subset:
+### subset: `A ⊆ B`
 A set is a subset of another if all of its elements
 are elements of the other set.
 ```typescript
@@ -86,7 +94,7 @@ const isSubsetAB = subset(setA, setB);
 const isSubsetABC = subset(setA, setB, setC);
 ```
 
-### superset:
+### superset: `A ⊇ B`
 A set is a superset of another if it contains all the elements
 contained in the other set.
 ```typescript
@@ -129,3 +137,8 @@ const sortedByComparator = sort(setA, comparatorFunction);
 
 [language-image]: https://img.shields.io/github/languages/top/kubikowski/set-utilities
 [language-url]: https://www.typescriptlang.org
+
+[difference-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/difference.svg
+[intersection-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/intersection.svg
+[union-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/union.svg
+[xor-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/xor.svg
