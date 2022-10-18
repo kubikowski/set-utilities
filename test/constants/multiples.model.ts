@@ -68,9 +68,9 @@ export abstract class Multiples {
 		return Timer.time('copying many', () =>
 			Array.from(
 				{ length: quantity },
-				(_, setIndex) => new Set<number>(Array.from(
+				(_1, setIndex) => new Set<number>(Array.from(
 					{ length: size },
-					(__, index) => index + (offset ? (setIndex * size) : 0),
+					(_2, index) => index + (offset ? (setIndex * size) : 0),
 				)),
 			));
 	}
