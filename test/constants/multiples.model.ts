@@ -70,7 +70,7 @@ export abstract class Multiples {
 				{ length: quantity },
 				(_, setIndex) => new Set<number>(Array.from(
 					{ length: size },
-					(_, index) => index + (offset ? (setIndex * size) : 0),
+					(__, index) => index + (offset ? (setIndex * size) : 0),
 				)),
 			));
 	}
