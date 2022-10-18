@@ -24,8 +24,11 @@
 	],
 	"type": "module",
 	"scripts": {
-		"build": "rimraf dist; tsc",
+		"build": "tsc",
 		"lint": "eslint . --ext .ts",
+		"prebuild": "rimraf dist",
+		"prepack": "npm run build",
+		"pretest:coverage": "rimraf coverage",
 		"test": "jest --testPathIgnorePatterns=scale",
 		"test:coverage": "jest --collect-coverage --testPathIgnorePatterns=scale",
 		"test:scale": "jest --testPathPattern=scale"
