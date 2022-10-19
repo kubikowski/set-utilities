@@ -12,15 +12,11 @@ export function intersection<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 	let result = new Set<T>(sets[0] ?? new Set<T>());
 
 	for (let index = 1; index < sets.length; index++) {
-		const _intersection = new Set<T>();
-
-		for (const value of sets[index]!) {
-			if (result.has(value)) {
-				_intersection.add(value);
+		for (const value of result) {
+			if (!sets[index]!.has(value)) {
+				result.delete(value);
 			}
 		}
-
-		result = _intersection;
 	}
 
 	return result as ReadonlySet<T> as S;
