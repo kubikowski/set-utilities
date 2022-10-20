@@ -7,8 +7,6 @@ export function subset<T>(...sets: ReadonlySet<T>[]): boolean;
  *
  * Subset is notated A ⊆ B,
  * where not subset is A ⊈ B.
- * Proper subset is notated A ⊂ B,
- * and not proper subset is A ⊄ B.
  *
  * @description A ⊆ B ⇔ ∀x : (x ∈ A ⇒ x ∈ B)
  */
@@ -18,7 +16,7 @@ export function subset<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 	}
 
 	const cardinalities = sets.map(set => set.size);
-	const primaryCardinality = cardinalities[0]!;
+	const primaryCardinality = cardinalities.shift()!;
 	const allSetsHaveGreaterCardinalities = cardinalities
 		.every(cardinality => cardinality >= primaryCardinality);
 

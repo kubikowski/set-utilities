@@ -1,5 +1,17 @@
 import { expect, it } from '@jest/globals';
-import { difference, disjoint, equivalence, intersection, sort, subset, superset, union, xor } from '../src';
+import {
+	difference,
+	disjoint,
+	equivalence,
+	intersection,
+	properSubset,
+	properSuperset,
+	sort,
+	subset,
+	superset,
+	union,
+	xor,
+} from '../src';
 import { Multiples } from './constants/multiples.model';
 import { defaultComparator, reverseComparator } from './constants/sort-testing-constants';
 import { Timer } from './constants/timer.model';
@@ -14,7 +26,7 @@ describe('Scale Tests', () => {
 	const someDisjoint = Multiples.someDisjoint;
 	const manyDisjoint = Multiples.manyDisjoint;
 
-	const padding = 32;
+	const padding = 34;
 	Timer.logAll();
 
 	describe('Operations', () => {
@@ -306,6 +318,102 @@ describe('Scale Tests', () => {
 				expect(result).toBe(false);
 			});
 			afterAll(() => Timer.log('equivalence'));
+		});
+
+		describe('proper subset', () => {
+			it('properSubset(of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(multiplesOf1));
+				expect(result).toBe(true);
+			});
+			it('properSubset(of1, of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(multiplesOf1, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('properSubset(of1, of2):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(multiplesOf1, multiplesOf2));
+				expect(result).toBe(false);
+			});
+			it('properSubset(of2, of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(multiplesOf2, multiplesOf1));
+				expect(result).toBe(true);
+			});
+			it('properSubset(of1, of1, of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(multiplesOf1, multiplesOf1, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('properSubset(of1, of2, of3):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(multiplesOf1, multiplesOf2, multiplesOf3));
+				expect(result).toBe(false);
+			});
+			it('properSubset(of3, of2, of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(multiplesOf3, multiplesOf2, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('properSubset(...someEquivalent):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(...someEquivalent));
+				expect(result).toBe(false);
+			});
+			it('properSubset(...manyEquivalent):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(...manyEquivalent));
+				expect(result).toBe(false);
+			});
+			it('properSubset(...someDisjoint):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(...someDisjoint));
+				expect(result).toBe(false);
+			});
+			it('properSubset(...manyDisjoint):'.padEnd(padding), () => {
+				const result = Timer.time('properSubset', () => properSubset(...manyDisjoint));
+				expect(result).toBe(false);
+			});
+			afterAll(() => Timer.log('properSubset'));
+		});
+
+		describe('proper superset', () => {
+			it('properSuperset(of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(multiplesOf1));
+				expect(result).toBe(true);
+			});
+			it('properSuperset(of1, of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(multiplesOf1, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('properSuperset(of1, of2):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(multiplesOf1, multiplesOf2));
+				expect(result).toBe(true);
+			});
+			it('properSuperset(of2, of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(multiplesOf2, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('properSuperset(of1, of1, of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(multiplesOf1, multiplesOf1, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('properSuperset(of1, of2, of3):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(multiplesOf1, multiplesOf2, multiplesOf3));
+				expect(result).toBe(true);
+			});
+			it('properSuperset(of3, of2, of1):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(multiplesOf3, multiplesOf2, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('properSuperset(...someEquivalent):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(...someEquivalent));
+				expect(result).toBe(false);
+			});
+			it('properSuperset(...manyEquivalent):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(...manyEquivalent));
+				expect(result).toBe(false);
+			});
+			it('properSuperset(...someDisjoint):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(...someDisjoint));
+				expect(result).toBe(false);
+			});
+			it('properSuperset(...manyDisjoint):'.padEnd(padding), () => {
+				const result = Timer.time('properSuperset', () => properSuperset(...manyDisjoint));
+				expect(result).toBe(false);
+			});
+			afterAll(() => Timer.log('properSuperset'));
 		});
 
 		describe('subset', () => {
