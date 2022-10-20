@@ -10,7 +10,7 @@ import {
 	subset,
 	superset,
 	union,
-	xor
+	xor,
 } from '../src';
 import { Multiples } from './constants/multiples.model';
 import { defaultComparator, reverseComparator } from './constants/sort-testing-constants';

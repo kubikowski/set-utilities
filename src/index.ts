@@ -1,7 +1,7 @@
 export { disjoint } from './comparisons/disjoint.function';
 export { equivalence } from './comparisons/equivalence.function';
-export { properSubset } from './comparisons/proper-subset.function'
-export { properSuperset } from './comparisons/proper-superset.function'
+export { properSubset } from './comparisons/proper-subset.function';
+export { properSuperset } from './comparisons/proper-superset.function';
 export { subset } from './comparisons/subset.function';
 export { superset } from './comparisons/superset.function';
 
