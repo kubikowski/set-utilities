@@ -126,7 +126,7 @@ const isSupersetABC = superset(setA, setB, setC);
 ```
 
 ### proper superset: `A ⊃ B`
-A set is a superset of another if it contains all the elements
+A set is a proper superset of another if it contains all the elements
 contained in the other set, and it has a greater cardinality
 than the other set.
 
