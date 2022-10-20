@@ -18,7 +18,7 @@ describe('difference', () => {
 
 	it('same set has no difference overlap', () => {
 		const result = difference(setA, setA);
-		expect(result.size).toBe(0);
+		expect(equivalence(result, empty)).toBe(true);
 	});
 
 	it('two sets\' difference is a subset of the first', () => {

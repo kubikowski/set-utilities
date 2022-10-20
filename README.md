@@ -100,6 +100,19 @@ const isSubsetAB = subset(setA, setB);
 const isSubsetABC = subset(setA, setB, setC);
 ```
 
+### proper subset: `A ⊂ B`
+A set is a proper subset of another if all of its elements
+are elements of the other set, and it has a lower cardinality
+than the other set.
+
+![proper subset visual][proper-subset-visual-url]
+```typescript
+import { properSubset } from 'set-utilities';
+
+const isProperSubsetAB = properSubset(setA, setB);
+const isProperSubsetABC = properSubset(setA, setB, setC);
+```
+
 ### superset: `A ⊇ B`
 A set is a superset of another if it contains all the elements
 contained in the other set.
@@ -110,6 +123,19 @@ import { superset } from 'set-utilities';
 
 const isSupersetAB = superset(setA, setB);
 const isSupersetABC = superset(setA, setB, setC);
+```
+
+### proper superset: `A ⊃ B`
+A set is a superset of another if it contains all the elements
+contained in the other set, and it has a greater cardinality
+than the other set.
+
+![proper superset visual][proper-superset-visual-url]
+```typescript
+import { properSuperset } from 'set-utilities';
+
+const isProperSupersetAB = properSuperset(setA, setB);
+const isProperSupersetABC = properSuperset(setA, setB, setC);
 ```
 
 
@@ -154,4 +180,6 @@ const sortedByComparator = sort(setA, comparatorFunction);
 [equivalence-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/equivalence.svg
 [disjoint-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/disjoint.svg
 [subset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/subset.svg
+[proper-subset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-subset.svg
 [superset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/superset.svg
+[proper-superset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-superset.svg

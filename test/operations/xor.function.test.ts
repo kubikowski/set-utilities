@@ -19,7 +19,7 @@ describe('xor', () => {
 
 	it('equivalence: same set xor returns the empty set', () => {
 		const result = xor(setA, setA);
-		expect(result.size).toBe(0);
+		expect(equivalence(result, empty)).toBe(true);
 	});
 
 	it('two different sets xor returns unique values', () => {

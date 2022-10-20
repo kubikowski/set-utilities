@@ -27,15 +27,17 @@ describe('disjoint', () => {
 		expect(disjoint(setA, setB, setC)).toBe(false);
 	});
 
-	it('two sets with no shared values are disjoint', () => {
-		expect(disjoint(setA, setD)).toBe(true);
+	it('the empty set is disjoint with itself', () => {
+		expect(disjoint(empty, empty)).toBe(true);
 	});
+
+	/* custom disjoint tests */
 
 	it('any set and the empty set are disjoint', () => {
 		expect(disjoint(setA, empty)).toBe(true);
 	});
 
-	it('two of the empty set are disjoint', () => {
-		expect(disjoint(empty, empty)).toBe(true);
+	it('two sets with no shared values are disjoint', () => {
+		expect(disjoint(setA, setD)).toBe(true);
 	});
 });
