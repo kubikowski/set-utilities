@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, union } from '../../src';
-import { empty, setA, setB, setC } from '../constants/testing-constants';
+import { empty, setA, setB, setC, universal } from '../constants/testing-constants';
 
 describe('union', () => {
 	const unionAB = new Set<number>([ 0, 1, 2, 3, 4, 5 ]);
@@ -29,5 +29,15 @@ describe('union', () => {
 	it('three sets\' union contains all values from all sets', () => {
 		const result = union(setA, setB, setC);
 		expect(equivalence(result, unionABC)).toBe(true);
+	});
+
+	it('any sets\' union with the empty set is itself', () => {
+		const result = union(setA, empty);
+		expect(equivalence(result, setA)).toBe(true);
+	});
+
+	it('any sets\' union with the universal set is the universal set', () => {
+		const result = union(setA, universal);
+		expect(equivalence(result, universal)).toBe(true);
 	});
 });
