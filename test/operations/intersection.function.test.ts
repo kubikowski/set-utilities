@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, intersection } from '../../src';
-import { empty, setA, setB, setC } from '../constants/testing-constants';
+import { empty, setA, setB, setC, universal } from '../constants/testing-constants';
 
 describe('intersection', () => {
 	const intersectionAB = new Set<number>([ 0, 1 ]);
@@ -29,5 +29,15 @@ describe('intersection', () => {
 	it('three sets\' intersection is a subset of the first', () => {
 		const result = intersection(setA, setB, setC);
 		expect(equivalence(result, intersectionABC)).toBe(true);
+	});
+
+	it('any sets\' intersection with the empty set is the empty set', () => {
+		const result = intersection(setA, empty);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('any sets\' intersection with the universal set is itself', () => {
+		const result = intersection(setA, universal);
+		expect(equivalence(result, setA)).toBe(true);
 	});
 });

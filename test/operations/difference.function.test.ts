@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { difference, equivalence } from '../../src';
-import { empty, setA, setB, setC } from '../constants/testing-constants';
+import { empty, setA, setB, setC, universal } from '../constants/testing-constants';
 
 describe('difference', () => {
 	const differenceAB = new Set<number>([ 2, 4 ]);
@@ -29,5 +29,15 @@ describe('difference', () => {
 	it('three sets\' difference is a subset of the first', () => {
 		const result = difference(setA, setB, setC);
 		expect(equivalence(result, differenceABC)).toBe(true);
+	});
+
+	it('any sets\' difference with the empty set is itself', () => {
+		const result = difference(setA, empty);
+		expect(equivalence(result, setA)).toBe(true);
+	});
+
+	it('any sets\' difference with the universal set is the empty set', () => {
+		const result = difference(setA, universal);
+		expect(equivalence(result, empty)).toBe(true);
 	});
 });
