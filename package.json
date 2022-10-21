@@ -7,8 +7,22 @@
 	"license": "MIT",
 	"keywords": [
 		"set",
+		"sets",
 		"set theory",
-		"math"
+		"math",
+		"difference",
+		"intersection",
+		"union",
+		"comparison",
+		"equal",
+		"equivalence",
+		"disjoint",
+		"subset",
+		"superset",
+		"utilities",
+		"utility",
+		"utils",
+		"util"
 	],
 	"repository": {
 		"type": "git",
