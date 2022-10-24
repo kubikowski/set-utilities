@@ -151,7 +151,7 @@ const sortedByComparator = sort(setA, comparatorFunction);
 ```
 
 
-[npm-image]: http://img.shields.io/npm/v/set-utilities
+[npm-image]: https://img.shields.io/npm/v/set-utilities
 [npm-url]: https://www.npmjs.org/package/set-utilities
 
 [license-image]: https://img.shields.io/npm/l/set-utilities?color=blue

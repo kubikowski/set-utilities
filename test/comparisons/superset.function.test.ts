@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import {subset, superset} from '../../src';
-import {empty, minimal, setA, setB, setC, setD, universal} from '../constants/testing-constants';
+import { superset } from '../../src';
+import { empty, minimal, setA, setB, setC, setD, universal } from '../constants/testing-constants';
 
 describe('superset', () => {
 	it('no sets are superset', () => {
@@ -38,7 +38,7 @@ describe('superset', () => {
 	});
 
 	it('sets without value bijection are not supersets', () => {
-		expect(subset(setA, setD)).toBe(false);
+		expect(superset(setA, setD)).toBe(false);
 	});
 
 	it('any set is a superset of the empty set', () => {

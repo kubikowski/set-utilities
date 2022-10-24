@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { properSubset } from '../../src';
-import {empty, minimal, setA, setB, setC, setD, universal} from '../constants/testing-constants';
+import { empty, minimal, setA, setB, setC, setD, universal } from '../constants/testing-constants';
 
 describe('proper subset', () => {
 	it('no sets are proper subsets', () => {
