@@ -11,7 +11,7 @@ export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  * @description A ∆ B ≔ { x : (x ∈ A) ⊕ (x ∈ B) }
  */
 export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
-	const result = new Set<T>(sets[0] ?? new Set<T>());
+	const result = new Set<T>(sets[0]);
 	const reusedValues = new Set<T>();
 
 	for (let index = 1; index < sets.length; index++) {
