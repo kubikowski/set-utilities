@@ -18,8 +18,9 @@
 		"declaration": true,
 		"moduleResolution": "node",
 		"skipLibCheck": true,
-		"target": "esnext",
+		"isolatedModules": true,
 		"module": "esnext",
+		"target": "esnext",
 		"lib": [
 			"esnext"
 		]
@@ -27,9 +28,5 @@
 
 	"include": [
 		"src"
-	],
-
-	"exclude": [
-		"node_modules"
 	]
 }
