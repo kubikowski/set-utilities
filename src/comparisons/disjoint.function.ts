@@ -15,13 +15,13 @@ export function disjoint<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 		return true;
 	}
 
-	const allValues = new Set<T>(sets[0]);
+	const allElements = new Set<T>(sets[0]);
 	for (let index = 1; index < sets.length; index++) {
-		for (const value of sets[index]!) {
-			if (allValues.has(value)) {
+		for (const element of sets[index]!) {
+			if (allElements.has(element)) {
 				return false;
 			} else {
-				allValues.add(value);
+				allElements.add(element);
 			}
 		}
 	}

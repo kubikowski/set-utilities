@@ -12,8 +12,8 @@ export function union<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 	const result = new Set<T>(sets[0]);
 
 	for (let index = 1; index < sets.length; index++) {
-		for (const value of sets[index]!) {
-			result.add(value);
+		for (const element of sets[index]!) {
+			result.add(element);
 		}
 	}
 
