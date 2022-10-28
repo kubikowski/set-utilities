@@ -18,10 +18,7 @@ export function equivalence<T, S extends ReadonlySet<T>>(...sets: S[]): boolean 
 
 	const cardinalities = sets.map(set => set.size);
 	const primaryCardinality = cardinalities.shift()!;
-	const allSetsHaveEqualCardinalities = cardinalities
-		.every(cardinality => cardinality === primaryCardinality);
-
-	if (!allSetsHaveEqualCardinalities) {
+	if (!cardinalities.every(cardinality => cardinality === primaryCardinality)) {
 		return false;
 	}
 
