@@ -14,8 +14,8 @@ export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 	const resultSet = new Set<T>(sets.shift());
 	const reusedElements = new Set<T>();
 
-	for (let index = 0; index < sets.length; ++index) {
-		for (const element of sets[index]!) {
+	for (const set of sets) {
+		for (const element of set) {
 			if (resultSet.has(element)) {
 				resultSet.delete(element);
 				reusedElements.add(element);

@@ -26,8 +26,8 @@ export function properSuperset<T, S extends ReadonlySet<T>>(...sets: S[]): boole
 	}
 
 	const primarySet = sets.shift()!;
-	for (let index = 0; index < sets.length; ++index) {
-		for (const element of sets[index]!) {
+	for (const set of sets) {
+		for (const element of set) {
 			if (!primarySet.has(element)) {
 				return false;
 			}

@@ -26,8 +26,8 @@ export function subset<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 
 	const primarySet = sets.shift()!;
 	for (const element of primarySet) {
-		for (let index = 0; index < sets.length; ++index) {
-			if (!sets[index]!.has(element)) {
+		for (const set of sets) {
+			if (!set.has(element)) {
 				return false;
 			}
 		}
