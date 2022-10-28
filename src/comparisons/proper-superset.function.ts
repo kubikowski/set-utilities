@@ -18,10 +18,7 @@ export function properSuperset<T, S extends ReadonlySet<T>>(...sets: S[]): boole
 
 	const cardinalities = sets.map(set => set.size);
 	const primaryCardinality = cardinalities.shift()!;
-	const allSetsHaveLesserCardinalities = cardinalities
-		.every(cardinality => cardinality < primaryCardinality);
-
-	if (!allSetsHaveLesserCardinalities) {
+	if (!cardinalities.every(cardinality => cardinality < primaryCardinality)) {
 		return false;
 	}
 

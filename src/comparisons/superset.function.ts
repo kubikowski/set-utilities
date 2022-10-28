@@ -19,10 +19,7 @@ export function superset<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 
 	const cardinalities = sets.map(set => set.size);
 	const primaryCardinality = cardinalities.shift()!;
-	const allSetsHaveLesserCardinalities = cardinalities
-		.every(cardinality => cardinality <= primaryCardinality);
-
-	if (!allSetsHaveLesserCardinalities) {
+	if (!cardinalities.every(cardinality => cardinality <= primaryCardinality)) {
 		return false;
 	}
 
