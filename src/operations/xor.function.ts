@@ -12,15 +12,15 @@ export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  */
 export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 	const result = new Set<T>(sets[0]);
-	const reusedValues = new Set<T>();
+	const reusedElements = new Set<T>();
 
 	for (let index = 1; index < sets.length; index++) {
-		for (const value of sets[index]!) {
-			if (result.has(value)) {
-				result.delete(value);
-				reusedValues.add(value);
-			} else if (!reusedValues.has(value)) {
-				result.add(value);
+		for (const element of sets[index]!) {
+			if (result.has(element)) {
+				result.delete(element);
+				reusedElements.add(element);
+			} else if (!reusedElements.has(element)) {
+				result.add(element);
 			}
 		}
 	}

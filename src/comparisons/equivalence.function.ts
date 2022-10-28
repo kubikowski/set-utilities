@@ -3,7 +3,7 @@ export function equivalence<T>(...sets: ReadonlySet<T>[]): boolean;
 
 /**
  * Sets are equivalent if they have the same cardinality,
- * and there is a bijection between the values contained in each set.
+ * and there is a bijection between the elements contained in each set.
  * Set equivalence is also commonly referred to as equals.
  *
  * Set equivalence is notated A ∼ B,
@@ -25,9 +25,9 @@ export function equivalence<T, S extends ReadonlySet<T>>(...sets: S[]): boolean 
 		return false;
 	}
 
-	for (const value of sets[0]!) {
+	for (const element of sets[0]!) {
 		for (let index = 1; index < sets.length; index++) {
-			if (!sets[index]?.has(value)) {
+			if (!sets[index]?.has(element)) {
 				return false;
 			}
 		}
