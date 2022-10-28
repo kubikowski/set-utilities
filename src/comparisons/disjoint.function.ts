@@ -15,8 +15,8 @@ export function disjoint<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 		return true;
 	}
 
-	const allElements = new Set<T>(sets[0]);
-	for (let index = 1; index < sets.length; index++) {
+	const allElements = new Set<T>(sets.shift());
+	for (let index = 0; index < sets.length; ++index) {
 		for (const element of sets[index]!) {
 			if (allElements.has(element)) {
 				return false;

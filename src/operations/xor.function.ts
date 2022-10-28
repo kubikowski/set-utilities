@@ -11,19 +11,19 @@ export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  * @description A ∆ B ≔ { x : (x ∈ A) ⊕ (x ∈ B) }
  */
 export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
-	const result = new Set<T>(sets[0]);
+	const resultSet = new Set<T>(sets.shift());
 	const reusedElements = new Set<T>();
 
-	for (let index = 1; index < sets.length; index++) {
+	for (let index = 0; index < sets.length; ++index) {
 		for (const element of sets[index]!) {
-			if (result.has(element)) {
-				result.delete(element);
+			if (resultSet.has(element)) {
+				resultSet.delete(element);
 				reusedElements.add(element);
 			} else if (!reusedElements.has(element)) {
-				result.add(element);
+				resultSet.add(element);
 			}
 		}
 	}
 
-	return result as ReadonlySet<T> as S;
+	return resultSet as ReadonlySet<T> as S;
 }
