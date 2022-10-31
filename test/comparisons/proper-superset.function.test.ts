@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { properSuperset } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, universal } from '../constants/testing-constants';
+import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing-constants';
 
 describe('proper superset', () => {
 	it('no sets are proper supersets', () => {
@@ -27,6 +27,18 @@ describe('proper superset', () => {
 		expect(properSuperset(setA, setB, setC)).toBe(false);
 	});
 
+	it('many sets with different values are not proper supersets', () => {
+		expect(properSuperset(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('any non-empty set is a proper superset of the empty set', () => {
+		expect(properSuperset(setA, empty)).toBe(true);
+	});
+
+	it('any non-universal set is not a proper superset of the universal set', () => {
+		expect(properSuperset(setA, universal)).toBe(false);
+	});
+
 	it('the empty set is not a proper superset of itself', () => {
 		expect(properSuperset(empty, empty)).toBe(false);
 	});
@@ -39,10 +51,6 @@ describe('proper superset', () => {
 
 	it('sets without value bijection are not proper supersets', () => {
 		expect(properSuperset(setA, setD)).toBe(false);
-	});
-
-	it('any non-empty set is a proper superset of the empty set', () => {
-		expect(properSuperset(setA, empty)).toBe(true);
 	});
 
 	it('the universal set is a proper superset of every non-universal set', () => {

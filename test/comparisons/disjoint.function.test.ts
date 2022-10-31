@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { disjoint } from '../../src';
-import { empty, setA, setB, setC, setD } from '../constants/testing-constants';
+import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing-constants';
 
 describe('disjoint', () => {
 	it('no sets are disjoint', () => {
@@ -27,15 +27,23 @@ describe('disjoint', () => {
 		expect(disjoint(setA, setB, setC)).toBe(false);
 	});
 
+	it('many sets with some shared values are not disjoint', () => {
+		expect(disjoint(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('any non-empty set and the empty set are disjoint', () => {
+		expect(disjoint(setA, empty)).toBe(true);
+	});
+
+	it('any non-empty set and the universal set are not disjoint', () => {
+		expect(disjoint(setA, universal)).toBe(false);
+	});
+
 	it('the empty set is disjoint with itself', () => {
 		expect(disjoint(empty, empty)).toBe(true);
 	});
 
 	/* custom disjoint tests */
-
-	it('any set and the empty set are disjoint', () => {
-		expect(disjoint(setA, empty)).toBe(true);
-	});
 
 	it('two sets with no shared values are disjoint', () => {
 		expect(disjoint(setA, setD)).toBe(true);

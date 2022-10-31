@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { difference, equivalence } from '../../src';
-import { empty, setA, setB, setC, universal } from '../constants/testing-constants';
+import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing-constants';
 
 describe('difference', () => {
 	const differenceAB = new Set<number>([ 2, 4 ]);
@@ -21,6 +21,11 @@ describe('difference', () => {
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
+	it('many of the same set has no difference overlap', () => {
+		const result = difference(setA, setA, setA);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
 	it('two sets\' difference is a subset of the first', () => {
 		const result = difference(setA, setB);
 		expect(equivalence(result, differenceAB)).toBe(true);
@@ -31,6 +36,11 @@ describe('difference', () => {
 		expect(equivalence(result, differenceABC)).toBe(true);
 	});
 
+	it('many sets\' difference is a subset of the first', () => {
+		const result = difference(setA, setB, setC, setD, setE, setF);
+		expect(equivalence(result, differenceABC)).toBe(true);
+	});
+
 	it('any sets\' difference with the empty set is itself', () => {
 		const result = difference(setA, empty);
 		expect(equivalence(result, setA)).toBe(true);
@@ -38,6 +48,11 @@ describe('difference', () => {
 
 	it('any sets\' difference with the universal set is the empty set', () => {
 		const result = difference(setA, universal);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('the empty sets\' difference with itself is itself', () => {
+		const result = difference(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 });
