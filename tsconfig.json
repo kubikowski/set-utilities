@@ -15,9 +15,8 @@
 		"baseUrl": "./",
 		"outDir": "./dist",
 		"declaration": true,
-		"moduleResolution": "node",
-		"skipLibCheck": true,
 		"isolatedModules": true,
+		"moduleResolution": "node",
 		"module": "esnext",
 		"target": "esnext",
 		"lib": [
