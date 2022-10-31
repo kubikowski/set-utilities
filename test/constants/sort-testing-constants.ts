@@ -1,7 +1,7 @@
 import { expect } from '@jest/globals';
 
-/* unordered universal set, contains: 0, 1, 2, 3, 4, 5, 6, 7 */
-export const unordered = new Set([ 4, 6, 1, 2, 5, 7, 0, 3 ]);
+/* unordered universal set, contains: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 */
+export const unordered = new Set([ 4, 9, 6, 1, 8, 2, 5, 7, 0, 3 ]);
 
 /* (default) less than comparator function */
 export function defaultComparator<T>(a: T, b: T): number {

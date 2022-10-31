@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { subset } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, universal } from '../constants/testing-constants';
+import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing-constants';
 
 describe('subset', () => {
 	it('no sets are subsets', () => {
@@ -27,6 +27,18 @@ describe('subset', () => {
 		expect(subset(setA, setB, setC)).toBe(false);
 	});
 
+	it('many sets with different values are not subsets', () => {
+		expect(subset(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('any non-empty set is not a subset of the empty set', () => {
+		expect(subset(setA, empty)).toBe(false);
+	});
+
+	it('any non-universal set is a subset of the universal set', () => {
+		expect(subset(setA, universal)).toBe(true);
+	});
+
 	it('the empty set is a subset of itself', () => {
 		expect(subset(empty, empty)).toBe(true);
 	});
@@ -39,10 +51,6 @@ describe('subset', () => {
 
 	it('sets without value bijection are not subsets', () => {
 		expect(subset(setD, setA)).toBe(false);
-	});
-
-	it('any set is a subset of the universal set', () => {
-		expect(subset(setA, universal)).toBe(true);
 	});
 
 	it('the empty set is a subset of every set', () => {
