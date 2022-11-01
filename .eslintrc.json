@@ -3,13 +3,15 @@
 	"overrides": [
 		{
 			"files": [
+				"*.js",
 				"*.ts"
 			],
 			"parserOptions": {
 				"project": [
 					"tsconfig.json"
 				],
-				"createDefaultProgram": true
+				"createDefaultProgram": true,
+				"sourceType": "module"
 			},
 			"extends": [
 				"eslint:recommended",
@@ -214,6 +216,7 @@
 					"error",
 					"as-needed"
 				],
+				"brace-style": "error",
 				"comma-dangle": "off",
 				"func-style": [
 					"error",
