@@ -3,7 +3,7 @@
 	"version": "1.4.2",
 	"author": "Nathaniel Holden <holden@inanity.io> (https://inanity.io)",
 	"homepage": "https://github.com/kubikowski/set-utilities",
-	"description": "Set Utilities for JavaScript",
+	"description": "A collection of high performance utilities from Set Theory, which operate on an arbitrary number of Sets.",
 	"license": "MIT",
 	"keywords": [
 		"set",
