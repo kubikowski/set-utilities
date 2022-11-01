@@ -23,9 +23,9 @@ export const setB = new Set<number>([ 0, 1, 3, 5 ]);
 export const setC = new Set<number>([ 0, 2, 3, 6 ]);
 /* contains: 7 */
 export const setD = new Set<number>([ 7 ]);
-/* contains: 7 */
+/* contains: 8 */
 export const setE = new Set<number>([ 8 ]);
-/* contains: 7 */
+/* contains: 9 */
 export const setF = new Set<number>([ 9 ]);
 
 /* the universal set: U, contains: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 */

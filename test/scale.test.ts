@@ -4,6 +4,7 @@ import {
 	disjoint,
 	equivalence,
 	intersection,
+	pairwiseDisjoint,
 	properSubset,
 	properSuperset,
 	sort,
@@ -26,7 +27,7 @@ describe('Scale Tests', () => {
 	const someDisjoint = Multiples.someDisjoint;
 	const manyDisjoint = Multiples.manyDisjoint;
 
-	const padding = 34;
+	const padding = 36;
 	Timer.logAll();
 
 	describe('Operations', () => {
@@ -318,6 +319,54 @@ describe('Scale Tests', () => {
 				expect(result).toBe(false);
 			});
 			afterAll(() => Timer.log('equivalence'));
+		});
+
+		describe('pairwise disjoint', () => {
+			it('pairwiseDisjoint(of1):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf1));
+				expect(result).toBe(true);
+			});
+			it('pairwiseDisjoint(of1, of1):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf1, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('pairwiseDisjoint(of1, of2):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf1, multiplesOf2));
+				expect(result).toBe(false);
+			});
+			it('pairwiseDisjoint(of2, of1):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf2, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('pairwiseDisjoint(of1, of1, of1):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf1, multiplesOf1, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('pairwiseDisjoint(of1, of2, of3):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf1, multiplesOf2, multiplesOf3));
+				expect(result).toBe(false);
+			});
+			it('pairwiseDisjoint(of3, of2, of1):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf3, multiplesOf2, multiplesOf1));
+				expect(result).toBe(false);
+			});
+			it('pairwiseDisjoint(...someEquivalent):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...someEquivalent));
+				expect(result).toBe(false);
+			});
+			it('pairwiseDisjoint(...manyEquivalent):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...manyEquivalent));
+				expect(result).toBe(false);
+			});
+			it('pairwiseDisjoint(...someDisjoint):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...someDisjoint));
+				expect(result).toBe(true);
+			});
+			it('pairwiseDisjoint(...manyDisjoint):'.padEnd(padding), () => {
+				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...manyDisjoint));
+				expect(result).toBe(true);
+			});
+			afterAll(() => Timer.log('pairwiseDisjoint'));
 		});
 
 		describe('proper subset', () => {

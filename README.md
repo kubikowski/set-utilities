@@ -88,6 +88,18 @@ const isDisjointAB = disjoint(setA, setB);
 const isDisjointABC = disjoint(setA, setB, setC);
 ```
 
+### pairwise disjoint: `A ∩ B ∩ C = ∅`
+A Family of Sets are pairwise disjoint if
+none of the Sets share any elements in common.
+
+![pairwise disjoint visual][pairwise-disjoint-visual-url]
+```typescript
+import { pairwiseDisjoint } from 'set-utilities';
+
+const isPairwiseDisjointAB = pairwiseDisjoint(setA, setB);
+const isPairwiseDisjointABC = pairwiseDisjoint(setA, setB, setC);
+```
+
 ### subset: `A ⊆ B`
 A set is a subset of another if all of its elements
 are elements of the other set.
@@ -179,6 +191,7 @@ const sortedByComparator = sort(setA, comparatorFunction);
 
 [equivalence-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/equivalence.svg
 [disjoint-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/disjoint.svg
+[pairwise-disjoint-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/pairwise-disjoint.svg
 [subset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/subset.svg
 [proper-subset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-subset.svg
 [superset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/superset.svg
