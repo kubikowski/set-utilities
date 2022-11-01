@@ -2,7 +2,9 @@ export function disjoint<T>(...sets: Set<T>[]): boolean;
 export function disjoint<T>(...sets: ReadonlySet<T>[]): boolean;
 
 /**
- * Sets are disjoint if they share no elements in common.
+ * A Set is disjoint from another (or thereafter)
+ * if it shares no elements in common with the other set (or thereafter).
+ *
  * Set disjoint is also commonly referred to as mutually exclusive, or independent.
  *
  * Set disjoint does not have a common notation.
@@ -15,13 +17,11 @@ export function disjoint<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
 		return true;
 	}
 
-	const allElements = new Set<T>(sets.shift());
+	const primarySet = sets.shift()!;
 	for (const set of sets) {
 		for (const element of set) {
-			if (allElements.has(element)) {
+			if (primarySet.has(element)) {
 				return false;
-			} else {
-				allElements.add(element);
 			}
 		}
 	}

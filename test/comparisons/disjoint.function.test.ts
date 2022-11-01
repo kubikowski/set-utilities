@@ -48,4 +48,12 @@ describe('disjoint', () => {
 	it('two sets with no shared values are disjoint', () => {
 		expect(disjoint(setA, setD)).toBe(true);
 	});
+
+	it('many sets with no shared values are disjoint', () => {
+		expect(disjoint(setA, setD, setE, setF)).toBe(true);
+	});
+
+	it('a set & many of another set with no shared values are disjoint', () => {
+		expect(disjoint(setA, setD, setD, setD)).toBe(true);
+	});
 });
