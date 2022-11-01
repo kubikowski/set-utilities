@@ -9,10 +9,11 @@
 [![Coverage][coveralls-image]][coveralls-url]
 [![Language][language-image]][language-url]
 
-This library is a collection of utility functions that operate with JavaScript `Sets`.
+This library is a collection of high performance utilities from Set Theory,
+which operate on an arbitrary number of Sets by each accepting variable arguments.
 
-Each function, as derived from Set Theory, is built to operate on n-ary sets by accepting variable arguments.
-Additionally, each function operates with the principals of immutability: none of the input sets are modified in the process or result of calculation.
+Each utility function operates with the principals of immutability:
+none of the input sets are modified in the process or result of calculation.
 
 
 ## Set Operations:
