@@ -27,7 +27,7 @@ describe('Scale Tests', () => {
 	const someDisjoint = Multiples.someDisjoint;
 	const manyDisjoint = Multiples.manyDisjoint;
 
-	const padding = 34;
+	const padding = 36;
 	Timer.logAll();
 
 	describe('Operations', () => {
