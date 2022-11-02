@@ -1,13 +1,13 @@
 # Set Utilities
 
-[![NPM Version][npm-image]][npm-url]
-[![MIT License][license-image]][license-url]
-[![FOSSA Status][fossa-image]][fossa-url]
-[![Install Size][package-phobia-image]][package-phobia-url]
+[![NPM Version][]][npm]
+[![MIT License][]][license]
+[![FOSSA Status][]][fossa]
+[![Install Size][]][package phobia]
 
-[![Test Job][github-test-image]][github-test-url]
-[![Coverage][coveralls-image]][coveralls-url]
-[![Language][language-image]][language-url]
+[![Test Job][]][github test]
+[![Coverage][]][coveralls]
+[![Language][]][typescript]
 
 This library is a collection of high performance utilities from Set Theory,
 which operate on an arbitrary number of Sets by each accepting variable arguments.
@@ -22,7 +22,7 @@ none of the input sets are modified in the process or result of calculation.
 The difference of two sets contains all the elements of the first set
 that are not contained in the second (or thereafter).
 
-![difference visual][difference-visual-url]
+![difference visual][]
 ```typescript
 import { difference } from 'set-utilities';
 
@@ -33,7 +33,7 @@ const differenceABC = difference(setA, setB, setC);
 ### intersection: `A ∩ B`
 The intersection of two sets contains all the elements each contained in both of the sets.
 
-![intersection visual][intersection-visual-url]
+![intersection visual][]
 ```typescript
 import { intersection } from 'set-utilities';
 
@@ -44,7 +44,7 @@ const intersectionABC = intersection(setA, setB, setC);
 ### union: `A ∪ B`
 The union of two sets contains all the elements contained in either set (or both sets).
 
-![union visual][union-visual-url]
+![union visual][]
 ```typescript
 import { union } from 'set-utilities';
 
@@ -55,7 +55,7 @@ const unionABC = union(setA, setB, setC);
 ### symmetric difference _(xor)_: `A ∆ B`
 The symmetric difference of two sets contains only the unique elements of each set.
 
-![xor visual][xor-visual-url]
+![xor visual][]
 ```typescript
 import { xor } from 'set-utilities';
 
@@ -70,7 +70,7 @@ const xorABC = xor(setA, setB, setC);
 Sets are equivalent if they have the same cardinality,
 and there is a bijection between the values contained in each set.
 
-![equivalence visual][equivalence-visual-url]
+![equivalence visual][]
 ```typescript
 import { equivalence } from 'set-utilities';
 
@@ -81,7 +81,7 @@ const isEquivalentABC = equivalence(setA, setB, setC);
 ### disjoint: `A ∩ B = ∅`
 Sets are disjoint if they have no elements in common.
 
-![disjoint visual][disjoint-visual-url]
+![disjoint visual][]
 ```typescript
 import { disjoint } from 'set-utilities';
 
@@ -93,7 +93,7 @@ const isDisjointABC = disjoint(setA, setB, setC);
 A Family of Sets are pairwise disjoint if
 none of the Sets share any elements in common.
 
-![pairwise disjoint visual][pairwise-disjoint-visual-url]
+![pairwise disjoint visual][]
 ```typescript
 import { pairwiseDisjoint } from 'set-utilities';
 
@@ -105,7 +105,7 @@ const isPairwiseDisjointABC = pairwiseDisjoint(setA, setB, setC);
 A set is a subset of another if all of its elements
 are elements of the other set.
 
-![subset visual][subset-visual-url]
+![subset visual][]
 ```typescript
 import { subset } from 'set-utilities';
 
@@ -118,7 +118,7 @@ A set is a proper subset of another if all of its elements
 are elements of the other set, and it has a lower cardinality
 than the other set.
 
-![proper subset visual][proper-subset-visual-url]
+![proper subset visual][]
 ```typescript
 import { properSubset } from 'set-utilities';
 
@@ -130,7 +130,7 @@ const isProperSubsetABC = properSubset(setA, setB, setC);
 A set is a superset of another if it contains all the elements
 contained in the other set.
 
-![superset visual][superset-visual-url]
+![superset visual][]
 ```typescript
 import { superset } from 'set-utilities';
 
@@ -143,7 +143,7 @@ A set is a proper superset of another if it contains all the elements
 contained in the other set, and it has a greater cardinality
 than the other set.
 
-![proper superset visual][proper-superset-visual-url]
+![proper superset visual][]
 ```typescript
 import { properSuperset } from 'set-utilities';
 
@@ -164,36 +164,41 @@ const sortedByComparator = sort(setA, comparatorFunction);
 ```
 
 
-[npm-image]: https://img.shields.io/npm/v/set-utilities
-[npm-url]: https://www.npmjs.org/package/set-utilities
+<!-- Badges -->
 
-[license-image]: https://img.shields.io/npm/l/set-utilities?color=blue
-[license-url]: LICENSE
+[NPM Version]: https://img.shields.io/npm/v/set-utilities
+[npm]: https://www.npmjs.org/package/set-utilities
 
-[fossa-image]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities.svg?type=shield
-[fossa-url]: https://app.fossa.com/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities?ref=badge_shield
+[MIT License]: https://img.shields.io/npm/l/set-utilities?color=blue
+[license]: LICENSE
 
-[package-phobia-image]: https://packagephobia.com/badge?p=set-utilities
-[package-phobia-url]: https://packagephobia.com/result?p=set-utilities
+[FOSSA Status]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities.svg?type=shield
+[fossa]: https://app.fossa.com/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities?ref=badge_shield
 
-[github-test-image]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml/badge.svg
-[github-test-url]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml
+[Install Size]: https://packagephobia.com/badge?p=set-utilities
+[package phobia]: https://packagephobia.com/result?p=set-utilities
 
-[coveralls-image]: https://coveralls.io/repos/github/kubikowski/set-utilities/badge.svg?branch=main
-[coveralls-url]: https://coveralls.io/github/kubikowski/set-utilities?branch=main
+[Test Job]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml/badge.svg
+[github test]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml
 
-[language-image]: https://img.shields.io/github/languages/top/kubikowski/set-utilities
-[language-url]: https://www.typescriptlang.org
+[Coverage]: https://coveralls.io/repos/github/kubikowski/set-utilities/badge.svg?branch=main
+[coveralls]: https://coveralls.io/github/kubikowski/set-utilities?branch=main
 
-[difference-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/difference.svg
-[intersection-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/intersection.svg
-[union-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/union.svg
-[xor-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/xor.svg
+[Language]: https://img.shields.io/github/languages/top/kubikowski/set-utilities
+[typescript]: https://www.typescriptlang.org
 
-[equivalence-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/equivalence.svg
-[disjoint-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/disjoint.svg
-[pairwise-disjoint-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/pairwise-disjoint.svg
-[subset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/subset.svg
-[proper-subset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-subset.svg
-[superset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/superset.svg
-[proper-superset-visual-url]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-superset.svg
+
+<!-- Assets -->
+
+[difference visual]: https://github.com/kubikowski/set-utilities/wiki/assets/difference.svg
+[intersection visual]: https://github.com/kubikowski/set-utilities/wiki/assets/intersection.svg
+[union visual]: https://github.com/kubikowski/set-utilities/wiki/assets/union.svg
+[xor visual]: https://github.com/kubikowski/set-utilities/wiki/assets/xor.svg
+
+[equivalence visual]: https://github.com/kubikowski/set-utilities/wiki/assets/equivalence.svg
+[disjoint visual]: https://github.com/kubikowski/set-utilities/wiki/assets/disjoint.svg
+[pairwise disjoint visual]: https://github.com/kubikowski/set-utilities/wiki/assets/pairwise-disjoint.svg
+[subset visual]: https://github.com/kubikowski/set-utilities/wiki/assets/subset.svg
+[proper subset visual]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-subset.svg
+[superset visual]: https://github.com/kubikowski/set-utilities/wiki/assets/superset.svg
+[proper superset visual]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-superset.svg
