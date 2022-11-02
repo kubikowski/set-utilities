@@ -39,8 +39,8 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc",
-		"lint": "eslint . --ext .ts",
-		"postbuild": "eslint --fix dist/**",
+		"lint": "eslint src test",
+		"postbuild": "eslint --fix dist",
 		"prebuild": "rimraf dist",
 		"prepack": "npm run build",
 		"pretest:coverage": "rimraf coverage",
@@ -60,7 +60,6 @@
 		"babel-jest": "^29.0.3",
 		"eslint": "^8.24.0",
 		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-jsdoc": "^39.3.6",
 		"jest": "^29.0.0",
 		"rimraf": "^3.0.2",
 		"ts-jest": "^29.0.1",
