@@ -57,6 +57,7 @@
 			"files": [
 				"*.ts"
 			],
+			"parser": "@typescript-eslint/parser",
 			"parserOptions": {
 				"project": [
 					"tsconfig.json"
@@ -70,6 +71,7 @@
 				"plugin:@typescript-eslint/recommended"
 			],
 			"plugins": [
+				"@typescript-eslint",
 				"import"
 			],
 			"rules": {
