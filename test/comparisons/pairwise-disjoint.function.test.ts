@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { pairwiseDisjoint } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing-constants';
+import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
 
 describe('pairwise disjoint', () => {
 	it('no sets are pairwise disjoint', () => {

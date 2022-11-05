@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, union } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing-constants';
+import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
 
 describe('union', () => {
 	const unionAB = new Set<number>([ 0, 1, 2, 3, 4, 5 ]);

@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, intersection } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing-constants';
+import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
 
 describe('intersection', () => {
 	const intersectionAB = new Set<number>([ 0, 1 ]);

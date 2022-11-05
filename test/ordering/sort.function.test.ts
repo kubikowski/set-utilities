@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, sort } from '../../src';
-import { defaultComparator, expectSortedValues, reverseComparator, unordered } from '../constants/sort-testing-constants';
-import { empty, setA, universal } from '../constants/testing-constants';
+import { defaultComparator, expectSortedValues, reverseComparator, unordered } from '../constants/sort-testing.constants';
+import { empty, setA, universal } from '../constants/testing.constants';
 
 describe('sort', () => {
 	it('sorting the empty set returns the empty set', () => {
