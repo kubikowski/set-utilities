@@ -1,7 +1,7 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import { sort } from '../../src';
 import { multiplesOf1, multiplesOf2, multiplesOf3, padding, times } from '../constants/scale-testing.constants';
-import { defaultComparator, manyUnordered, reverseComparator } from '../constants/sort-testing-constants';
+import { defaultComparator, manyUnordered, reverseComparator } from '../constants/sort-testing.constants';
 import { Timer } from '../constants/timer.model';
 
 export function sortScaleTest(): void {
