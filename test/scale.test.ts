@@ -14,7 +14,7 @@ import {
 	xor,
 } from '../src';
 import { Multiples } from './constants/multiples.model';
-import { defaultComparator, reverseComparator } from './constants/sort-testing-constants';
+import { defaultComparator, manyUnordered, reverseComparator } from './constants/sort-testing-constants';
 import { Timer } from './constants/timer.model';
 
 describe('Scale Tests', () => {
@@ -825,6 +825,21 @@ describe('Scale Tests', () => {
 			it('sort(of3, reverse):'.padEnd(padding), () => {
 				const result = Timer.time('sort', () => sort(multiplesOf3, reverseComparator));
 				expect(result.size).toBe(5_000_000);
+			});
+			it('100k ⋅ sort(100):'.padEnd(padding), () => {
+				const sortMock = jest.fn(sort);
+				Timer.manyTimes('sort', () => sortMock(manyUnordered), times);
+				expect(sortMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ sort(100, default):'.padEnd(padding), () => {
+				const sortMock = jest.fn(sort);
+				Timer.manyTimes('sort', () => sortMock(manyUnordered, defaultComparator), times);
+				expect(sortMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ sort(100, reverse):'.padEnd(padding), () => {
+				const sortMock = jest.fn(sort);
+				Timer.manyTimes('sort', () => sortMock(manyUnordered, reverseComparator), times);
+				expect(sortMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('sort'));
 		});
