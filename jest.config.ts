@@ -33,7 +33,7 @@ export default {
 	// ],
 
 	// Indicates which provider should be used to instrument code for coverage
-	coverageProvider: "v8",
+	coverageProvider: 'v8',
 
 	// A list of reporter names that Jest uses when writing coverage reports
 	// coverageReporters: [
@@ -87,8 +87,8 @@ export default {
 
 	// An array of directory names to be searched recursively up from the requiring module's location
 	moduleDirectories: [
-		"node_modules",
-		"src",
+		'node_modules',
+		'src',
 	],
 
 	// An array of file extensions your modules use
@@ -141,7 +141,7 @@ export default {
 
 	// A list of paths to directories that Jest should use to search for files in
 	roots: [
-		"test",
+		'test',
 	],
 
 	// Allows you to use a custom runner instead of Jest's default test runner
@@ -170,8 +170,8 @@ export default {
 
 	// The glob patterns Jest uses to detect test files
 	testMatch: [
-		"**/?(*.)function!(.scale).test.ts",
-		"**/scale.test.ts",
+		'**/?(*.)function!(.scale).test.ts',
+		'**/scale.test.ts',
 	],
 
 	// An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
