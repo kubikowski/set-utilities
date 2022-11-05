@@ -3,8 +3,17 @@ import { Timer } from './timer.model';
 /**
  * Scale Testing Sets:
  *
- * Each set listed below contains all the multiples
- * of a given number, from `0` up to `15 Million`.
+ * The vertical scale: single sets
+ * each contain all the multiples of a given number,
+ * from `0` up to `15 Million`.
+ *
+ * The vertical scale: multiple sets
+ * each create an Array of Sets, which contain a
+ * total of `10 Million` elements between all the Sets.
+ *
+ * The horizontal scale
+ * each create an Array of Sets, which contain a
+ * total of `100` elements between all the sets.
  *
  * Note: Sets of `size > 16,777,216` will fail to instantiate,
  * or will fail to add values afterwards, with the following error message:
@@ -13,49 +22,58 @@ import { Timer } from './timer.model';
  * ```
  */
 export abstract class Multiples {
-	private static _of1?: ReadonlySet<number>;
-	private static _of2?: ReadonlySet<number>;
-	private static _of3?: ReadonlySet<number>;
-	private static _someEquivalent?: ReadonlyArray<ReadonlySet<number>>;
-	private static _manyEquivalent?: ReadonlyArray<ReadonlySet<number>>;
-	private static _someDisjoint?: ReadonlyArray<ReadonlySet<number>>;
-	private static _manyDisjoint?: ReadonlyArray<ReadonlySet<number>>;
 
+	// region vertical scale: single sets
 	public static get of1(): ReadonlySet<number> {
-		if (typeof this._of1 === 'undefined') this._of1 = Multiples.of(1, 15_000_000);
-		return this._of1;
+		return Multiples.of(1, 15_000_000);
 	}
 
 	public static get of2(): ReadonlySet<number> {
-		if (typeof this._of2 === 'undefined') this._of2 = Multiples.of(2, 7_500_000);
-		return this._of2;
+		return Multiples.of(2, 7_500_000);
 	}
 
 	public static get of3(): ReadonlySet<number> {
-		if (typeof this._of3 === 'undefined') this._of3 = Multiples.of(3, 5_000_000);
-		return this._of3;
+		return Multiples.of(3, 5_000_000);
 	}
+	// endregion vertical scale: single sets
 
+	// region vertical scale: multiple sets
 	public static get someEquivalent(): ReadonlyArray<ReadonlySet<number>> {
-		if (typeof this._someEquivalent === 'undefined') this._someEquivalent = Multiples.manyOf(100, 100_000);
-		return this._someEquivalent;
+		return Multiples.manyOf(100, 100_000);
 	}
 
 	public static get manyEquivalent(): ReadonlyArray<ReadonlySet<number>> {
-		if (typeof this._manyEquivalent === 'undefined') this._manyEquivalent = Multiples.manyOf(10_000, 1_000);
-		return this._manyEquivalent;
+		return Multiples.manyOf(10_000, 1_000);
 	}
 
 	public static get someDisjoint(): ReadonlyArray<ReadonlySet<number>> {
-		if (typeof this._someDisjoint === 'undefined') this._someDisjoint = Multiples.manyOf(100, 100_000, true);
-		return this._someDisjoint;
+		return Multiples.manyOf(100, 100_000, true);
 	}
 
 	public static get manyDisjoint(): ReadonlyArray<ReadonlySet<number>> {
-		if (typeof this._manyDisjoint === 'undefined') this._manyDisjoint = Multiples.manyOf(10_000, 1_000, true);
-		return this._manyDisjoint;
+		return Multiples.manyOf(10_000, 1_000, true);
+	}
+	// endregion  vertical scale: multiple sets
+
+	// region horizontal scale
+	public static get coupleEquivalent(): ReadonlyArray<ReadonlySet<number>> {
+		return Multiples.manyOf(2, 50);
 	}
 
+	public static get fewEquivalent(): ReadonlyArray<ReadonlySet<number>> {
+		return Multiples.manyOf(5, 20);
+	}
+
+	public static get coupleDisjoint(): ReadonlyArray<ReadonlySet<number>> {
+		return Multiples.manyOf(2, 50, true);
+	}
+
+	public static get fewDisjoint(): ReadonlyArray<ReadonlySet<number>> {
+		return Multiples.manyOf(5, 20, true);
+	}
+	// endregion horizontal scale
+
+	// region constructors
 	private static of(factor: number, size: number, offset = 0): ReadonlySet<number> {
 		return Timer.time('copying multiples', () =>
 			new Set<number>(Array.from(
@@ -74,4 +92,5 @@ export abstract class Multiples {
 				)),
 			));
 	}
+	// endregion constructors
 }

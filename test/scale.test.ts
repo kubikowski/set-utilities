@@ -1,4 +1,4 @@
-import { expect, it } from '@jest/globals';
+import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import {
 	difference,
 	disjoint,
@@ -14,7 +14,7 @@ import {
 	xor,
 } from '../src';
 import { Multiples } from './constants/multiples.model';
-import { defaultComparator, reverseComparator } from './constants/sort-testing-constants';
+import { defaultComparator, manyUnordered, reverseComparator } from './constants/sort-testing-constants';
 import { Timer } from './constants/timer.model';
 
 describe('Scale Tests', () => {
@@ -27,7 +27,13 @@ describe('Scale Tests', () => {
 	const someDisjoint = Multiples.someDisjoint;
 	const manyDisjoint = Multiples.manyDisjoint;
 
-	const padding = 36;
+	const coupleEquivalent = Multiples.coupleEquivalent;
+	const fewEquivalent = Multiples.fewEquivalent;
+	const coupleDisjoint = Multiples.coupleDisjoint;
+	const fewDisjoint = Multiples.fewDisjoint;
+	const times = 100_000;
+
+	const padding = 38;
 	Timer.logAll();
 
 	describe('Operations', () => {
@@ -60,21 +66,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('difference', () => difference(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result.size).toBe(0);
 			});
-			it('difference(...someEquivalent):'.padEnd(padding), () => {
+			it('difference(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('difference', () => difference(...someEquivalent));
 				expect(result.size).toBe(0);
 			});
-			it('difference(...manyEquivalent):'.padEnd(padding), () => {
+			it('difference(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('difference', () => difference(...manyEquivalent));
 				expect(result.size).toBe(0);
 			});
-			it('difference(...someDisjoint):'.padEnd(padding), () => {
+			it('difference(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('difference', () => difference(...someDisjoint));
 				expect(result.size).toBe(100_000);
 			});
-			it('difference(...manyDisjoint):'.padEnd(padding), () => {
+			it('difference(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('difference', () => difference(...manyDisjoint));
 				expect(result.size).toBe(1_000);
+			});
+			it('100k ⋅ difference(2 Equivalent):'.padEnd(padding), () => {
+				const differenceMock = jest.fn(difference);
+				Timer.manyTimes('difference', () => differenceMock(...coupleEquivalent), times);
+				expect(differenceMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ difference(5 Equivalent):'.padEnd(padding), () => {
+				const differenceMock = jest.fn(difference);
+				Timer.manyTimes('difference', () => differenceMock(...fewEquivalent), times);
+				expect(differenceMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ difference(2 Disjoint):'.padEnd(padding), () => {
+				const differenceMock = jest.fn(difference);
+				Timer.manyTimes('difference', () => differenceMock(...coupleDisjoint), times);
+				expect(differenceMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ difference(5 Disjoint):'.padEnd(padding), () => {
+				const differenceMock = jest.fn(difference);
+				Timer.manyTimes('difference', () => differenceMock(...fewDisjoint), times);
+				expect(differenceMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('difference'));
 		});
@@ -108,21 +134,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('intersection', () => intersection(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result.size).toBe(2_500_000);
 			});
-			it('intersection(...someEquivalent):'.padEnd(padding), () => {
+			it('intersection(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('intersection', () => intersection(...someEquivalent));
 				expect(result.size).toBe(100_000);
 			});
-			it('intersection(...manyEquivalent):'.padEnd(padding), () => {
+			it('intersection(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('intersection', () => intersection(...manyEquivalent));
 				expect(result.size).toBe(1_000);
 			});
-			it('intersection(...someDisjoint):'.padEnd(padding), () => {
+			it('intersection(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('intersection', () => intersection(...someDisjoint));
 				expect(result.size).toBe(0);
 			});
-			it('intersection(...manyDisjoint):'.padEnd(padding), () => {
+			it('intersection(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('intersection', () => intersection(...manyDisjoint));
 				expect(result.size).toBe(0);
+			});
+			it('100k ⋅ intersection(2 Equivalent):'.padEnd(padding), () => {
+				const intersectionMock = jest.fn(intersection);
+				Timer.manyTimes('intersection', () => intersectionMock(...coupleEquivalent), times);
+				expect(intersectionMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ intersection(5 Equivalent):'.padEnd(padding), () => {
+				const intersectionMock = jest.fn(intersection);
+				Timer.manyTimes('intersection', () => intersectionMock(...fewEquivalent), times);
+				expect(intersectionMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ intersection(2 Disjoint):'.padEnd(padding), () => {
+				const intersectionMock = jest.fn(intersection);
+				Timer.manyTimes('intersection', () => intersectionMock(...coupleDisjoint), times);
+				expect(intersectionMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ intersection(5 Disjoint):'.padEnd(padding), () => {
+				const intersectionMock = jest.fn(intersection);
+				Timer.manyTimes('intersection', () => intersectionMock(...fewDisjoint), times);
+				expect(intersectionMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('intersection'));
 		});
@@ -156,21 +202,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('union', () => union(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result.size).toBe(15_000_000);
 			});
-			it('union(...someEquivalent):'.padEnd(padding), () => {
+			it('union(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('union', () => union(...someEquivalent));
 				expect(result.size).toBe(100_000);
 			});
-			it('union(...manyEquivalent):'.padEnd(padding), () => {
+			it('union(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('union', () => union(...manyEquivalent));
 				expect(result.size).toBe(1_000);
 			});
-			it('union(...someDisjoint):'.padEnd(padding), () => {
+			it('union(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('union', () => union(...someDisjoint));
 				expect(result.size).toBe(10_000_000);
 			});
-			it('union(...manyDisjoint):'.padEnd(padding), () => {
+			it('union(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('union', () => union(...manyDisjoint));
 				expect(result.size).toBe(10_000_000);
+			});
+			it('100k ⋅ union(2 Equivalent):'.padEnd(padding), () => {
+				const unionMock = jest.fn(union);
+				Timer.manyTimes('union', () => unionMock(...coupleEquivalent), times);
+				expect(unionMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ union(5 Equivalent):'.padEnd(padding), () => {
+				const unionMock = jest.fn(union);
+				Timer.manyTimes('union', () => unionMock(...fewEquivalent), times);
+				expect(unionMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ union(2 Disjoint):'.padEnd(padding), () => {
+				const unionMock = jest.fn(union);
+				Timer.manyTimes('union', () => unionMock(...coupleDisjoint), times);
+				expect(unionMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ union(5 Disjoint):'.padEnd(padding), () => {
+				const unionMock = jest.fn(union);
+				Timer.manyTimes('union', () => unionMock(...fewDisjoint), times);
+				expect(unionMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('union'));
 		});
@@ -204,21 +270,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('xor', () => xor(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result.size).toBe(5_000_000);
 			});
-			it('xor(...someEquivalent):'.padEnd(padding), () => {
+			it('xor(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('xor', () => xor(...someEquivalent));
 				expect(result.size).toBe(0);
 			});
-			it('xor(...manyEquivalent):'.padEnd(padding), () => {
+			it('xor(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('xor', () => xor(...manyEquivalent));
 				expect(result.size).toBe(0);
 			});
-			it('xor(...someDisjoint):'.padEnd(padding), () => {
+			it('xor(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('xor', () => xor(...someDisjoint));
 				expect(result.size).toBe(10_000_000);
 			});
-			it('xor(...manyDisjoint):'.padEnd(padding), () => {
+			it('xor(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('xor', () => xor(...manyDisjoint));
 				expect(result.size).toBe(10_000_000);
+			});
+			it('100k ⋅ xor(2 Equivalent):'.padEnd(padding), () => {
+				const xorMock = jest.fn(xor);
+				Timer.manyTimes('xor', () => xorMock(...coupleEquivalent), times);
+				expect(xorMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ xor(5 Equivalent):'.padEnd(padding), () => {
+				const xorMock = jest.fn(xor);
+				Timer.manyTimes('xor', () => xorMock(...fewEquivalent), times);
+				expect(xorMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ xor(2 Disjoint):'.padEnd(padding), () => {
+				const xorMock = jest.fn(xor);
+				Timer.manyTimes('xor', () => xorMock(...coupleDisjoint), times);
+				expect(xorMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ xor(5 Disjoint):'.padEnd(padding), () => {
+				const xorMock = jest.fn(xor);
+				Timer.manyTimes('xor', () => xorMock(...fewDisjoint), times);
+				expect(xorMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('xor'));
 		});
@@ -254,21 +340,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('disjoint', () => disjoint(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result).toBe(false);
 			});
-			it('disjoint(...someEquivalent):'.padEnd(padding), () => {
+			it('disjoint(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('disjoint', () => disjoint(...someEquivalent));
 				expect(result).toBe(false);
 			});
-			it('disjoint(...manyEquivalent):'.padEnd(padding), () => {
+			it('disjoint(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('disjoint', () => disjoint(...manyEquivalent));
 				expect(result).toBe(false);
 			});
-			it('disjoint(...someDisjoint):'.padEnd(padding), () => {
+			it('disjoint(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('disjoint', () => disjoint(...someDisjoint));
 				expect(result).toBe(true);
 			});
-			it('disjoint(...manyDisjoint):'.padEnd(padding), () => {
+			it('disjoint(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('disjoint', () => disjoint(...manyDisjoint));
 				expect(result).toBe(true);
+			});
+			it('100k ⋅ disjoint(2 Equivalent):'.padEnd(padding), () => {
+				const disjointMock = jest.fn(disjoint);
+				Timer.manyTimes('disjoint', () => disjointMock(...coupleEquivalent), times);
+				expect(disjointMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ disjoint(5 Equivalent):'.padEnd(padding), () => {
+				const disjointMock = jest.fn(disjoint);
+				Timer.manyTimes('disjoint', () => disjointMock(...fewEquivalent), times);
+				expect(disjointMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ disjoint(2 Disjoint):'.padEnd(padding), () => {
+				const disjointMock = jest.fn(disjoint);
+				Timer.manyTimes('disjoint', () => disjointMock(...coupleDisjoint), times);
+				expect(disjointMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ disjoint(5 Disjoint):'.padEnd(padding), () => {
+				const disjointMock = jest.fn(disjoint);
+				Timer.manyTimes('disjoint', () => disjointMock(...fewDisjoint), times);
+				expect(disjointMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('disjoint'));
 		});
@@ -302,21 +408,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('equivalence', () => equivalence(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result).toBe(false);
 			});
-			it('equivalence(...someEquivalent):'.padEnd(padding), () => {
+			it('equivalence(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('equivalence', () => equivalence(...someEquivalent));
 				expect(result).toBe(true);
 			});
-			it('equivalence(...manyEquivalent):'.padEnd(padding), () => {
+			it('equivalence(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('equivalence', () => equivalence(...manyEquivalent));
 				expect(result).toBe(true);
 			});
-			it('equivalence(...someDisjoint):'.padEnd(padding), () => {
+			it('equivalence(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('equivalence', () => equivalence(...someDisjoint));
 				expect(result).toBe(false);
 			});
-			it('equivalence(...manyDisjoint):'.padEnd(padding), () => {
+			it('equivalence(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('equivalence', () => equivalence(...manyDisjoint));
 				expect(result).toBe(false);
+			});
+			it('100k ⋅ equivalence(2 Equivalent):'.padEnd(padding), () => {
+				const equivalenceMock = jest.fn(equivalence);
+				Timer.manyTimes('equivalence', () => equivalenceMock(...coupleEquivalent), times);
+				expect(equivalenceMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ equivalence(5 Equivalent):'.padEnd(padding), () => {
+				const equivalenceMock = jest.fn(equivalence);
+				Timer.manyTimes('equivalence', () => equivalenceMock(...fewEquivalent), times);
+				expect(equivalenceMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ equivalence(2 Disjoint):'.padEnd(padding), () => {
+				const equivalenceMock = jest.fn(equivalence);
+				Timer.manyTimes('equivalence', () => equivalenceMock(...coupleDisjoint), times);
+				expect(equivalenceMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ equivalence(5 Disjoint):'.padEnd(padding), () => {
+				const equivalenceMock = jest.fn(equivalence);
+				Timer.manyTimes('equivalence', () => equivalenceMock(...fewDisjoint), times);
+				expect(equivalenceMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('equivalence'));
 		});
@@ -350,21 +476,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result).toBe(false);
 			});
-			it('pairwiseDisjoint(...someEquivalent):'.padEnd(padding), () => {
+			it('pairwiseDisjoint(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...someEquivalent));
 				expect(result).toBe(false);
 			});
-			it('pairwiseDisjoint(...manyEquivalent):'.padEnd(padding), () => {
+			it('pairwiseDisjoint(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...manyEquivalent));
 				expect(result).toBe(false);
 			});
-			it('pairwiseDisjoint(...someDisjoint):'.padEnd(padding), () => {
+			it('pairwiseDisjoint(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...someDisjoint));
 				expect(result).toBe(true);
 			});
-			it('pairwiseDisjoint(...manyDisjoint):'.padEnd(padding), () => {
+			it('pairwiseDisjoint(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...manyDisjoint));
 				expect(result).toBe(true);
+			});
+			it('100k ⋅ pairwiseDisjoint(2 Equivalent):'.padEnd(padding), () => {
+				const pairwiseDisjointMock = jest.fn(pairwiseDisjoint);
+				Timer.manyTimes('pairwiseDisjoint', () => pairwiseDisjointMock(...coupleEquivalent), times);
+				expect(pairwiseDisjointMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ pairwiseDisjoint(5 Equivalent):'.padEnd(padding), () => {
+				const pairwiseDisjointMock = jest.fn(pairwiseDisjoint);
+				Timer.manyTimes('pairwiseDisjoint', () => pairwiseDisjointMock(...fewEquivalent), times);
+				expect(pairwiseDisjointMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ pairwiseDisjoint(2 Disjoint):'.padEnd(padding), () => {
+				const pairwiseDisjointMock = jest.fn(pairwiseDisjoint);
+				Timer.manyTimes('pairwiseDisjoint', () => pairwiseDisjointMock(...coupleDisjoint), times);
+				expect(pairwiseDisjointMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ pairwiseDisjoint(5 Disjoint):'.padEnd(padding), () => {
+				const pairwiseDisjointMock = jest.fn(pairwiseDisjoint);
+				Timer.manyTimes('pairwiseDisjoint', () => pairwiseDisjointMock(...fewDisjoint), times);
+				expect(pairwiseDisjointMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('pairwiseDisjoint'));
 		});
@@ -398,21 +544,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('properSubset', () => properSubset(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result).toBe(false);
 			});
-			it('properSubset(...someEquivalent):'.padEnd(padding), () => {
+			it('properSubset(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('properSubset', () => properSubset(...someEquivalent));
 				expect(result).toBe(false);
 			});
-			it('properSubset(...manyEquivalent):'.padEnd(padding), () => {
+			it('properSubset(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('properSubset', () => properSubset(...manyEquivalent));
 				expect(result).toBe(false);
 			});
-			it('properSubset(...someDisjoint):'.padEnd(padding), () => {
+			it('properSubset(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('properSubset', () => properSubset(...someDisjoint));
 				expect(result).toBe(false);
 			});
-			it('properSubset(...manyDisjoint):'.padEnd(padding), () => {
+			it('properSubset(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('properSubset', () => properSubset(...manyDisjoint));
 				expect(result).toBe(false);
+			});
+			it('100k ⋅ properSubset(2 Equivalent):'.padEnd(padding), () => {
+				const properSubsetMock = jest.fn(properSubset);
+				Timer.manyTimes('properSubset', () => properSubsetMock(...coupleEquivalent), times);
+				expect(properSubsetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ properSubset(5 Equivalent):'.padEnd(padding), () => {
+				const properSubsetMock = jest.fn(properSubset);
+				Timer.manyTimes('properSubset', () => properSubsetMock(...fewEquivalent), times);
+				expect(properSubsetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ properSubset(2 Disjoint):'.padEnd(padding), () => {
+				const properSubsetMock = jest.fn(properSubset);
+				Timer.manyTimes('properSubset', () => properSubsetMock(...coupleDisjoint), times);
+				expect(properSubsetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ properSubset(5 Disjoint):'.padEnd(padding), () => {
+				const properSubsetMock = jest.fn(properSubset);
+				Timer.manyTimes('properSubset', () => properSubsetMock(...fewDisjoint), times);
+				expect(properSubsetMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('properSubset'));
 		});
@@ -446,21 +612,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('properSuperset', () => properSuperset(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result).toBe(false);
 			});
-			it('properSuperset(...someEquivalent):'.padEnd(padding), () => {
+			it('properSuperset(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('properSuperset', () => properSuperset(...someEquivalent));
 				expect(result).toBe(false);
 			});
-			it('properSuperset(...manyEquivalent):'.padEnd(padding), () => {
+			it('properSuperset(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('properSuperset', () => properSuperset(...manyEquivalent));
 				expect(result).toBe(false);
 			});
-			it('properSuperset(...someDisjoint):'.padEnd(padding), () => {
+			it('properSuperset(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('properSuperset', () => properSuperset(...someDisjoint));
 				expect(result).toBe(false);
 			});
-			it('properSuperset(...manyDisjoint):'.padEnd(padding), () => {
+			it('properSuperset(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('properSuperset', () => properSuperset(...manyDisjoint));
 				expect(result).toBe(false);
+			});
+			it('100k ⋅ properSuperset(2 Equivalent):'.padEnd(padding), () => {
+				const properSupersetMock = jest.fn(properSuperset);
+				Timer.manyTimes('properSuperset', () => properSupersetMock(...coupleEquivalent), times);
+				expect(properSupersetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ properSuperset(5 Equivalent):'.padEnd(padding), () => {
+				const properSupersetMock = jest.fn(properSuperset);
+				Timer.manyTimes('properSuperset', () => properSupersetMock(...fewEquivalent), times);
+				expect(properSupersetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ properSuperset(2 Disjoint):'.padEnd(padding), () => {
+				const properSupersetMock = jest.fn(properSuperset);
+				Timer.manyTimes('properSuperset', () => properSupersetMock(...coupleDisjoint), times);
+				expect(properSupersetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ properSuperset(5 Disjoint):'.padEnd(padding), () => {
+				const properSupersetMock = jest.fn(properSuperset);
+				Timer.manyTimes('properSuperset', () => properSupersetMock(...fewDisjoint), times);
+				expect(properSupersetMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('properSuperset'));
 		});
@@ -494,21 +680,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('subset', () => subset(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result).toBe(false);
 			});
-			it('subset(...someEquivalent):'.padEnd(padding), () => {
+			it('subset(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('subset', () => subset(...someEquivalent));
 				expect(result).toBe(true);
 			});
-			it('subset(...manyEquivalent):'.padEnd(padding), () => {
+			it('subset(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('subset', () => subset(...manyEquivalent));
 				expect(result).toBe(true);
 			});
-			it('subset(...someDisjoint):'.padEnd(padding), () => {
+			it('subset(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('subset', () => subset(...someDisjoint));
 				expect(result).toBe(false);
 			});
-			it('subset(...manyDisjoint):'.padEnd(padding), () => {
+			it('subset(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('subset', () => subset(...manyDisjoint));
 				expect(result).toBe(false);
+			});
+			it('100k ⋅ subset(2 Equivalent):'.padEnd(padding), () => {
+				const subsetMock = jest.fn(subset);
+				Timer.manyTimes('subset', () => subsetMock(...coupleEquivalent), times);
+				expect(subsetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ subset(5 Equivalent):'.padEnd(padding), () => {
+				const subsetMock = jest.fn(subset);
+				Timer.manyTimes('subset', () => subsetMock(...fewEquivalent), times);
+				expect(subsetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ subset(2 Disjoint):'.padEnd(padding), () => {
+				const subsetMock = jest.fn(subset);
+				Timer.manyTimes('subset', () => subsetMock(...coupleDisjoint), times);
+				expect(subsetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ subset(5 Disjoint):'.padEnd(padding), () => {
+				const subsetMock = jest.fn(subset);
+				Timer.manyTimes('subset', () => subsetMock(...fewDisjoint), times);
+				expect(subsetMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('subset'));
 		});
@@ -542,21 +748,41 @@ describe('Scale Tests', () => {
 				const result = Timer.time('superset', () => superset(multiplesOf3, multiplesOf2, multiplesOf1));
 				expect(result).toBe(false);
 			});
-			it('superset(...someEquivalent):'.padEnd(padding), () => {
+			it('superset(100 Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('superset', () => superset(...someEquivalent));
 				expect(result).toBe(true);
 			});
-			it('superset(...manyEquivalent):'.padEnd(padding), () => {
+			it('superset(10k Equivalent):'.padEnd(padding), () => {
 				const result = Timer.time('superset', () => superset(...manyEquivalent));
 				expect(result).toBe(true);
 			});
-			it('superset(...someDisjoint):'.padEnd(padding), () => {
+			it('superset(100 Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('superset', () => superset(...someDisjoint));
 				expect(result).toBe(false);
 			});
-			it('superset(...manyDisjoint):'.padEnd(padding), () => {
+			it('superset(10k Disjoint):'.padEnd(padding), () => {
 				const result = Timer.time('superset', () => superset(...manyDisjoint));
 				expect(result).toBe(false);
+			});
+			it('100k ⋅ superset(2 Equivalent):'.padEnd(padding), () => {
+				const supersetMock = jest.fn(superset);
+				Timer.manyTimes('superset', () => supersetMock(...coupleEquivalent), times);
+				expect(supersetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ superset(5 Equivalent):'.padEnd(padding), () => {
+				const supersetMock = jest.fn(superset);
+				Timer.manyTimes('superset', () => supersetMock(...fewEquivalent), times);
+				expect(supersetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ superset(2 Disjoint):'.padEnd(padding), () => {
+				const supersetMock = jest.fn(superset);
+				Timer.manyTimes('superset', () => supersetMock(...coupleDisjoint), times);
+				expect(supersetMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ superset(5 Disjoint):'.padEnd(padding), () => {
+				const supersetMock = jest.fn(superset);
+				Timer.manyTimes('superset', () => supersetMock(...fewDisjoint), times);
+				expect(supersetMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('superset'));
 		});
@@ -599,6 +825,21 @@ describe('Scale Tests', () => {
 			it('sort(of3, reverse):'.padEnd(padding), () => {
 				const result = Timer.time('sort', () => sort(multiplesOf3, reverseComparator));
 				expect(result.size).toBe(5_000_000);
+			});
+			it('100k ⋅ sort(100):'.padEnd(padding), () => {
+				const sortMock = jest.fn(sort);
+				Timer.manyTimes('sort', () => sortMock(manyUnordered), times);
+				expect(sortMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ sort(100, default):'.padEnd(padding), () => {
+				const sortMock = jest.fn(sort);
+				Timer.manyTimes('sort', () => sortMock(manyUnordered, defaultComparator), times);
+				expect(sortMock).toHaveBeenCalledTimes(times);
+			});
+			it('100k ⋅ sort(100, reverse):'.padEnd(padding), () => {
+				const sortMock = jest.fn(sort);
+				Timer.manyTimes('sort', () => sortMock(manyUnordered, reverseComparator), times);
+				expect(sortMock).toHaveBeenCalledTimes(times);
 			});
 			afterAll(() => Timer.log('sort'));
 		});

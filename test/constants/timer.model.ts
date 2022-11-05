@@ -12,6 +12,14 @@ export abstract class Timer {
 		return result;
 	}
 
+	public static manyTimes<T>(methodName: string, method: () => T, times: number): void {
+		const timeStart = performance.now();
+		for (let i = 0; i < times; ++i) method();
+		const timeEnd = performance.now();
+
+		Timer.add(methodName, timeEnd - timeStart);
+	}
+
 	private static add(methodName: string, timing: number): void {
 		if (!Timer.timings.has(methodName)) {
 			Timer.timings.set(methodName, []);
