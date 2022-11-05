@@ -50,6 +50,10 @@
 					"tab"
 				],
 				"max-len": "off",
+				"quotes": [
+					"error",
+					"single"
+				],
 				"semi": "error"
 			}
 		},
@@ -290,6 +294,10 @@
 				],
 				"max-len": "off",
 				"no-shadow": "off",
+				"quotes": [
+					"error",
+					"single"
+				],
 				"semi": "error"
 			}
 		}
