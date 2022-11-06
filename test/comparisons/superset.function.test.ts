@@ -30,15 +30,15 @@ function supersetTests<T>(testSets: TestSets<T>): void {
 		expect(superset(setA, setA, setA)).toBe(true);
 	});
 
-	it('two sets with different values are not supersets', () => {
+	it('two sets with different elements are not supersets', () => {
 		expect(superset(setA, setB)).toBe(false);
 	});
 
-	it('three sets with different values are not supersets', () => {
+	it('three sets with different elements are not supersets', () => {
 		expect(superset(setA, setB, setC)).toBe(false);
 	});
 
-	it('many sets with different values are not supersets', () => {
+	it('many sets with different elements are not supersets', () => {
 		expect(superset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
@@ -60,7 +60,7 @@ function supersetTests<T>(testSets: TestSets<T>): void {
 		expect(superset(minimal, setA)).toBe(false);
 	});
 
-	it('sets without value bijection are not supersets', () => {
+	it('sets without element bijection are not supersets', () => {
 		expect(superset(setA, setD)).toBe(false);
 	});
 

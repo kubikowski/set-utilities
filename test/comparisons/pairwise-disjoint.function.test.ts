@@ -30,15 +30,15 @@ function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {
 		expect(pairwiseDisjoint(setA, setA, setA)).toBe(false);
 	});
 
-	it('two sets with some shared values are not pairwise disjoint', () => {
+	it('two sets with some shared elements are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setB)).toBe(false);
 	});
 
-	it('three sets with some shared values are not pairwise disjoint', () => {
+	it('three sets with some shared elements are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setB, setC)).toBe(false);
 	});
 
-	it('many sets with some shared values are not pairwise disjoint', () => {
+	it('many sets with some shared elements are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
@@ -56,15 +56,15 @@ function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {
 
 	/* custom pairwise disjoint tests */
 
-	it('two sets with no shared values are pairwise disjoint', () => {
+	it('two sets with no shared elements are pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setD)).toBe(true);
 	});
 
-	it('many sets with no shared values are pairwise disjoint', () => {
+	it('many sets with no shared elements are pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setD, setE, setF)).toBe(true);
 	});
 
-	it('a set & many of another set with no shared values are not pairwise disjoint', () => {
+	it('a set & many of another set with no shared elements are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setD, setD, setD)).toBe(false);
 	});
 }

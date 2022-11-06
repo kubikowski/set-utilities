@@ -38,17 +38,17 @@ function xorTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
-	it('two different sets xor returns unique values', () => {
+	it('two different sets xor returns unique elements', () => {
 		const result = xor(setA, setB);
 		expect(equivalence(result, xorAB)).toBe(true);
 	});
 
-	it('three different sets xor returns unique values', () => {
+	it('three different sets xor returns unique elements', () => {
 		const result = xor(setA, setB, setC);
 		expect(equivalence(result, xorABC)).toBe(true);
 	});
 
-	it('many different sets xor returns unique values', () => {
+	it('many different sets xor returns unique elements', () => {
 		const result = xor(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, xorABCDEF)).toBe(true);
 	});

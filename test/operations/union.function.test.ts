@@ -36,17 +36,17 @@ function unionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
-	it('two sets\' union contains all values from both sets', () => {
+	it('two sets\' union contains all elements from both sets', () => {
 		const result = union(setA, setB);
 		expect(equivalence(result, unionAB)).toBe(true);
 	});
 
-	it('three sets\' union contains all values from all sets', () => {
+	it('three sets\' union contains all elements from all sets', () => {
 		const result = union(setA, setB, setC);
 		expect(equivalence(result, unionABC)).toBe(true);
 	});
 
-	it('many sets\' union contains all values from all sets', () => {
+	it('many sets\' union contains all elements from all sets', () => {
 		const result = union(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, universal)).toBe(true);
 	});

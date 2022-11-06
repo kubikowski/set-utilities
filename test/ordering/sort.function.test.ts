@@ -30,44 +30,44 @@ function sortTests<T>(testSets: TestSets<T>): void {
 	it('sorting a sorted set will result in the same ordering', () => {
 		const ordered = Array.from(setA);
 		const result = sort(setA, defaultComparator);
-		expectSortedValues(result, ordered);
+		expectSortedElements(result, ordered);
 	});
 
 	it('sorting a reversed set will result in the reversed ordering', () => {
 		const ordered = Array.from(setA).sort(reverseComparator);
 		const result = sort(setA, reverseComparator);
-		expectSortedValues(result, ordered);
+		expectSortedElements(result, ordered);
 	});
 
 	if (typeof a === 'number' || typeof a === 'string') {
 		it('sorting an unordered set will order it', () => {
 			const ordered = Array.from(universal);
 			const result = sort(unordered);
-			expectSortedValues(result, ordered);
+			expectSortedElements(result, ordered);
 		});
 	}
 
 	it('sorting an unordered set with default comparator will default order it', () => {
 		const ordered = Array.from(universal);
 		const result = sort(unordered, defaultComparator);
-		expectSortedValues(result, ordered);
+		expectSortedElements(result, ordered);
 	});
 
 	it('sorting an unordered set with reverse comparator will reverse order it', () => {
 		const ordered = Array.from(universal).sort(reverseComparator);
 		const result = sort(unordered, reverseComparator);
-		expectSortedValues(result, ordered);
+		expectSortedElements(result, ordered);
 	});
 }
 
 /**
- * Iterates through values in the result set,
+ * Iterates through elements in the result set,
  * and expects them to equal the respectively indexed
- * value in the provided expectedOrder array.
+ * element in the provided expectedOrder array.
  */
-function expectSortedValues<T>(result: ReadonlySet<T>, expectedOrder: Array<T>): void {
+function expectSortedElements<T>(result: ReadonlySet<T>, expectedOrder: Array<T>): void {
 	let index = 0;
-	result.forEach(value => {
-		expect(value).toBe(expectedOrder[index++]);
+	result.forEach(element => {
+		expect(element).toBe(expectedOrder[index++]);
 	});
 }
