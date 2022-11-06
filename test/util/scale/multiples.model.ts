@@ -16,7 +16,7 @@ import { Timer } from './timer.model';
  * total of `100` elements between all the sets.
  *
  * Note: Sets of `size > 16,777,216` will fail to instantiate,
- * or will fail to add values afterwards, with the following error message:
+ * or will fail to add elements afterwards, with the following error message:
  * ```
  * RangeError: Value undefined out of range for undefined options property undefined
  * ```

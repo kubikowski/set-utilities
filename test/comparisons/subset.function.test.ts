@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { subset } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('subset', () => {
+	describe('subset ⋅ number', () => subsetTests(new NumberTestSets()));
+	describe('subset ⋅ string', () => subsetTests(new StringTestSets()));
+	describe('subset ⋅ symbol', () => subsetTests(new SymbolTestSets()));
+});
+
+function subsetTests<T>(testSets: TestSets<T>): void {
+	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are subsets', () => {
 		expect(subset()).toBe(true);
 	});
@@ -19,15 +30,15 @@ describe('subset', () => {
 		expect(subset(setA, setA, setA)).toBe(true);
 	});
 
-	it('two sets with different values are not subsets', () => {
+	it('two sets with different elements are not subsets', () => {
 		expect(subset(setA, setB)).toBe(false);
 	});
 
-	it('three sets with different values are not subsets', () => {
+	it('three sets with different elements are not subsets', () => {
 		expect(subset(setA, setB, setC)).toBe(false);
 	});
 
-	it('many sets with different values are not subsets', () => {
+	it('many sets with different elements are not subsets', () => {
 		expect(subset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
@@ -49,11 +60,11 @@ describe('subset', () => {
 		expect(subset(setA, minimal)).toBe(false);
 	});
 
-	it('sets without value bijection are not subsets', () => {
+	it('sets without element bijection are not subsets', () => {
 		expect(subset(setD, setA)).toBe(false);
 	});
 
 	it('the empty set is a subset of every set', () => {
 		expect(subset(empty, minimal, setA, setB, setC, universal)).toBe(true);
 	});
-});
+}

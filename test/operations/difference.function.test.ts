@@ -1,10 +1,20 @@
 import { describe, expect, it } from '@jest/globals';
 import { difference, equivalence } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('difference', () => {
-	const differenceAB = new Set<number>([ 2, 4 ]);
-	const differenceABC = new Set<number>([ 4 ]);
+	describe('difference ⋅ number', () => differenceTests(new NumberTestSets()));
+	describe('difference ⋅ string', () => differenceTests(new StringTestSets()));
+	describe('difference ⋅ symbol', () => differenceTests(new SymbolTestSets()));
+});
+
+function differenceTests<T>(testSets: TestSets<T>): void {
+	const { c, e, empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const differenceAB = new Set<T>([ c, e ]);
+	const differenceABC = new Set<T>([ e ]);
 
 	it('no sets difference returns empty set', () => {
 		const result = difference();
@@ -55,4 +65,4 @@ describe('difference', () => {
 		const result = difference(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
-});
+}

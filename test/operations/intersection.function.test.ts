@@ -1,10 +1,20 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, intersection } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('intersection', () => {
-	const intersectionAB = new Set<number>([ 0, 1 ]);
-	const intersectionABC = new Set<number>([ 0 ]);
+	describe('intersection ⋅ number', () => intersectionTests(new NumberTestSets()));
+	describe('intersection ⋅ string', () => intersectionTests(new StringTestSets()));
+	describe('intersection ⋅ symbol', () => intersectionTests(new SymbolTestSets()));
+});
+
+function intersectionTests<T>(testSets: TestSets<T>): void {
+	const { a, b, empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const intersectionAB = new Set<T>([ a, b ]);
+	const intersectionABC = new Set<T>([ a ]);
 
 	it('no sets intersection returns empty set', () => {
 		const result = intersection();
@@ -55,4 +65,4 @@ describe('intersection', () => {
 		const result = intersection(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
-});
+}

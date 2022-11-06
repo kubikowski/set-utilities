@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { superset } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('superset', () => {
+	describe('superset ⋅ number', () => supersetTests(new NumberTestSets()));
+	describe('superset ⋅ string', () => supersetTests(new StringTestSets()));
+	describe('superset ⋅ symbol', () => supersetTests(new SymbolTestSets()));
+});
+
+function supersetTests<T>(testSets: TestSets<T>): void {
+	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are superset', () => {
 		expect(superset()).toBe(true);
 	});
@@ -19,15 +30,15 @@ describe('superset', () => {
 		expect(superset(setA, setA, setA)).toBe(true);
 	});
 
-	it('two sets with different values are not supersets', () => {
+	it('two sets with different elements are not supersets', () => {
 		expect(superset(setA, setB)).toBe(false);
 	});
 
-	it('three sets with different values are not supersets', () => {
+	it('three sets with different elements are not supersets', () => {
 		expect(superset(setA, setB, setC)).toBe(false);
 	});
 
-	it('many sets with different values are not supersets', () => {
+	it('many sets with different elements are not supersets', () => {
 		expect(superset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
@@ -49,11 +60,11 @@ describe('superset', () => {
 		expect(superset(minimal, setA)).toBe(false);
 	});
 
-	it('sets without value bijection are not supersets', () => {
+	it('sets without element bijection are not supersets', () => {
 		expect(superset(setA, setD)).toBe(false);
 	});
 
 	it('the universal set is a superset of every set', () => {
 		expect(superset(universal, setA, setB, setC, minimal, empty)).toBe(true);
 	});
-});
+}

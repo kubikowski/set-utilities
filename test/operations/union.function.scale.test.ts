@@ -14,10 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../constants/scale-testing.constants';
-import { Timer } from '../constants/timer.model';
+} from '../util/scale/scale-testing.constants';
+import { Timer } from '../util/scale/timer.model';
 
-export function unionScaleTest(): void {
+export function unionScaleTests(): void {
 
 	describe('union ⋅ large sets', () => {
 		it('union(of1):'.padEnd(padding), () => {

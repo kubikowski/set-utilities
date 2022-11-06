@@ -14,10 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../constants/scale-testing.constants';
-import { Timer } from '../constants/timer.model';
+} from '../util/scale/scale-testing.constants';
+import { Timer } from '../util/scale/timer.model';
 
-export function supersetScaleTest(): void {
+export function supersetScaleTests(): void {
 
 	describe('superset ⋅ large sets', () => {
 		it('superset(of1):'.padEnd(padding), () => {

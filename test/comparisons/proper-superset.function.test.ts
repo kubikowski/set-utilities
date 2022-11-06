@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { properSuperset } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('proper superset', () => {
+	describe('proper superset ⋅ number', () => properSupersetTests(new NumberTestSets()));
+	describe('proper superset ⋅ string', () => properSupersetTests(new StringTestSets()));
+	describe('proper superset ⋅ symbol', () => properSupersetTests(new SymbolTestSets()));
+});
+
+function properSupersetTests<T>(testSets: TestSets<T>): void {
+	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are proper supersets', () => {
 		expect(properSuperset()).toBe(true);
 	});
@@ -19,15 +30,15 @@ describe('proper superset', () => {
 		expect(properSuperset(setA, setA, setA)).toBe(false);
 	});
 
-	it('two sets with different values are not proper supersets', () => {
+	it('two sets with different elements are not proper supersets', () => {
 		expect(properSuperset(setA, setB)).toBe(false);
 	});
 
-	it('three sets with different values are not proper supersets', () => {
+	it('three sets with different elements are not proper supersets', () => {
 		expect(properSuperset(setA, setB, setC)).toBe(false);
 	});
 
-	it('many sets with different values are not proper supersets', () => {
+	it('many sets with different elements are not proper supersets', () => {
 		expect(properSuperset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
@@ -49,11 +60,11 @@ describe('proper superset', () => {
 		expect(properSuperset(minimal, setA)).toBe(false);
 	});
 
-	it('sets without value bijection are not proper supersets', () => {
+	it('sets without element bijection are not proper supersets', () => {
 		expect(properSuperset(setA, setD)).toBe(false);
 	});
 
 	it('the universal set is a proper superset of every non-universal set', () => {
 		expect(properSuperset(universal, setA, setB, setC, minimal, empty)).toBe(true);
 	});
-});
+}

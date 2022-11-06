@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { properSubset } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('proper subset', () => {
+	describe('proper subset ⋅ number', () => properSubsetTests(new NumberTestSets()));
+	describe('proper subset ⋅ string', () => properSubsetTests(new StringTestSets()));
+	describe('proper subset ⋅ symbol', () => properSubsetTests(new SymbolTestSets()));
+});
+
+function properSubsetTests<T>(testSets: TestSets<T>): void {
+	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are proper subsets', () => {
 		expect(properSubset()).toBe(true);
 	});
@@ -19,15 +30,15 @@ describe('proper subset', () => {
 		expect(properSubset(setA, setA, setA)).toBe(false);
 	});
 
-	it('two sets with different values are not proper subsets', () => {
+	it('two sets with different elements are not proper subsets', () => {
 		expect(properSubset(setA, setB)).toBe(false);
 	});
 
-	it('three sets with different values are not proper subsets', () => {
+	it('three sets with different elements are not proper subsets', () => {
 		expect(properSubset(setA, setB, setC)).toBe(false);
 	});
 
-	it('many sets with different values are not proper subsets', () => {
+	it('many sets with different elements are not proper subsets', () => {
 		expect(properSubset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
@@ -49,11 +60,11 @@ describe('proper subset', () => {
 		expect(properSubset(setA, minimal)).toBe(false);
 	});
 
-	it('sets without value bijection are not proper subsets', () => {
+	it('sets without element bijection are not proper subsets', () => {
 		expect(properSubset(setD, setA)).toBe(false);
 	});
 
 	it('the empty set is a proper subset of every non-empty set', () => {
 		expect(properSubset(empty, minimal, setA, setB, setC, universal)).toBe(true);
 	});
-});
+}
