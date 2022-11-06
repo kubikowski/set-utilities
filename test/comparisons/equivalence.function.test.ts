@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('equivalence', () => {
+	describe('equivalence ⋅ number', () => equivalenceTests(new NumberTestSets()));
+	describe('equivalence ⋅ string', () => equivalenceTests(new StringTestSets()));
+	describe('equivalence ⋅ symbol', () => equivalenceTests(new SymbolTestSets()));
+});
+
+function equivalenceTests<T>(testSets: TestSets<T>): void {
+	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are equivalent', () => {
 		expect(equivalence()).toBe(true);
 	});
@@ -48,4 +59,4 @@ describe('equivalence', () => {
 	it('two sets with different cardinalities are not equivalent', () => {
 		expect(equivalence(setA, minimal)).toBe(false);
 	});
-});
+}

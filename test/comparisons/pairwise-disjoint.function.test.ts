@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { pairwiseDisjoint } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('pairwise disjoint', () => {
+	describe('pairwise disjoint ⋅ number', () => pairwiseDisjointTests(new NumberTestSets()));
+	describe('pairwise disjoint ⋅ string', () => pairwiseDisjointTests(new StringTestSets()));
+	describe('pairwise disjoint ⋅ symbol', () => pairwiseDisjointTests(new SymbolTestSets()));
+});
+
+function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are pairwise disjoint', () => {
 		expect(pairwiseDisjoint()).toBe(true);
 	});
@@ -56,4 +67,4 @@ describe('pairwise disjoint', () => {
 	it('a set & many of another set with no shared values are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setD, setD, setD)).toBe(false);
 	});
-});
+}

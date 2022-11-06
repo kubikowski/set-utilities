@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { properSubset } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('proper subset', () => {
+	describe('proper subset ⋅ number', () => properSubsetTests(new NumberTestSets()));
+	describe('proper subset ⋅ string', () => properSubsetTests(new StringTestSets()));
+	describe('proper subset ⋅ symbol', () => properSubsetTests(new SymbolTestSets()));
+});
+
+function properSubsetTests<T>(testSets: TestSets<T>): void {
+	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are proper subsets', () => {
 		expect(properSubset()).toBe(true);
 	});
@@ -56,4 +67,4 @@ describe('proper subset', () => {
 	it('the empty set is a proper subset of every non-empty set', () => {
 		expect(properSubset(empty, minimal, setA, setB, setC, universal)).toBe(true);
 	});
-});
+}

@@ -1,10 +1,20 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, union } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('union', () => {
-	const unionAB = new Set<number>([ 0, 1, 2, 3, 4, 5 ]);
-	const unionABC = new Set<number>([ 0, 1, 2, 3, 4, 5, 6 ]);
+	describe('union ⋅ number', () => unionTests(new NumberTestSets()));
+	describe('union ⋅ string', () => unionTests(new StringTestSets()));
+	describe('union ⋅ symbol', () => unionTests(new SymbolTestSets()));
+});
+
+function unionTests<T>(testSets: TestSets<T>): void {
+	const { a, b, c, d, e, empty, f, g, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const unionAB = new Set<T>([ a, b, c, d, e, f ]);
+	const unionABC = new Set<T>([ a, b, c, d, e, f, g ]);
 
 	it('no sets union returns empty set', () => {
 		const result = union();
@@ -55,4 +65,4 @@ describe('union', () => {
 		const result = union(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
-});
+}

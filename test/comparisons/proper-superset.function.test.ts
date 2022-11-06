@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { properSuperset } from '../../src';
-import { empty, minimal, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('proper superset', () => {
+	describe('proper superset ⋅ number', () => properSupersetTests(new NumberTestSets()));
+	describe('proper superset ⋅ string', () => properSupersetTests(new StringTestSets()));
+	describe('proper superset ⋅ symbol', () => properSupersetTests(new SymbolTestSets()));
+});
+
+function properSupersetTests<T>(testSets: TestSets<T>): void {
+	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are proper supersets', () => {
 		expect(properSuperset()).toBe(true);
 	});
@@ -56,4 +67,4 @@ describe('proper superset', () => {
 	it('the universal set is a proper superset of every non-universal set', () => {
 		expect(properSuperset(universal, setA, setB, setC, minimal, empty)).toBe(true);
 	});
-});
+}

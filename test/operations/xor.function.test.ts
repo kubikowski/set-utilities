@@ -1,12 +1,22 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, xor } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('xor', () => {
-	const xorAB = new Set<number>([ 2, 3, 4, 5 ]);
-	const xorABC = new Set<number>([ 4, 5, 6 ]);
-	const xorABCDEF = new Set<number>([ 4, 5, 6, 7, 8, 9 ]);
-	const xorAU = new Set<number>([ 3, 5, 6, 7, 8, 9 ]);
+	describe('xor ⋅ number', () => xorTests(new NumberTestSets()));
+	describe('xor ⋅ string', () => xorTests(new StringTestSets()));
+	describe('xor ⋅ symbol', () => xorTests(new SymbolTestSets()));
+});
+
+function xorTests<T>(testSets: TestSets<T>): void {
+	const { c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const xorAB = new Set<T>([ c, d, e, f ]);
+	const xorABC = new Set<T>([ e, f, g ]);
+	const xorABCDEF = new Set<T>([ e, f, g, h, i, j ]);
+	const xorAU = new Set<T>([ d, f, g, h, i, j ]);
 
 	it('no sets xor returns empty set', () => {
 		const result = xor();
@@ -57,4 +67,4 @@ describe('xor', () => {
 		const result = xor(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
-});
+}

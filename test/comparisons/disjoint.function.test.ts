@@ -1,8 +1,19 @@
 import { describe, expect, it } from '@jest/globals';
 import { disjoint } from '../../src';
-import { empty, setA, setB, setC, setD, setE, setF, universal } from '../constants/testing.constants';
+import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { StringTestSets } from '../util/test-sets/string-test-sets.model';
+import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
+import { TestSets } from '../util/test-sets/test-sets.model';
 
 describe('disjoint', () => {
+	describe('disjoint ⋅ number', () => disjointTests(new NumberTestSets()));
+	describe('disjoint ⋅ string', () => disjointTests(new StringTestSets()));
+	describe('disjoint ⋅ symbol', () => disjointTests(new SymbolTestSets()));
+});
+
+function disjointTests<T>(testSets: TestSets<T>): void {
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+
 	it('no sets are disjoint', () => {
 		expect(disjoint()).toBe(true);
 	});
@@ -56,4 +67,4 @@ describe('disjoint', () => {
 	it('a set & many of another set with no shared values are disjoint', () => {
 		expect(disjoint(setA, setD, setD, setD)).toBe(true);
 	});
-});
+}

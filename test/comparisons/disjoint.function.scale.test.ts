@@ -14,10 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../constants/scale-testing.constants';
-import { Timer } from '../constants/timer.model';
+} from '../util/scale/scale-testing.constants';
+import { Timer } from '../util/scale/timer.model';
 
-export function disjointScaleTest(): void {
+export function disjointScaleTests(): void {
 
 	describe('disjoint ⋅ large sets', () => {
 		it('disjoint(of1):'.padEnd(padding), () => {
