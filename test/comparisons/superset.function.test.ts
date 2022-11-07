@@ -1,14 +1,10 @@
 import { describe, expect, it } from '@jest/globals';
 import { superset } from '../../src';
-import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
-import { StringTestSets } from '../util/test-sets/string-test-sets.model';
-import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
 import { TestSets } from '../util/test-sets/test-sets.model';
+import { testSuite } from '../util/test-suite.function';
 
 describe('superset', () => {
-	describe('superset ⋅ number', () => supersetTests(new NumberTestSets()));
-	describe('superset ⋅ string', () => supersetTests(new StringTestSets()));
-	describe('superset ⋅ symbol', () => supersetTests(new SymbolTestSets()));
+	testSuite('superset', supersetTests);
 });
 
 function supersetTests<T>(testSets: TestSets<T>): void {

@@ -1,14 +1,10 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, intersection } from '../../src';
-import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
-import { StringTestSets } from '../util/test-sets/string-test-sets.model';
-import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
 import { TestSets } from '../util/test-sets/test-sets.model';
+import { testSuite } from '../util/test-suite.function';
 
 describe('intersection', () => {
-	describe('intersection ⋅ number', () => intersectionTests(new NumberTestSets()));
-	describe('intersection ⋅ string', () => intersectionTests(new StringTestSets()));
-	describe('intersection ⋅ symbol', () => intersectionTests(new SymbolTestSets()));
+	testSuite('intersection', intersectionTests);
 });
 
 function intersectionTests<T>(testSets: TestSets<T>): void {

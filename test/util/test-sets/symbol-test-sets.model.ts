@@ -1,6 +1,10 @@
 import { TestSets } from './test-sets.model';
 
 export class SymbolTestSets extends TestSets<symbol> {
+
+	public override readonly canSortWithoutComparator = false;
+	public override readonly willSortWithoutComparator = false;
+
 	public constructor() {
 		super(
 			Symbol('a'),
