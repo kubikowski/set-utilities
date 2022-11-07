@@ -29,27 +29,33 @@ export abstract class Timer {
 	}
 
 	public static log(methodName: string): void {
-		console.log(Timer.getLogs(methodName));
+		const logs = Timer.getLogs(methodName);
+
+		process.stdout.write(logs);
 	}
 
 	public static logAll(): void {
 		const logs = Array.from(Timer.timings.keys())
 			.map(Timer.getLogs)
-			.join('\n');
+			.join('');
 
-		console.log(logs);
+		process.stdout.write(logs);
 	}
 
 	private static getLogs(methodName: string): string {
 		const timings = Timer.timings.get(methodName);
 
 		if (typeof timings !== 'undefined') {
+			const totalTiming = timings
+				.reduce((total, current) => total + current, 0)
+				.toFixed(3) + 'ms';
 			const formattedTimings = timings
-				.map(timing => `${ timing.toFixed(3) }ms`)
+				.map(timing => timing.toFixed(3) + 'ms')
 				.join(', ');
-			return `${ methodName }: [ ${ formattedTimings } ]`;
+
+			return `${ methodName }: ${ totalTiming }\n → [ ${ formattedTimings } ]\n`;
 		} else {
-			return `${ methodName }: none`;
+			return `${ methodName }: none\n`;
 		}
 	}
 }
