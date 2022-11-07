@@ -1,14 +1,10 @@
 import { describe, expect, it } from '@jest/globals';
 import { pairwiseDisjoint } from '../../src';
-import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
-import { StringTestSets } from '../util/test-sets/string-test-sets.model';
-import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
 import { TestSets } from '../util/test-sets/test-sets.model';
+import { testSuite } from '../util/test-suite.function';
 
 describe('pairwise disjoint', () => {
-	describe('pairwise disjoint ⋅ number', () => pairwiseDisjointTests(new NumberTestSets()));
-	describe('pairwise disjoint ⋅ string', () => pairwiseDisjointTests(new StringTestSets()));
-	describe('pairwise disjoint ⋅ symbol', () => pairwiseDisjointTests(new SymbolTestSets()));
+	testSuite('pairwise disjoint', pairwiseDisjointTests);
 });
 
 function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {

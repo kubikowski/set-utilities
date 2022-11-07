@@ -1,14 +1,10 @@
 import { describe, expect, it } from '@jest/globals';
 import { properSubset } from '../../src';
-import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
-import { StringTestSets } from '../util/test-sets/string-test-sets.model';
-import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
 import { TestSets } from '../util/test-sets/test-sets.model';
+import { testSuite } from '../util/test-suite.function';
 
 describe('proper subset', () => {
-	describe('proper subset ⋅ number', () => properSubsetTests(new NumberTestSets()));
-	describe('proper subset ⋅ string', () => properSubsetTests(new StringTestSets()));
-	describe('proper subset ⋅ symbol', () => properSubsetTests(new SymbolTestSets()));
+	testSuite('proper subset', properSubsetTests);
 });
 
 function properSubsetTests<T>(testSets: TestSets<T>): void {

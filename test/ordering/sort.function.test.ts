@@ -1,14 +1,10 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, sort } from '../../src';
-import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
-import { StringTestSets } from '../util/test-sets/string-test-sets.model';
-import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
 import { TestSets } from '../util/test-sets/test-sets.model';
+import { testSuite } from '../util/test-suite.function';
 
 describe('sort', () => {
-	describe('sort ⋅ number', () => sortTests(new NumberTestSets()));
-	describe('sort ⋅ string', () => sortTests(new StringTestSets()));
-	describe('sort ⋅ symbol', () => sortTests(new SymbolTestSets()));
+	testSuite('sort', sortTests);
 });
 
 function sortTests<T>(testSets: TestSets<T>): void {
@@ -20,7 +16,7 @@ function sortTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
-	if (typeof a === 'number' || typeof a === 'string') {
+	if (testSets.canSortWithoutComparator) {
 		it('sorting a set returns an equivalent set', () => {
 			const result = sort(setA);
 			expect(equivalence(result, setA)).toBe(true);
@@ -39,7 +35,7 @@ function sortTests<T>(testSets: TestSets<T>): void {
 		expectSortedElements(result, ordered);
 	});
 
-	if (typeof a === 'number' || typeof a === 'string') {
+	if (testSets.willSortWithoutComparator) {
 		it('sorting an unordered set will order it', () => {
 			const ordered = Array.from(universal);
 			const result = sort(unordered);

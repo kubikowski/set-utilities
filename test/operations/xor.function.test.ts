@@ -1,14 +1,10 @@
 import { describe, expect, it } from '@jest/globals';
 import { equivalence, xor } from '../../src';
-import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
-import { StringTestSets } from '../util/test-sets/string-test-sets.model';
-import { SymbolTestSets } from '../util/test-sets/symbol-test-sets.model';
 import { TestSets } from '../util/test-sets/test-sets.model';
+import { testSuite } from '../util/test-suite.function';
 
 describe('xor', () => {
-	describe('xor ⋅ number', () => xorTests(new NumberTestSets()));
-	describe('xor ⋅ string', () => xorTests(new StringTestSets()));
-	describe('xor ⋅ symbol', () => xorTests(new SymbolTestSets()));
+	testSuite('xor', xorTests);
 });
 
 function xorTests<T>(testSets: TestSets<T>): void {

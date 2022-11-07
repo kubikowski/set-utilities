@@ -53,6 +53,11 @@ export abstract class TestSets<T> {
 	/* unique to: setF */
 	public readonly j: T;
 
+	/* whether the sort tests can run without a comparator */
+	public readonly canSortWithoutComparator: boolean = true;
+	/* whether the sort tests will sort correctly without a comparator */
+	public readonly willSortWithoutComparator: boolean = true;
+
 	protected constructor(a: T, b: T, c: T, d: T, e: T, f: T, g: T, h: T, i: T, j: T) {
 		this.empty = new Set<never>();
 		this.universal = new Set<T>([ a, b, c, d, e, f, g, h, i, j ]);
