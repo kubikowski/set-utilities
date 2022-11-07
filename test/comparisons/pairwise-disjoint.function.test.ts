@@ -22,8 +22,12 @@ function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {
 		expect(pairwiseDisjoint(setA, setA)).toBe(false);
 	});
 
-	it('many of the same set are not pairwise disjoint', () => {
+	it('three of the same set are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setA, setA)).toBe(false);
+	});
+
+	it('many of the same set are not pairwise disjoint', () => {
+		expect(pairwiseDisjoint(setA, setA, setA, setA, setA, setA)).toBe(false);
 	});
 
 	it('two sets with some shared elements are not pairwise disjoint', () => {
@@ -36,6 +40,10 @@ function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {
 
 	it('many sets with some shared elements are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('many sets (reversed) with some shared elements are not pairwise disjoint', () => {
+		expect(pairwiseDisjoint(setF, setE, setD, setC, setB, setA)).toBe(false);
 	});
 
 	it('any non-empty set and the empty set are pairwise disjoint', () => {

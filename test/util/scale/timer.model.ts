@@ -31,7 +31,7 @@ export abstract class Timer {
 	public static log(methodName: string): void {
 		const logs = Timer.getLogs(methodName);
 
-		process.stdout.write(logs);
+		process.stdout.write(`${ logs }\n`);
 	}
 
 	public static logAll(): void {
@@ -39,7 +39,7 @@ export abstract class Timer {
 			.map(Timer.getLogs)
 			.join('');
 
-		process.stdout.write(logs);
+		process.stdout.write(`\n${ logs }\n`);
 	}
 
 	private static getLogs(methodName: string): string {

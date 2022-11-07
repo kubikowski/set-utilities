@@ -27,8 +27,13 @@ function differenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
-	it('many of the same set has no difference overlap', () => {
+	it('three of the same set has no difference overlap', () => {
 		const result = difference(setA, setA, setA);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('many of the same set has no difference overlap', () => {
+		const result = difference(setA, setA, setA, setA, setA, setA);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
@@ -45,6 +50,11 @@ function differenceTests<T>(testSets: TestSets<T>): void {
 	it('many sets\' difference is a subset of the first', () => {
 		const result = difference(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, differenceABC)).toBe(true);
+	});
+
+	it('many sets\' (reversed) difference is a subset of the first', () => {
+		const result = difference(setF, setE, setD, setC, setB, setA);
+		expect(equivalence(result, setF)).toBe(true);
 	});
 
 	it('any sets\' difference with the empty set is itself', () => {

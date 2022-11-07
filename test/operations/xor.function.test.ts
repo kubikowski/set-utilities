@@ -29,8 +29,13 @@ function xorTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
-	it('many of the same set xor returns the empty set', () => {
+	it('three of the same set xor returns the empty set', () => {
 		const result = xor(setA, setA, setA);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('many of the same set xor returns the empty set', () => {
+		const result = xor(setA, setA, setA, setA, setA, setA);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
@@ -46,6 +51,11 @@ function xorTests<T>(testSets: TestSets<T>): void {
 
 	it('many different sets xor returns unique elements', () => {
 		const result = xor(setA, setB, setC, setD, setE, setF);
+		expect(equivalence(result, xorABCDEF)).toBe(true);
+	});
+
+	it('many different sets (reversed) xor returns unique elements', () => {
+		const result = xor(setF, setE, setD, setC, setB, setA);
 		expect(equivalence(result, xorABCDEF)).toBe(true);
 	});
 
