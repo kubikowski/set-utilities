@@ -22,8 +22,12 @@ function disjointTests<T>(testSets: TestSets<T>): void {
 		expect(disjoint(setA, setA)).toBe(false);
 	});
 
-	it('many of the same set are not disjoint', () => {
+	it('three of the same set are not disjoint', () => {
 		expect(disjoint(setA, setA, setA)).toBe(false);
+	});
+
+	it('many of the same set are not disjoint', () => {
+		expect(disjoint(setA, setA, setA, setA, setA, setA)).toBe(false);
 	});
 
 	it('two sets with some shared elements are not disjoint', () => {
@@ -34,8 +38,12 @@ function disjointTests<T>(testSets: TestSets<T>): void {
 		expect(disjoint(setA, setB, setC)).toBe(false);
 	});
 
-	it('many sets with some shared elements are not disjoint', () => {
+	it('many sets with some shared elements of the first are not disjoint', () => {
 		expect(disjoint(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('many sets (reversed) with no shared elements of the first are disjoint', () => {
+		expect(disjoint(setF, setE, setD, setC, setB, setA)).toBe(true);
 	});
 
 	it('any non-empty set and the empty set are disjoint', () => {

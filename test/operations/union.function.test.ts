@@ -27,8 +27,13 @@ function unionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
-	it('many of the same set union returns self', () => {
+	it('three of the same set union returns self', () => {
 		const result = union(setA, setA, setA);
+		expect(equivalence(result, setA)).toBe(true);
+	});
+
+	it('many of the same set union returns self', () => {
+		const result = union(setA, setA, setA, setA, setA, setA);
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
@@ -44,6 +49,11 @@ function unionTests<T>(testSets: TestSets<T>): void {
 
 	it('many sets\' union contains all elements from all sets', () => {
 		const result = union(setA, setB, setC, setD, setE, setF);
+		expect(equivalence(result, universal)).toBe(true);
+	});
+
+	it('many sets\' (reversed) union contains all elements from all sets', () => {
+		const result = union(setF, setE, setD, setC, setB, setA);
 		expect(equivalence(result, universal)).toBe(true);
 	});
 

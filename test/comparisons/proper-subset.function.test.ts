@@ -22,8 +22,12 @@ function properSubsetTests<T>(testSets: TestSets<T>): void {
 		expect(properSubset(setA, setA)).toBe(false);
 	});
 
-	it('many of the same set are not proper subsets', () => {
+	it('three of the same set are not proper subsets', () => {
 		expect(properSubset(setA, setA, setA)).toBe(false);
+	});
+
+	it('many of the same set are not proper subsets', () => {
+		expect(properSubset(setA, setA, setA, setA, setA, setA)).toBe(false);
 	});
 
 	it('two sets with different elements are not proper subsets', () => {
@@ -36,6 +40,10 @@ function properSubsetTests<T>(testSets: TestSets<T>): void {
 
 	it('many sets with different elements are not proper subsets', () => {
 		expect(properSubset(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('many sets (reversed) with different elements are not proper subsets', () => {
+		expect(properSubset(setF, setE, setD, setC, setB, setA)).toBe(false);
 	});
 
 	it('any non-empty set is not a proper subset of the empty set', () => {

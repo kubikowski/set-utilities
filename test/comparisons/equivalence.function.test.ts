@@ -22,8 +22,12 @@ function equivalenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(setA, setA)).toBe(true);
 	});
 
-	it('many of the same set are equivalent', () => {
+	it('three of the same set are equivalent', () => {
 		expect(equivalence(setA, setA, setA)).toBe(true);
+	});
+
+	it('many of the same set are equivalent', () => {
+		expect(equivalence(setA, setA, setA, setA, setA, setA)).toBe(true);
 	});
 
 	it('two different sets are not equivalent', () => {
@@ -36,6 +40,10 @@ function equivalenceTests<T>(testSets: TestSets<T>): void {
 
 	it('many different sets are not equivalent', () => {
 		expect(equivalence(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('many different sets (reversed) are not equivalent', () => {
+		expect(equivalence(setF, setE, setD, setC, setB, setA)).toBe(false);
 	});
 
 	it('any non-empty set and the empty set are not equivalent', () => {

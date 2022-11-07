@@ -22,8 +22,12 @@ function subsetTests<T>(testSets: TestSets<T>): void {
 		expect(subset(setA, setA)).toBe(true);
 	});
 
-	it('many of the same set are subsets', () => {
+	it('three of the same set are subsets', () => {
 		expect(subset(setA, setA, setA)).toBe(true);
+	});
+
+	it('many of the same set are subsets', () => {
+		expect(subset(setA, setA, setA, setA, setA, setA)).toBe(true);
 	});
 
 	it('two sets with different elements are not subsets', () => {
@@ -36,6 +40,10 @@ function subsetTests<T>(testSets: TestSets<T>): void {
 
 	it('many sets with different elements are not subsets', () => {
 		expect(subset(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('many sets (reversed) with different elements are not subsets', () => {
+		expect(subset(setF, setE, setD, setC, setB, setA)).toBe(false);
 	});
 
 	it('any non-empty set is not a subset of the empty set', () => {

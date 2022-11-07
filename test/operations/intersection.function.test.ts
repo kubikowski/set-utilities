@@ -27,8 +27,13 @@ function intersectionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
-	it('many of the same set intersection returns self', () => {
+	it('three of the same set intersection returns self', () => {
 		const result = intersection(setA, setA, setA);
+		expect(equivalence(result, setA)).toBe(true);
+	});
+
+	it('many of the same set intersection returns self', () => {
+		const result = intersection(setA, setA, setA, setA, setA, setA);
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
@@ -44,6 +49,11 @@ function intersectionTests<T>(testSets: TestSets<T>): void {
 
 	it('many sets\' intersection is a subset of the first', () => {
 		const result = intersection(setA, setB, setC, setD, setE, setF);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('many sets\' (reversed) intersection is a subset of the first', () => {
+		const result = intersection(setF, setE, setD, setC, setB, setA);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 

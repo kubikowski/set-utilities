@@ -22,8 +22,12 @@ function properSupersetTests<T>(testSets: TestSets<T>): void {
 		expect(properSuperset(setA, setA)).toBe(false);
 	});
 
-	it('many of the same set are not proper supersets', () => {
+	it('three of the same set are not proper supersets', () => {
 		expect(properSuperset(setA, setA, setA)).toBe(false);
+	});
+
+	it('many of the same set are not proper supersets', () => {
+		expect(properSuperset(setA, setA, setA, setA, setA, setA)).toBe(false);
 	});
 
 	it('two sets with different elements are not proper supersets', () => {
@@ -36,6 +40,10 @@ function properSupersetTests<T>(testSets: TestSets<T>): void {
 
 	it('many sets with different elements are not proper supersets', () => {
 		expect(properSuperset(setA, setB, setC, setD, setE, setF)).toBe(false);
+	});
+
+	it('many sets (reversed) with different elements are not proper supersets', () => {
+		expect(properSuperset(setF, setE, setD, setC, setB, setA)).toBe(false);
 	});
 
 	it('any non-empty set is a proper superset of the empty set', () => {
