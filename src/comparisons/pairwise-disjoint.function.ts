@@ -15,7 +15,19 @@ export function pairwiseDisjoint<T, S extends ReadonlySet<T>>(...sets: S[]): boo
 		return true;
 	}
 
-	const allElements = new Set<T>(sets.shift());
+	const primarySet = sets.shift()!;
+	const secondarySet = sets.shift()!;
+	for (const element of secondarySet) {
+		if (primarySet.has(element)) {
+			return false;
+		}
+	}
+
+	if (sets.length === 0) {
+		return true;
+	}
+
+	const allElements = new Set<T>([ ...primarySet, ...secondarySet ]);
 	for (const set of sets) {
 		for (const element of set) {
 			if (allElements.has(element)) {
