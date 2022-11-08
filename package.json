@@ -1,6 +1,6 @@
 {
 	"name": "set-utilities",
-	"version": "1.5.1",
+	"version": "1.5.2",
 	"author": "Nathaniel Holden <holden@inanity.io> (https://inanity.io)",
 	"homepage": "https://github.com/kubikowski/set-utilities",
 	"description": "A collection of high performance utilities from Set Theory, which operate on an arbitrary number of Sets.",
