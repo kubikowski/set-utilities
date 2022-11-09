@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { xor } from '../../../src';
 import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
 import { padding, times } from '../../util/scale/scale-test.constants';
@@ -46,6 +46,7 @@ describe('xor @ scale', () => {
 
 	describe('xor ⋅ many sets', () => {
 		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('xor'));
 
 		it('xor(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('xor', () => xor(...someEquivalent));
@@ -70,6 +71,7 @@ describe('xor @ scale', () => {
 
 	describe('xor ⋅ many times', () => {
 		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('xor'));
 
 		it('100k ⋅ xor(2 Equivalent):'.padEnd(padding), () => {
 			const xorMock = jest.fn(xor);

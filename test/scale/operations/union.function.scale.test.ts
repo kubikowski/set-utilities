@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { union } from '../../../src';
 import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
 import { padding, times } from '../../util/scale/scale-test.constants';
@@ -46,6 +46,7 @@ describe('union @ scale', () => {
 
 	describe('union ⋅ many sets', () => {
 		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('union'));
 
 		it('union(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('union', () => union(...someEquivalent));
@@ -70,6 +71,7 @@ describe('union @ scale', () => {
 
 	describe('union ⋅ many times', () => {
 		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('union'));
 
 		it('100k ⋅ union(2 Equivalent):'.padEnd(padding), () => {
 			const unionMock = jest.fn(union);

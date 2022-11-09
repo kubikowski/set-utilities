@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { disjoint }  from '../../../src';
 import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
 import { padding, times } from '../../util/scale/scale-test.constants';
@@ -46,6 +46,7 @@ describe('disjoint @ scale', () => {
 
 	describe('disjoint ⋅ many sets', () => {
 		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('disjoint'));
 
 		it('disjoint(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('disjoint', () => disjoint(...someEquivalent));
@@ -70,6 +71,7 @@ describe('disjoint @ scale', () => {
 
 	describe('disjoint ⋅ many times', () => {
 		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('disjoint'));
 
 		it('100k ⋅ disjoint(2 Equivalent):'.padEnd(padding), () => {
 			const disjointMock = jest.fn(disjoint);

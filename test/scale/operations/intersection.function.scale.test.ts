@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { intersection } from '../../../src';
 import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
 import { padding, times } from '../../util/scale/scale-test.constants';
@@ -46,6 +46,7 @@ describe('intersection @ scale', () => {
 
 	describe('intersection ⋅ many sets', () => {
 		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('intersection'));
 
 		it('intersection(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('intersection', () => intersection(...someEquivalent));
@@ -70,6 +71,7 @@ describe('intersection @ scale', () => {
 
 	describe('intersection ⋅ many times', () => {
 		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('intersection'));
 
 		it('100k ⋅ intersection(2 Equivalent):'.padEnd(padding), () => {
 			const intersectionMock = jest.fn(intersection);
