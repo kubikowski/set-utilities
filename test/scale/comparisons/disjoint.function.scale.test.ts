@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
-import { disjoint }  from '../../src';
+import { disjoint }  from '../../../src';
 import {
 	coupleDisjoint,
 	coupleEquivalent,
@@ -14,11 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../util/scale/scale-testing.constants';
-import { Timer } from '../util/scale/timer.model';
+} from '../../util/scale/scale-testing.constants';
+import { Timer } from '../../util/scale/timer.model';
 
-export function disjointScaleTests(): void {
-
+describe('disjoint @ scale', () => {
 	describe('disjoint ⋅ large sets', () => {
 		it('disjoint(of1):'.padEnd(padding), () => {
 			const result = Timer.time('disjoint', () => disjoint(multiplesOf1));
@@ -105,4 +104,4 @@ export function disjointScaleTests(): void {
 	});
 
 	afterAll(() => Timer.log('disjoint'));
-}
+});

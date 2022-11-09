@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
-import { equivalence } from '../../src';
+import { equivalence } from '../../../src';
 import {
 	coupleDisjoint,
 	coupleEquivalent,
@@ -14,11 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../util/scale/scale-testing.constants';
-import { Timer } from '../util/scale/timer.model';
+} from '../../util/scale/scale-testing.constants';
+import { Timer } from '../../util/scale/timer.model';
 
-export function equivalenceScaleTests(): void {
-
+describe('equivalence @ scale', () => {
 	describe('equivalence ⋅ large sets', () => {
 		it('equivalence(of1):'.padEnd(padding), () => {
 			const result = Timer.time('equivalence', () => equivalence(multiplesOf1));
@@ -105,4 +104,4 @@ export function equivalenceScaleTests(): void {
 	});
 
 	afterAll(() => Timer.log('equivalence'));
-}
+});

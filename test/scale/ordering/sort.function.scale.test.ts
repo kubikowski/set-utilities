@@ -1,10 +1,10 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
-import { sort } from '../../src';
-import { multiplesOf1, multiplesOf2, multiplesOf3, padding, times } from '../util/scale/scale-testing.constants';
-import { Timer } from '../util/scale/timer.model';
-import { NumberTestSets } from '../util/test-sets/number-test-sets.model';
+import { sort } from '../../../src';
+import { multiplesOf1, multiplesOf2, multiplesOf3, padding, times } from '../../util/scale/scale-testing.constants';
+import { Timer } from '../../util/scale/timer.model';
+import { NumberTestSets } from '../../util/test-sets/number-test-sets.model';
 
-export function sortScaleTests(): void {
+describe('sort @ scale', () => {
 	const { defaultComparator, reverseComparator } = new NumberTestSets();
 
 	/* unordered set of 100 elements, contains: 0 - 99 */
@@ -89,4 +89,4 @@ export function sortScaleTests(): void {
 	});
 
 	afterAll(() => Timer.log('sort'));
-}
+});
