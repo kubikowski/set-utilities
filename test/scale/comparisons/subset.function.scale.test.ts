@@ -1,24 +1,13 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import { subset } from '../../../src';
-import {
-	coupleDisjoint,
-	coupleEquivalent,
-	fewDisjoint,
-	fewEquivalent,
-	manyDisjoint,
-	manyEquivalent,
-	multiplesOf1,
-	multiplesOf2,
-	multiplesOf3,
-	padding,
-	someDisjoint,
-	someEquivalent,
-	times,
-} from '../../util/scale/scale-testing.constants';
+import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
+import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('subset @ scale', () => {
 	describe('subset ⋅ large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+
 		it('subset(of1):'.padEnd(padding), () => {
 			const result = Timer.time('subset', () => subset(multiplesOf1));
 			expect(result).toBe(true);
@@ -56,6 +45,8 @@ describe('subset @ scale', () => {
 	});
 
 	describe('subset ⋅ many sets', () => {
+		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+
 		it('subset(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('subset', () => subset(...someEquivalent));
 			expect(result).toBe(true);
@@ -78,6 +69,8 @@ describe('subset @ scale', () => {
 	});
 
 	describe('subset ⋅ many times', () => {
+		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+
 		it('100k ⋅ subset(2 Equivalent):'.padEnd(padding), () => {
 			const subsetMock = jest.fn(subset);
 			Timer.manyTimes('subset', () => subsetMock(...coupleEquivalent), times);

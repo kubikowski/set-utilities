@@ -1,24 +1,13 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import { xor } from '../../../src';
-import {
-	coupleDisjoint,
-	coupleEquivalent,
-	fewDisjoint,
-	fewEquivalent,
-	manyDisjoint,
-	manyEquivalent,
-	multiplesOf1,
-	multiplesOf2,
-	multiplesOf3,
-	padding,
-	someDisjoint,
-	someEquivalent,
-	times,
-} from '../../util/scale/scale-testing.constants';
+import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
+import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('xor @ scale', () => {
 	describe('xor ⋅ large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+
 		it('xor(of1):'.padEnd(padding), () => {
 			const result = Timer.time('xor', () => xor(multiplesOf1));
 			expect(result.size).toBe(15_000_000);
@@ -56,6 +45,8 @@ describe('xor @ scale', () => {
 	});
 
 	describe('xor ⋅ many sets', () => {
+		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+
 		it('xor(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('xor', () => xor(...someEquivalent));
 			expect(result.size).toBe(0);
@@ -78,6 +69,8 @@ describe('xor @ scale', () => {
 	});
 
 	describe('xor ⋅ many times', () => {
+		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+
 		it('100k ⋅ xor(2 Equivalent):'.padEnd(padding), () => {
 			const xorMock = jest.fn(xor);
 			Timer.manyTimes('xor', () => xorMock(...coupleEquivalent), times);

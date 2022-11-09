@@ -1,24 +1,13 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import { equivalence } from '../../../src';
-import {
-	coupleDisjoint,
-	coupleEquivalent,
-	fewDisjoint,
-	fewEquivalent,
-	manyDisjoint,
-	manyEquivalent,
-	multiplesOf1,
-	multiplesOf2,
-	multiplesOf3,
-	padding,
-	someDisjoint,
-	someEquivalent,
-	times,
-} from '../../util/scale/scale-testing.constants';
+import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
+import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('equivalence @ scale', () => {
 	describe('equivalence ⋅ large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+
 		it('equivalence(of1):'.padEnd(padding), () => {
 			const result = Timer.time('equivalence', () => equivalence(multiplesOf1));
 			expect(result).toBe(true);
@@ -56,6 +45,8 @@ describe('equivalence @ scale', () => {
 	});
 
 	describe('equivalence ⋅ many sets', () => {
+		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+
 		it('equivalence(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('equivalence', () => equivalence(...someEquivalent));
 			expect(result).toBe(true);
@@ -78,6 +69,8 @@ describe('equivalence @ scale', () => {
 	});
 
 	describe('equivalence ⋅ many times', () => {
+		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+
 		it('100k ⋅ equivalence(2 Equivalent):'.padEnd(padding), () => {
 			const equivalenceMock = jest.fn(equivalence);
 			Timer.manyTimes('equivalence', () => equivalenceMock(...coupleEquivalent), times);

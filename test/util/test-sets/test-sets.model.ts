@@ -12,6 +12,7 @@
  * - j: unique to setF
  */
 export abstract class TestSets<T> {
+
 	/* the empty set: ∅, contains: none */
 	public readonly empty: ReadonlySet<never>;
 	/* the universal set: U, contains: a, b, c, d, e, f, g, h, i, j */

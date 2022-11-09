@@ -1,24 +1,13 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import { difference } from '../../../src';
-import {
-	coupleDisjoint,
-	coupleEquivalent,
-	fewDisjoint,
-	fewEquivalent,
-	manyDisjoint,
-	manyEquivalent,
-	multiplesOf1,
-	multiplesOf2,
-	multiplesOf3,
-	padding,
-	someDisjoint,
-	someEquivalent,
-	times,
-} from '../../util/scale/scale-testing.constants';
+import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
+import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('difference @ scale', () => {
 	describe('difference ⋅ large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+
 		it('difference(of1):'.padEnd(padding), () => {
 			const result = Timer.time('difference', () => difference(multiplesOf1));
 			expect(result.size).toBe(15_000_000);
@@ -56,6 +45,8 @@ describe('difference @ scale', () => {
 	});
 
 	describe('difference ⋅ many sets', () => {
+		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+
 		it('difference(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('difference', () => difference(...someEquivalent));
 			expect(result.size).toBe(0);
@@ -78,6 +69,8 @@ describe('difference @ scale', () => {
 	});
 
 	describe('difference ⋅ many times', () => {
+		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+
 		it('100k ⋅ difference(2 Equivalent):'.padEnd(padding), () => {
 			const differenceMock = jest.fn(difference);
 			Timer.manyTimes('difference', () => differenceMock(...coupleEquivalent), times);
