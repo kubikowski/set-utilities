@@ -1,24 +1,13 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import { properSuperset } from '../../../src';
-import {
-	coupleDisjoint,
-	coupleEquivalent,
-	fewDisjoint,
-	fewEquivalent,
-	manyDisjoint,
-	manyEquivalent,
-	multiplesOf1,
-	multiplesOf2,
-	multiplesOf3,
-	padding,
-	someDisjoint,
-	someEquivalent,
-	times,
-} from '../../util/scale/scale-testing.constants';
+import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
+import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('proper superset @ scale', () => {
 	describe('proper superset ⋅ large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+
 		it('properSuperset(of1):'.padEnd(padding), () => {
 			const result = Timer.time('properSuperset', () => properSuperset(multiplesOf1));
 			expect(result).toBe(true);
@@ -56,6 +45,8 @@ describe('proper superset @ scale', () => {
 	});
 
 	describe('proper superset ⋅ many sets', () => {
+		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+
 		it('properSuperset(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('properSuperset', () => properSuperset(...someEquivalent));
 			expect(result).toBe(false);
@@ -78,6 +69,8 @@ describe('proper superset @ scale', () => {
 	});
 
 	describe('proper superset ⋅ many times', () => {
+		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+
 		it('100k ⋅ properSuperset(2 Equivalent):'.padEnd(padding), () => {
 			const properSupersetMock = jest.fn(properSuperset);
 			Timer.manyTimes('properSuperset', () => properSupersetMock(...coupleEquivalent), times);

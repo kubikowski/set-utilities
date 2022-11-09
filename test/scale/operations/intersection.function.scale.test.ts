@@ -1,24 +1,13 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import { intersection } from '../../../src';
-import {
-	coupleDisjoint,
-	coupleEquivalent,
-	fewDisjoint,
-	fewEquivalent,
-	manyDisjoint,
-	manyEquivalent,
-	multiplesOf1,
-	multiplesOf2,
-	multiplesOf3,
-	padding,
-	someDisjoint,
-	someEquivalent,
-	times,
-} from '../../util/scale/scale-testing.constants';
+import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
+import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('intersection @ scale', () => {
 	describe('intersection ⋅ large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+
 		it('intersection(of1):'.padEnd(padding), () => {
 			const result = Timer.time('intersection', () => intersection(multiplesOf1));
 			expect(result.size).toBe(15_000_000);
@@ -56,6 +45,8 @@ describe('intersection @ scale', () => {
 	});
 
 	describe('intersection ⋅ many sets', () => {
+		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+
 		it('intersection(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('intersection', () => intersection(...someEquivalent));
 			expect(result.size).toBe(100_000);
@@ -78,6 +69,8 @@ describe('intersection @ scale', () => {
 	});
 
 	describe('intersection ⋅ many times', () => {
+		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+
 		it('100k ⋅ intersection(2 Equivalent):'.padEnd(padding), () => {
 			const intersectionMock = jest.fn(intersection);
 			Timer.manyTimes('intersection', () => intersectionMock(...coupleEquivalent), times);

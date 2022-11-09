@@ -1,24 +1,13 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
 import { union } from '../../../src';
-import {
-	coupleDisjoint,
-	coupleEquivalent,
-	fewDisjoint,
-	fewEquivalent,
-	manyDisjoint,
-	manyEquivalent,
-	multiplesOf1,
-	multiplesOf2,
-	multiplesOf3,
-	padding,
-	someDisjoint,
-	someEquivalent,
-	times,
-} from '../../util/scale/scale-testing.constants';
+import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
+import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('union @ scale', () => {
 	describe('union ⋅ large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+
 		it('union(of1):'.padEnd(padding), () => {
 			const result = Timer.time('union', () => union(multiplesOf1));
 			expect(result.size).toBe(15_000_000);
@@ -56,6 +45,8 @@ describe('union @ scale', () => {
 	});
 
 	describe('union ⋅ many sets', () => {
+		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+
 		it('union(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('union', () => union(...someEquivalent));
 			expect(result.size).toBe(100_000);
@@ -78,6 +69,8 @@ describe('union @ scale', () => {
 	});
 
 	describe('union ⋅ many times', () => {
+		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+
 		it('100k ⋅ union(2 Equivalent):'.padEnd(padding), () => {
 			const unionMock = jest.fn(union);
 			Timer.manyTimes('union', () => unionMock(...coupleEquivalent), times);
