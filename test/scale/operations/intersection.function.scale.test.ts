@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
-import { intersection } from '../../src';
+import { intersection } from '../../../src';
 import {
 	coupleDisjoint,
 	coupleEquivalent,
@@ -14,11 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../util/scale/scale-testing.constants';
-import { Timer } from '../util/scale/timer.model';
+} from '../../util/scale/scale-testing.constants';
+import { Timer } from '../../util/scale/timer.model';
 
-export function intersectionScaleTests(): void {
-
+describe('intersection @ scale', () => {
 	describe('intersection ⋅ large sets', () => {
 		it('intersection(of1):'.padEnd(padding), () => {
 			const result = Timer.time('intersection', () => intersection(multiplesOf1));
@@ -105,4 +104,4 @@ export function intersectionScaleTests(): void {
 	});
 
 	afterAll(() => Timer.log('intersection'));
-}
+});

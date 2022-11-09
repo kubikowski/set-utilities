@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
-import { properSubset } from '../../src';
+import { properSubset } from '../../../src';
 import {
 	coupleDisjoint,
 	coupleEquivalent,
@@ -14,11 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../util/scale/scale-testing.constants';
-import { Timer } from '../util/scale/timer.model';
+} from '../../util/scale/scale-testing.constants';
+import { Timer } from '../../util/scale/timer.model';
 
-export function properSubsetScaleTests(): void {
-
+describe('proper subset @ scale', () => {
 	describe('proper subset ⋅ large sets', () => {
 		it('properSubset(of1):'.padEnd(padding), () => {
 			const result = Timer.time('properSubset', () => properSubset(multiplesOf1));
@@ -105,4 +104,4 @@ export function properSubsetScaleTests(): void {
 	});
 
 	afterAll(() => Timer.log('properSubset'));
-}
+});

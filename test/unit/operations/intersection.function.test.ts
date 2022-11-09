@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
-import { equivalence, intersection } from '../../src';
-import { TestSets } from '../util/test-sets/test-sets.model';
-import { testSuite } from '../util/test-suite.function';
+import { equivalence, intersection } from '../../../src';
+import { TestSets } from '../../util/test-sets/test-sets.model';
+import { testSuite } from '../../util/test-suite.function';
 
 describe('intersection', () => {
 	testSuite('intersection', intersectionTests);

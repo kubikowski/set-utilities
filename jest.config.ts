@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import type { Config } from 'jest';
 
-/*
- * For a detailed explanation regarding each configuration property and type check, visit:
- * https://jestjs.io/docs/configuration
- */
-
-export default {
+const config: Config = {
 	// All imported modules in your tests should be mocked automatically
 	// automock: false,
 
@@ -171,10 +167,10 @@ export default {
 	// testLocationInResults: false,
 
 	// The glob patterns Jest uses to detect test files
-	testMatch: [
-		'**/?(*.)function!(.scale).test.ts',
-		'**/scale.test.ts',
-	],
+	// testMatch: [
+	// 	'**/?(*.)function!(.scale).test.ts',
+	// 	'**/scale.test.ts',
+	// ],
 
 	// An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
 	// testPathIgnorePatterns: [
@@ -191,7 +187,9 @@ export default {
 	// testRunner: "jest-circus/runner",
 
 	// A map from regular expressions to paths to transformers
-	// transform: undefined,
+	// transform: {
+	// 	'^.+\\.ts$': 'ts-jest',
+	// },
 
 	// An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
 	// transformIgnorePatterns: [
@@ -211,3 +209,5 @@ export default {
 	// Whether to use watchman for file crawling
 	// watchman: true,
 };
+
+export default config;

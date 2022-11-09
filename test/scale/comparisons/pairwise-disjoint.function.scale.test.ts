@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
-import { pairwiseDisjoint } from '../../src';
+import { pairwiseDisjoint } from '../../../src';
 import {
 	coupleDisjoint,
 	coupleEquivalent,
@@ -14,11 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../util/scale/scale-testing.constants';
-import { Timer } from '../util/scale/timer.model';
+} from '../../util/scale/scale-testing.constants';
+import { Timer } from '../../util/scale/timer.model';
 
-export function pairwiseDisjointScaleTests(): void {
-
+describe('pairwise disjoint @ scale', () => {
 	describe('pairwise disjoint ⋅ large sets', () => {
 		it('pairwiseDisjoint(of1):'.padEnd(padding), () => {
 			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf1));
@@ -105,4 +104,4 @@ export function pairwiseDisjointScaleTests(): void {
 	});
 
 	afterAll(() => Timer.log('pairwiseDisjoint'));
-}
+});

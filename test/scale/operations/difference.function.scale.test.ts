@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
-import { difference } from '../../src';
+import { difference } from '../../../src';
 import {
 	coupleDisjoint,
 	coupleEquivalent,
@@ -14,11 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../util/scale/scale-testing.constants';
-import { Timer } from '../util/scale/timer.model';
+} from '../../util/scale/scale-testing.constants';
+import { Timer } from '../../util/scale/timer.model';
 
-export function differenceScaleTests(): void {
-
+describe('difference @ scale', () => {
 	describe('difference ⋅ large sets', () => {
 		it('difference(of1):'.padEnd(padding), () => {
 			const result = Timer.time('difference', () => difference(multiplesOf1));
@@ -105,4 +104,4 @@ export function differenceScaleTests(): void {
 	});
 
 	afterAll(() => Timer.log('difference'));
-}
+});

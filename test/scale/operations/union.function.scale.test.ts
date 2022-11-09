@@ -1,5 +1,5 @@
 import { afterAll, describe, expect, it, jest } from '@jest/globals';
-import { union } from '../../src';
+import { union } from '../../../src';
 import {
 	coupleDisjoint,
 	coupleEquivalent,
@@ -14,11 +14,10 @@ import {
 	someDisjoint,
 	someEquivalent,
 	times,
-} from '../util/scale/scale-testing.constants';
-import { Timer } from '../util/scale/timer.model';
+} from '../../util/scale/scale-testing.constants';
+import { Timer } from '../../util/scale/timer.model';
 
-export function unionScaleTests(): void {
-
+describe('union @ scale', () => {
 	describe('union ⋅ large sets', () => {
 		it('union(of1):'.padEnd(padding), () => {
 			const result = Timer.time('union', () => union(multiplesOf1));
@@ -105,4 +104,4 @@ export function unionScaleTests(): void {
 	});
 
 	afterAll(() => Timer.log('union'));
-}
+});

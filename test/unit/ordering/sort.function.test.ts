@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
-import { equivalence, sort } from '../../src';
-import { TestSets } from '../util/test-sets/test-sets.model';
-import { testSuite } from '../util/test-suite.function';
+import { equivalence, sort } from '../../../src';
+import { TestSets } from '../../util/test-sets/test-sets.model';
+import { testSuite } from '../../util/test-suite.function';
 
 describe('sort', () => {
 	testSuite('sort', sortTests);

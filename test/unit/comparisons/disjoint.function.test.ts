@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
-import { disjoint } from '../../src';
-import { TestSets } from '../util/test-sets/test-sets.model';
-import { testSuite } from '../util/test-suite.function';
+import { disjoint } from '../../../src';
+import { TestSets } from '../../util/test-sets/test-sets.model';
+import { testSuite } from '../../util/test-suite.function';
 
 describe('disjoint', () => {
 	testSuite('disjoint', disjointTests);
