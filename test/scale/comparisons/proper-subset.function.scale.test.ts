@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { properSubset } from '../../../src';
 import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
 import { padding, times } from '../../util/scale/scale-test.constants';
@@ -46,6 +46,7 @@ describe('proper subset @ scale', () => {
 
 	describe('proper subset ⋅ many sets', () => {
 		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('properSubset'));
 
 		it('properSubset(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('properSubset', () => properSubset(...someEquivalent));
@@ -70,6 +71,7 @@ describe('proper subset @ scale', () => {
 
 	describe('proper subset ⋅ many times', () => {
 		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('properSubset'));
 
 		it('100k ⋅ properSubset(2 Equivalent):'.padEnd(padding), () => {
 			const properSubsetMock = jest.fn(properSubset);

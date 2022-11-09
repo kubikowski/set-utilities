@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { superset } from '../../../src';
 import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
 import { padding, times } from '../../util/scale/scale-test.constants';
@@ -46,6 +46,7 @@ describe('superset @ scale', () => {
 
 	describe('superset ⋅ many sets', () => {
 		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('superset'));
 
 		it('superset(100 Equivalent):'.padEnd(padding), () => {
 			const result = Timer.time('superset', () => superset(...someEquivalent));
@@ -70,6 +71,7 @@ describe('superset @ scale', () => {
 
 	describe('superset ⋅ many times', () => {
 		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('superset'));
 
 		it('100k ⋅ superset(2 Equivalent):'.padEnd(padding), () => {
 			const supersetMock = jest.fn(superset);

@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, it, jest } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { sort } from '../../../src';
 import { ScaleTestSets } from '../../util/scale/scale-test-sets.model';
 import { padding, times } from '../../util/scale/scale-test.constants';
@@ -59,6 +59,7 @@ describe('sort @ scale', () => {
 
 	describe('sort ⋅ many times', () => {
 		const { manyUnordered } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('sort'));
 
 		it('100k ⋅ sort(100):'.padEnd(padding), () => {
 			const sortMock = jest.fn(sort<number>);

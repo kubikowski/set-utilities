@@ -22,6 +22,9 @@ import { Timer } from './timer.model';
  * ```
  */
 export abstract class ScaleTestSets {
+	private static hasFinishedCopyingMultiples = false;
+	private static hasFinishedCopyingMany = false;
+	private static copyingManyTimes = 0;
 
 	/* multiples of 1, contains (1 - 15M) */
 	public static readonly multiplesOf1 = ScaleTestSets.multiplesOf(1, 15_000_000);
@@ -63,7 +66,7 @@ export abstract class ScaleTestSets {
 	]);
 
 	private static multiplesOf(factor: number, size: number, offset = 0): ReadonlySet<number> {
-		return Timer.time('copying multiples', () =>
+		return Timer.time('copying sets', () =>
 			new Set<number>(Array.from(
 				{ length: size },
 				(_, index) => (index * factor) + offset),
@@ -71,7 +74,8 @@ export abstract class ScaleTestSets {
 	}
 
 	private static manyOf(quantity: number, size: number, offset = false): ReadonlyArray<ReadonlySet<number>> {
-		return Timer.time('copying many', () =>
+		ScaleTestSets.incrementTimer();
+		return Timer.time('copying sets', () =>
 			Array.from(
 				{ length: quantity },
 				(_1, setIndex) => new Set<number>(Array.from(
@@ -79,6 +83,20 @@ export abstract class ScaleTestSets {
 					(_2, index) => index + (offset ? (setIndex * size) : 0),
 				)),
 			));
+	}
+
+	private static incrementTimer(): void {
+		if (!ScaleTestSets.hasFinishedCopyingMultiples) {
+			ScaleTestSets.hasFinishedCopyingMultiples = true;
+			Timer.nextLine('copying sets');
+		}
+
+		if (!ScaleTestSets.hasFinishedCopyingMany) {
+			if (ScaleTestSets.copyingManyTimes++ === 4) {
+				ScaleTestSets.hasFinishedCopyingMany = true;
+				Timer.nextLine('copying sets');
+			}
+		}
 	}
 }
 
