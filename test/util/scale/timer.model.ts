@@ -106,7 +106,7 @@ export abstract class Timer {
 		} else if (timing < 10_000) {
 			return AnsiFormat.fgRed(formattedTiming);
 		} else {
-			return AnsiFormat.fgBlack(formattedTiming);
+			return AnsiFormat.fgWhite(formattedTiming);
 		}
 	}
 
