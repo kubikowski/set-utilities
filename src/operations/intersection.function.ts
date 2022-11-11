@@ -9,7 +9,19 @@ export function intersection<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  * @description A ∩ B ≔ { x : (x ∈ A) ∧ (x ∈ B) }
  */
 export function intersection<T, S extends ReadonlySet<T>>(...sets: S[]): S {
-	const resultSet = new Set<T>(sets.shift());
+	if (sets.length < 2) {
+		return new Set<T>(sets.shift()) as ReadonlySet<T> as S;
+	}
+
+	const resultSet = new Set<T>();
+	const primarySet = sets.shift()!;
+	const secondarySet = sets.shift()!;
+
+	for (const element of primarySet) {
+		if (secondarySet.has(element)) {
+			resultSet.add(element);
+		}
+	}
 
 	for (const set of sets) {
 		for (const element of resultSet) {
