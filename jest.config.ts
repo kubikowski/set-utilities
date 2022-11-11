@@ -187,9 +187,7 @@ const config: Config = {
 	// testRunner: "jest-circus/runner",
 
 	// A map from regular expressions to paths to transformers
-	// transform: {
-	// 	'^.+\\.ts$': 'ts-jest',
-	// },
+	// transform: undefined,
 
 	// An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
 	// transformIgnorePatterns: [
