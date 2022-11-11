@@ -22,9 +22,8 @@ import { Timer } from './timer.model';
  * ```
  */
 export abstract class ScaleTestSets {
-	private static hasFinishedCopyingMultiples = false;
-	private static hasFinishedCopyingMany = false;
-	private static copyingManyTimes = 0;
+	private static copiedMultiples = 0;
+	private static copiedMany = 0;
 
 	/* multiples of 1, contains (1 - 15M) */
 	public static readonly multiplesOf1 = ScaleTestSets.multiplesOf(1, 15_000_000);
@@ -74,7 +73,7 @@ export abstract class ScaleTestSets {
 	}
 
 	private static manyOf(quantity: number, size: number, offset = false): ReadonlyArray<ReadonlySet<number>> {
-		ScaleTestSets.incrementTimer();
+		ScaleTestSets.incrementCopiedCounts();
 		return Timer.time('copying sets', () =>
 			Array.from(
 				{ length: quantity },
@@ -85,17 +84,13 @@ export abstract class ScaleTestSets {
 			));
 	}
 
-	private static incrementTimer(): void {
-		if (!ScaleTestSets.hasFinishedCopyingMultiples) {
-			ScaleTestSets.hasFinishedCopyingMultiples = true;
+	private static incrementCopiedCounts(): void {
+		if (ScaleTestSets.copiedMultiples++ === 0) {
 			Timer.nextLine('copying sets');
 		}
 
-		if (!ScaleTestSets.hasFinishedCopyingMany) {
-			if (ScaleTestSets.copyingManyTimes++ === 4) {
-				ScaleTestSets.hasFinishedCopyingMany = true;
-				Timer.nextLine('copying sets');
-			}
+		if (ScaleTestSets.copiedMany++ === 4) {
+			Timer.nextLine('copying sets');
 		}
 	}
 }
