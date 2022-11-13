@@ -58,8 +58,16 @@ function supersetTests<T>(testSets: TestSets<T>): void {
 		expect(superset(setA, empty)).toBe(true);
 	});
 
+	it('the empty set is not a superset of any non-empty set', () => {
+		expect(superset(empty, setA)).toBe(false);
+	});
+
 	it('any non-universal set is not a superset of the universal set', () => {
 		expect(superset(setA, universal)).toBe(false);
+	});
+
+	it('the universal set is a superset of any non-universal set', () => {
+		expect(superset(universal, setA)).toBe(true);
 	});
 
 	it('the empty set is a superset of itself', () => {

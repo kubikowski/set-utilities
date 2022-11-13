@@ -67,17 +67,27 @@ function intersectionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
-	it('any sets\' intersection with the empty set is the empty set', () => {
+	it('any non-empty set\'s intersection with the empty set is the empty set', () => {
 		const result = intersection(setA, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
-	it('any sets\' intersection with the universal set is itself', () => {
+	it('the empty set\'s intersection with any non-empty sets is the empty set', () => {
+		const result = intersection(empty, setA);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('any non-universal set\'s intersection with the universal set is itself', () => {
 		const result = intersection(setA, universal);
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
-	it('the empty sets\' intersection with itself is itself', () => {
+	it('the universal set\'s intersection with any non-universal set is that set', () => {
+		const result = intersection(universal, setA);
+		expect(equivalence(result, setA)).toBe(true);
+	});
+
+	it('the empty set\'s intersection with itself is itself', () => {
 		const result = intersection(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});

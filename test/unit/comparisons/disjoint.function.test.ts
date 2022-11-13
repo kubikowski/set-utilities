@@ -58,8 +58,16 @@ function disjointTests<T>(testSets: TestSets<T>): void {
 		expect(disjoint(setA, empty)).toBe(true);
 	});
 
+	it('the empty set and any non-empty set are disjoint', () => {
+		expect(disjoint(empty, setA)).toBe(true);
+	});
+
 	it('any non-empty set and the universal set are not disjoint', () => {
 		expect(disjoint(setA, universal)).toBe(false);
+	});
+
+	it('the universal set and any non-empty set are not disjoint', () => {
+		expect(disjoint(universal, setA)).toBe(false);
 	});
 
 	it('the empty set is disjoint with itself', () => {
