@@ -37,6 +37,7 @@
 		"dist"
 	],
 	"type": "module",
+	"sideEffects": false,
 	"scripts": {
 		"build": "tsc",
 		"lint": "eslint src test",
