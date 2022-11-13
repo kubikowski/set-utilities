@@ -69,17 +69,27 @@ function unionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, universal)).toBe(true);
 	});
 
-	it('any sets\' union with the empty set is itself', () => {
+	it('any non-empty set\'s union with the empty set is itself', () => {
 		const result = union(setA, empty);
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
-	it('any sets\' union with the universal set is the universal set', () => {
+	it('the empty set\'s union with any non-empty set is that set', () => {
+		const result = union(empty, setA);
+		expect(equivalence(result, setA)).toBe(true);
+	});
+
+	it('any non-universal set\'s union with the universal set is the universal set', () => {
 		const result = union(setA, universal);
 		expect(equivalence(result, universal)).toBe(true);
 	});
 
-	it('the empty sets\' union with itself is itself', () => {
+	it('the universal set\'s union with any non-universal set is the universal set', () => {
+		const result = union(universal, setA);
+		expect(equivalence(result, universal)).toBe(true);
+	});
+
+	it('the empty set\'s union with itself is itself', () => {
 		const result = union(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});

@@ -71,17 +71,27 @@ function xorTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, xorABCDEF)).toBe(true);
 	});
 
-	it('any non-empty sets\' xor with the empty set is itself', () => {
+	it('any non-empty set\'s xor with the empty set is itself', () => {
 		const result = xor(setA, empty);
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
-	it('any non-universal sets\' xor with the universal set is the difference of the universal set and itself', () => {
+	it('the empty set\'s xor with any non-empty set is that set', () => {
+		const result = xor(empty, setA);
+		expect(equivalence(result, setA)).toBe(true);
+	});
+
+	it('any non-universal set\'s xor with the universal set is the difference of the universal set and itself', () => {
 		const result = xor(setA, universal);
 		expect(equivalence(result, xorAU)).toBe(true);
 	});
 
-	it('the empty sets\' xor with itself is itself', () => {
+	it('the universal set\'s xor with any non-universal set is the difference of the universal set and that set', () => {
+		const result = xor(universal, setA);
+		expect(equivalence(result, xorAU)).toBe(true);
+	});
+
+	it('the empty set\'s xor with itself is itself', () => {
 		const result = xor(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});

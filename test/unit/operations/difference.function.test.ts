@@ -8,9 +8,10 @@ describe('difference', () => {
 });
 
 function differenceTests<T>(testSets: TestSets<T>): void {
-	const { c, e, empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
 	const differenceAB = new Set<T>([ c, e ]);
 	const differenceABC = new Set<T>([ e ]);
+	const differenceUA = new Set<T>([ d, f, g, h, i, j ]);
 
 	it('no sets difference returns empty set', () => {
 		const result = difference();
@@ -67,17 +68,27 @@ function differenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, setF)).toBe(true);
 	});
 
-	it('any sets\' difference with the empty set is itself', () => {
+	it('any non-empty set\'s difference with the empty set is itself', () => {
 		const result = difference(setA, empty);
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
-	it('any sets\' difference with the universal set is the empty set', () => {
+	it('the empty set\'s difference with any non-empty set is the empty set', () => {
+		const result = difference(empty, setA);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('any set\'s difference with the universal set is the empty set', () => {
 		const result = difference(setA, universal);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
-	it('the empty sets\' difference with itself is itself', () => {
+	it('the universal set\'s difference with any non-universal set contains all elements not in that set', () => {
+		const result = difference(universal, setA);
+		expect(equivalence(result, differenceUA)).toBe(true);
+	});
+
+	it('the empty set\'s difference with itself is itself', () => {
 		const result = difference(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});

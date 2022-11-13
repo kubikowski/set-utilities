@@ -58,8 +58,16 @@ function subsetTests<T>(testSets: TestSets<T>): void {
 		expect(subset(setA, empty)).toBe(false);
 	});
 
+	it('the empty set is a subset of any non-empty set', () => {
+		expect(subset(empty, setA)).toBe(true);
+	});
+
 	it('any non-universal set is a subset of the universal set', () => {
 		expect(subset(setA, universal)).toBe(true);
+	});
+
+	it('the universal set is not a subset of any non-universal set', () => {
+		expect(subset(universal, setA)).toBe(false);
 	});
 
 	it('the empty set is a subset of itself', () => {

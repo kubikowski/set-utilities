@@ -58,8 +58,16 @@ function properSupersetTests<T>(testSets: TestSets<T>): void {
 		expect(properSuperset(setA, empty)).toBe(true);
 	});
 
+	it('the empty set is not a proper superset of any non-empty set', () => {
+		expect(properSuperset(empty, setA)).toBe(false);
+	});
+
 	it('any non-universal set is not a proper superset of the universal set', () => {
 		expect(properSuperset(setA, universal)).toBe(false);
+	});
+
+	it('the universal set is a proper superset of any non-universal set', () => {
+		expect(properSuperset(universal, setA)).toBe(true);
 	});
 
 	it('the empty set is not a proper superset of itself', () => {

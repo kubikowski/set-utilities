@@ -58,8 +58,16 @@ function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {
 		expect(pairwiseDisjoint(setA, empty)).toBe(true);
 	});
 
+	it('the empty set and any non-empty set are pairwise disjoint', () => {
+		expect(pairwiseDisjoint(empty, setA)).toBe(true);
+	});
+
 	it('any non-empty set and the universal set are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, universal)).toBe(false);
+	});
+
+	it('the universal set and any non-empty set are not pairwise disjoint', () => {
+		expect(pairwiseDisjoint(universal, setA)).toBe(false);
 	});
 
 	it('the empty set is pairwise disjoint with itself', () => {

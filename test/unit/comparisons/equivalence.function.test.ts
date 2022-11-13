@@ -58,8 +58,16 @@ function equivalenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(setA, empty)).toBe(false);
 	});
 
+	it('the empty set and any non-empty set are not equivalent', () => {
+		expect(equivalence(empty, setA)).toBe(false);
+	});
+
 	it('any non-universal set and the universal set are not equivalent', () => {
 		expect(equivalence(setA, universal)).toBe(false);
+	});
+
+	it('the universal set and any non-universal set are not equivalent', () => {
+		expect(equivalence(universal, setA)).toBe(false);
 	});
 
 	it('the empty set is equivalent to itself', () => {

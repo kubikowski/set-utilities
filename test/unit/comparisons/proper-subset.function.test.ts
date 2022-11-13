@@ -58,8 +58,16 @@ function properSubsetTests<T>(testSets: TestSets<T>): void {
 		expect(properSubset(setA, empty)).toBe(false);
 	});
 
+	it('the empty set is a proper subset of any non-empty set', () => {
+		expect(properSubset(empty, setA)).toBe(true);
+	});
+
 	it('any non-universal set is a proper subset of the universal set', () => {
 		expect(properSubset(setA, universal)).toBe(true);
+	});
+
+	it('the universal set is not a proper subset of any non-universal set', () => {
+		expect(properSubset(universal, setA)).toBe(false);
 	});
 
 	it('the empty set is not a proper subset of itself', () => {
