@@ -47,6 +47,16 @@ function intersectionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, intersectionABC)).toBe(true);
 	});
 
+	it('two disjoint sets\' intersection is the empty set', () => {
+		const result = intersection(setD, setE);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('three disjoint sets\' intersection is the empty set', () => {
+		const result = intersection(setD, setE, setF);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
 	it('many sets\' intersection is a subset of the first', () => {
 		const result = intersection(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, empty)).toBe(true);

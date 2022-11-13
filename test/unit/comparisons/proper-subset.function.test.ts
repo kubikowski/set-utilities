@@ -38,6 +38,14 @@ function properSubsetTests<T>(testSets: TestSets<T>): void {
 		expect(properSubset(setA, setB, setC)).toBe(false);
 	});
 
+	it('two sets no shared elements are not proper subsets', () => {
+		expect(properSubset(setD, setE)).toBe(false);
+	});
+
+	it('three sets with no shared elements are not proper subsets', () => {
+		expect(properSubset(setD, setE, setF)).toBe(false);
+	});
+
 	it('many sets with different elements are not proper subsets', () => {
 		expect(properSubset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});

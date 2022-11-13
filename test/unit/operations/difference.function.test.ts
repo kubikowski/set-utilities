@@ -47,6 +47,16 @@ function differenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, differenceABC)).toBe(true);
 	});
 
+	it('two disjoint sets\' difference is the first set', () => {
+		const result = difference(setD, setE);
+		expect(equivalence(result, setD)).toBe(true);
+	});
+
+	it('three disjoint sets\' difference is the first set', () => {
+		const result = difference(setD, setE, setF);
+		expect(equivalence(result, setD)).toBe(true);
+	});
+
 	it('many sets\' difference is a subset of the first', () => {
 		const result = difference(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, differenceABC)).toBe(true);
