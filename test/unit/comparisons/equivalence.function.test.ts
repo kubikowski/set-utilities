@@ -30,12 +30,20 @@ function equivalenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(setA, setA, setA, setA, setA, setA)).toBe(true);
 	});
 
-	it('two different sets are not equivalent', () => {
+	it('two sets with some shared elements are not equivalent', () => {
 		expect(equivalence(setA, setB)).toBe(false);
 	});
 
-	it('three different sets are not equivalent', () => {
+	it('three sets with some shared elements are not equivalent', () => {
 		expect(equivalence(setA, setB, setC)).toBe(false);
+	});
+
+	it('two sets with no shared elements are not equivalent', () => {
+		expect(equivalence(setD, setE)).toBe(false);
+	});
+
+	it('three sets with no shared elements are not equivalent', () => {
+		expect(equivalence(setD, setE, setF)).toBe(false);
 	});
 
 	it('many different sets are not equivalent', () => {

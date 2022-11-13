@@ -11,6 +11,8 @@ function xorTests<T>(testSets: TestSets<T>): void {
 	const { c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
 	const xorAB = new Set<T>([ c, d, e, f ]);
 	const xorABC = new Set<T>([ e, f, g ]);
+	const xorDE = new Set<T>([ h, i ]);
+	const xorDEF = new Set<T>([ h, i, j ]);
 	const xorABCDEF = new Set<T>([ e, f, g, h, i, j ]);
 	const xorAU = new Set<T>([ d, f, g, h, i, j ]);
 
@@ -47,6 +49,16 @@ function xorTests<T>(testSets: TestSets<T>): void {
 	it('three different sets xor returns unique elements', () => {
 		const result = xor(setA, setB, setC);
 		expect(equivalence(result, xorABC)).toBe(true);
+	});
+
+	it('two disjoint sets xor returns all elements', () => {
+		const result = xor(setD, setE);
+		expect(equivalence(result, xorDE)).toBe(true);
+	});
+
+	it('three disjoint sets xor returns all elements', () => {
+		const result = xor(setD, setE, setF);
+		expect(equivalence(result, xorDEF)).toBe(true);
 	});
 
 	it('many different sets xor returns unique elements', () => {

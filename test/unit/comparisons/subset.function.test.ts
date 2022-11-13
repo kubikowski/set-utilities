@@ -38,6 +38,14 @@ function subsetTests<T>(testSets: TestSets<T>): void {
 		expect(subset(setA, setB, setC)).toBe(false);
 	});
 
+	it('two sets with no shared elements are not subsets', () => {
+		expect(subset(setD, setE)).toBe(false);
+	});
+
+	it('three sets with no shared elements are not subsets', () => {
+		expect(subset(setD, setE, setF)).toBe(false);
+	});
+
 	it('many sets with different elements are not subsets', () => {
 		expect(subset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});

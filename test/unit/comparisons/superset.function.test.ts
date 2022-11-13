@@ -38,6 +38,14 @@ function supersetTests<T>(testSets: TestSets<T>): void {
 		expect(superset(setA, setB, setC)).toBe(false);
 	});
 
+	it('two sets with no shared elements are not supersets', () => {
+		expect(superset(setD, setE)).toBe(false);
+	});
+
+	it('three sets with no shared elements are not supersets', () => {
+		expect(superset(setD, setE, setF)).toBe(false);
+	});
+
 	it('many sets with different elements are not supersets', () => {
 		expect(superset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});

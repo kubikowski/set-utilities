@@ -8,9 +8,11 @@ describe('union', () => {
 });
 
 function unionTests<T>(testSets: TestSets<T>): void {
-	const { a, b, c, d, e, empty, f, g, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { a, b, c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
 	const unionAB = new Set<T>([ a, b, c, d, e, f ]);
 	const unionABC = new Set<T>([ a, b, c, d, e, f, g ]);
+	const unionDE = new Set<T>([ h, i ]);
+	const unionDEF = new Set<T>([ h, i, j ]);
 
 	it('no sets union returns empty set', () => {
 		const result = union();
@@ -45,6 +47,16 @@ function unionTests<T>(testSets: TestSets<T>): void {
 	it('three sets\' union contains all elements from all sets', () => {
 		const result = union(setA, setB, setC);
 		expect(equivalence(result, unionABC)).toBe(true);
+	});
+
+	it('two sets\' disjoint union contains all elements from both sets', () => {
+		const result = union(setD, setE);
+		expect(equivalence(result, unionDE)).toBe(true);
+	});
+
+	it('three sets\' disjoint union contains all elements from all sets', () => {
+		const result = union(setD, setE, setF);
+		expect(equivalence(result, unionDEF)).toBe(true);
 	});
 
 	it('many sets\' union contains all elements from all sets', () => {

@@ -38,6 +38,14 @@ function disjointTests<T>(testSets: TestSets<T>): void {
 		expect(disjoint(setA, setB, setC)).toBe(false);
 	});
 
+	it('two sets with no shared elements are disjoint', () => {
+		expect(disjoint(setD, setE)).toBe(true);
+	});
+
+	it('three sets with no shared elements are disjoint', () => {
+		expect(disjoint(setD, setE, setF)).toBe(true);
+	});
+
 	it('many sets with some shared elements of the first are not disjoint', () => {
 		expect(disjoint(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});

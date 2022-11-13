@@ -38,6 +38,14 @@ function properSupersetTests<T>(testSets: TestSets<T>): void {
 		expect(properSuperset(setA, setB, setC)).toBe(false);
 	});
 
+	it('two sets no shared elements are not proper supersets', () => {
+		expect(properSuperset(setD, setE)).toBe(false);
+	});
+
+	it('three sets with no shared elements are not proper supersets', () => {
+		expect(properSuperset(setD, setE, setF)).toBe(false);
+	});
+
 	it('many sets with different elements are not proper supersets', () => {
 		expect(properSuperset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
