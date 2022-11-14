@@ -8,7 +8,7 @@ describe('proper subset', () => {
 });
 
 function properSubsetTests<T>(testSets: TestSets<T>): void {
-	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
 
 	it('no sets are proper subsets', () => {
 		expect(properSubset()).toBe(true);
@@ -46,12 +46,24 @@ function properSubsetTests<T>(testSets: TestSets<T>): void {
 		expect(properSubset(setD, setE, setF)).toBe(false);
 	});
 
+	it('disjoint sets with decreasing cardinality are not proper subsets', () => {
+		expect(properSubset(setA, setD)).toBe(false);
+	});
+
+	it('disjoint sets with increasing cardinality are not proper subsets', () => {
+		expect(properSubset(setD, setA)).toBe(false);
+	});
+
 	it('many sets with different elements are not proper subsets', () => {
 		expect(properSubset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
 	it('many sets (reversed) with different elements are not proper subsets', () => {
 		expect(properSubset(setF, setE, setD, setC, setB, setA)).toBe(false);
+	});
+
+	it('the empty set is not a proper subset of itself', () => {
+		expect(properSubset(empty, empty)).toBe(false);
 	});
 
 	it('any non-empty set is not a proper subset of the empty set', () => {
@@ -70,21 +82,11 @@ function properSubsetTests<T>(testSets: TestSets<T>): void {
 		expect(properSubset(universal, setA)).toBe(false);
 	});
 
-	it('the empty set is not a proper subset of itself', () => {
-		expect(properSubset(empty, empty)).toBe(false);
-	});
-
-	/* custom proper subset tests */
-
-	it('following sets with lower cardinalities are not proper subsets', () => {
-		expect(properSubset(setA, minimal)).toBe(false);
-	});
-
-	it('sets without element bijection are not proper subsets', () => {
-		expect(properSubset(setD, setA)).toBe(false);
-	});
-
 	it('the empty set is a proper subset of every non-empty set', () => {
-		expect(properSubset(empty, minimal, setA, setB, setC, universal)).toBe(true);
+		expect(properSubset(empty, setA, setB, setC, setD, setE, setF, universal)).toBe(true);
+	});
+
+	it('the universal set is not a proper subset of every non-universal set', () => {
+		expect(properSubset(universal, setF, setE, setD, setC, setB, setA, empty)).toBe(false);
 	});
 }

@@ -57,6 +57,16 @@ function intersectionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
+	it('the intersection of disjoint sets with decreasing cardinality is the empty set', () => {
+		const result = intersection(setA, setD);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('the intersection of disjoint sets with increasing cardinality is the empty set', () => {
+		const result = intersection(setD, setA);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
 	it('many sets\' intersection is a subset of the first', () => {
 		const result = intersection(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, empty)).toBe(true);
@@ -64,6 +74,11 @@ function intersectionTests<T>(testSets: TestSets<T>): void {
 
 	it('many sets\' (reversed) intersection is a subset of the first', () => {
 		const result = intersection(setF, setE, setD, setC, setB, setA);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('the empty set\'s intersection with itself is itself', () => {
+		const result = intersection(empty, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 
@@ -87,8 +102,13 @@ function intersectionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, setA)).toBe(true);
 	});
 
-	it('the empty set\'s intersection with itself is itself', () => {
-		const result = intersection(empty, empty);
+	it('the empty set\'s intersection with all non-empty sets is the empty set', () => {
+		const result = intersection(empty, setA, setB, setC, setD, setE, setF, universal);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('the universal set\'s intersection with all non-universal sets is the empty set', () => {
+		const result = intersection(universal, setF, setE, setD, setC, setB, setA, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 }

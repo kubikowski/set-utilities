@@ -13,6 +13,7 @@ function unionTests<T>(testSets: TestSets<T>): void {
 	const unionABC = new Set<T>([ a, b, c, d, e, f, g ]);
 	const unionDE = new Set<T>([ h, i ]);
 	const unionDEF = new Set<T>([ h, i, j ]);
+	const unionAD = new Set<T>([ a, b, c, e, h ]);
 
 	it('no sets union returns empty set', () => {
 		const result = union();
@@ -59,6 +60,16 @@ function unionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, unionDEF)).toBe(true);
 	});
 
+	it('the union of disjoint sets with decreasing cardinality contains all elements from both sets', () => {
+		const result = union(setA, setD);
+		expect(equivalence(result, unionAD)).toBe(true);
+	});
+
+	it('the union of disjoint sets with increasing cardinality contains all elements from both sets', () => {
+		const result = union(setD, setA);
+		expect(equivalence(result, unionAD)).toBe(true);
+	});
+
 	it('many sets\' union contains all elements from all sets', () => {
 		const result = union(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, universal)).toBe(true);
@@ -67,6 +78,11 @@ function unionTests<T>(testSets: TestSets<T>): void {
 	it('many sets\' (reversed) union contains all elements from all sets', () => {
 		const result = union(setF, setE, setD, setC, setB, setA);
 		expect(equivalence(result, universal)).toBe(true);
+	});
+
+	it('the empty set\'s union with itself is itself', () => {
+		const result = union(empty, empty);
+		expect(equivalence(result, empty)).toBe(true);
 	});
 
 	it('any non-empty set\'s union with the empty set is itself', () => {
@@ -89,8 +105,13 @@ function unionTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, universal)).toBe(true);
 	});
 
-	it('the empty set\'s union with itself is itself', () => {
-		const result = union(empty, empty);
-		expect(equivalence(result, empty)).toBe(true);
+	it('the empty set\'s union with all non-empty sets is the universal set', () => {
+		const result = union(empty, setA, setB, setC, setD, setE, setF, universal);
+		expect(equivalence(result, universal)).toBe(true);
+	});
+
+	it('the universal set\'s union with all non-universal sets is the universal set', () => {
+		const result = union(universal, setF, setE, setD, setC, setB, setA, empty);
+		expect(equivalence(result, universal)).toBe(true);
 	});
 }

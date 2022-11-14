@@ -8,7 +8,7 @@ describe('superset', () => {
 });
 
 function supersetTests<T>(testSets: TestSets<T>): void {
-	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
 
 	it('no sets are superset', () => {
 		expect(superset()).toBe(true);
@@ -46,12 +46,24 @@ function supersetTests<T>(testSets: TestSets<T>): void {
 		expect(superset(setD, setE, setF)).toBe(false);
 	});
 
+	it('disjoint sets with decreasing cardinality are not supersets', () => {
+		expect(superset(setA, setD)).toBe(false);
+	});
+
+	it('disjoint sets with increasing cardinality are not supersets', () => {
+		expect(superset(setD, setA)).toBe(false);
+	});
+
 	it('many sets with different elements are not supersets', () => {
 		expect(superset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
 	it('many sets (reversed) with different elements are not supersets', () => {
 		expect(superset(setF, setE, setD, setC, setB, setA)).toBe(false);
+	});
+
+	it('the empty set is a superset of itself', () => {
+		expect(superset(empty, empty)).toBe(true);
 	});
 
 	it('any non-empty set is a superset of the empty set', () => {
@@ -70,21 +82,11 @@ function supersetTests<T>(testSets: TestSets<T>): void {
 		expect(superset(universal, setA)).toBe(true);
 	});
 
-	it('the empty set is a superset of itself', () => {
-		expect(superset(empty, empty)).toBe(true);
+	it('the empty set is not a superset of every non-empty set', () => {
+		expect(superset(empty, setA, setB, setC, setD, setE, setF, universal)).toBe(false);
 	});
 
-	/* custom superset tests */
-
-	it('following sets with greater cardinalities are not supersets', () => {
-		expect(superset(minimal, setA)).toBe(false);
-	});
-
-	it('sets without element bijection are not supersets', () => {
-		expect(superset(setA, setD)).toBe(false);
-	});
-
-	it('the universal set is a superset of every set', () => {
-		expect(superset(universal, setA, setB, setC, minimal, empty)).toBe(true);
+	it('the universal set is a superset of every non-universal set', () => {
+		expect(superset(universal, setF, setE, setD, setC, setB, setA, empty)).toBe(true);
 	});
 }

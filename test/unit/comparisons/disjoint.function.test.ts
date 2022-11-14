@@ -46,12 +46,24 @@ function disjointTests<T>(testSets: TestSets<T>): void {
 		expect(disjoint(setD, setE, setF)).toBe(true);
 	});
 
+	it('disjoint sets with decreasing cardinality are disjoint', () => {
+		expect(disjoint(setA, setD)).toBe(true);
+	});
+
+	it('disjoint sets with increasing cardinality are disjoint', () => {
+		expect(disjoint(setD, setA)).toBe(true);
+	});
+
 	it('many sets with some shared elements of the first are not disjoint', () => {
 		expect(disjoint(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
 	it('many sets (reversed) with no shared elements of the first are disjoint', () => {
 		expect(disjoint(setF, setE, setD, setC, setB, setA)).toBe(true);
+	});
+
+	it('the empty set is disjoint with itself', () => {
+		expect(disjoint(empty, empty)).toBe(true);
 	});
 
 	it('any non-empty set and the empty set are disjoint', () => {
@@ -70,21 +82,11 @@ function disjointTests<T>(testSets: TestSets<T>): void {
 		expect(disjoint(universal, setA)).toBe(false);
 	});
 
-	it('the empty set is disjoint with itself', () => {
-		expect(disjoint(empty, empty)).toBe(true);
+	it('the empty set is disjoint from every non-empty set', () => {
+		expect(disjoint(empty, setA, setB, setC, setD, setE, setF, universal)).toBe(true);
 	});
 
-	/* custom disjoint tests */
-
-	it('two sets with no shared elements are disjoint', () => {
-		expect(disjoint(setA, setD)).toBe(true);
-	});
-
-	it('many sets with no shared elements are disjoint', () => {
-		expect(disjoint(setA, setD, setE, setF)).toBe(true);
-	});
-
-	it('a set & many of another set with no shared elements are disjoint', () => {
-		expect(disjoint(setA, setD, setD, setD)).toBe(true);
+	it('the universal set is not disjoint from every non-universal set', () => {
+		expect(disjoint(universal, setF, setE, setD, setC, setB, setA, empty)).toBe(false);
 	});
 }
