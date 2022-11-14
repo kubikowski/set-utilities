@@ -18,8 +18,6 @@ export abstract class TestSets<T> {
 	/* the universal set: U, contains: a, b, c, d, e, f, g, h, i, j */
 	public readonly universal: ReadonlySet<T>;
 
-	/* contains: a */
-	public readonly minimal: ReadonlySet<T>;
 	/* contains: a, b, c, e */
 	public readonly setA: ReadonlySet<T>;
 	/* contains: a, b, d, f */
@@ -63,7 +61,6 @@ export abstract class TestSets<T> {
 		this.empty = new Set<never>();
 		this.universal = new Set<T>([ a, b, c, d, e, f, g, h, i, j ]);
 
-		this.minimal = new Set<T>([ a ]);
 		this.setA = new Set<T>([ a, b, c, e ]);
 		this.setB = new Set<T>([ a, b, d, f ]);
 		this.setC = new Set<T>([ a, c, d, g ]);

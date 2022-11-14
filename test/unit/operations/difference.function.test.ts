@@ -58,6 +58,16 @@ function differenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, setD)).toBe(true);
 	});
 
+	it('the difference of disjoint sets with decreasing cardinality is the first set', () => {
+		const result = difference(setA, setD);
+		expect(equivalence(result, setA)).toBe(true);
+	});
+
+	it('the difference of disjoint sets with increasing cardinality is the first set', () => {
+		const result = difference(setD, setA);
+		expect(equivalence(result, setD)).toBe(true);
+	});
+
 	it('many sets\' difference is a subset of the first', () => {
 		const result = difference(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, differenceABC)).toBe(true);
@@ -66,6 +76,11 @@ function differenceTests<T>(testSets: TestSets<T>): void {
 	it('many sets\' (reversed) difference is a subset of the first', () => {
 		const result = difference(setF, setE, setD, setC, setB, setA);
 		expect(equivalence(result, setF)).toBe(true);
+	});
+
+	it('the empty set\'s difference with itself is itself', () => {
+		const result = difference(empty, empty);
+		expect(equivalence(result, empty)).toBe(true);
 	});
 
 	it('any non-empty set\'s difference with the empty set is itself', () => {
@@ -88,8 +103,13 @@ function differenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, differenceUA)).toBe(true);
 	});
 
-	it('the empty set\'s difference with itself is itself', () => {
-		const result = difference(empty, empty);
+	it('the empty set\'s difference with all non-empty sets is the empty set', () => {
+		const result = difference(empty, setA, setB, setC, setD, setE, setF, universal);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('the universal set\'s difference with all non-universal sets is the empty set', () => {
+		const result = difference(universal, setF, setE, setD, setC, setB, setA, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 }

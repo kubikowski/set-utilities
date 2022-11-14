@@ -8,7 +8,7 @@ describe('equivalence', () => {
 });
 
 function equivalenceTests<T>(testSets: TestSets<T>): void {
-	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
 
 	it('no sets are equivalent', () => {
 		expect(equivalence()).toBe(true);
@@ -46,12 +46,24 @@ function equivalenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(setD, setE, setF)).toBe(false);
 	});
 
+	it('disjoint sets with decreasing cardinality are not equivalent', () => {
+		expect(equivalence(setA, setD)).toBe(false);
+	});
+
+	it('disjoint sets with increasing cardinality are not equivalent', () => {
+		expect(equivalence(setD, setA)).toBe(false);
+	});
+
 	it('many different sets are not equivalent', () => {
 		expect(equivalence(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
 	it('many different sets (reversed) are not equivalent', () => {
 		expect(equivalence(setF, setE, setD, setC, setB, setA)).toBe(false);
+	});
+
+	it('the empty set is equivalent to itself', () => {
+		expect(equivalence(empty, empty)).toBe(true);
 	});
 
 	it('any non-empty set and the empty set are not equivalent', () => {
@@ -70,13 +82,11 @@ function equivalenceTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(universal, setA)).toBe(false);
 	});
 
-	it('the empty set is equivalent to itself', () => {
-		expect(equivalence(empty, empty)).toBe(true);
+	it('the empty set is not equivalent to every non-empty set', () => {
+		expect(equivalence(empty, setA, setB, setC, setD, setE, setF, universal)).toBe(false);
 	});
 
-	/* custom equivalence tests */
-
-	it('two sets with different cardinalities are not equivalent', () => {
-		expect(equivalence(setA, minimal)).toBe(false);
+	it('the universal set is not equivalent to every non-universal set', () => {
+		expect(equivalence(universal, setF, setE, setD, setC, setB, setA, empty)).toBe(false);
 	});
 }

@@ -46,12 +46,24 @@ function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {
 		expect(pairwiseDisjoint(setD, setE, setF)).toBe(true);
 	});
 
+	it('disjoint sets with decreasing cardinality are pairwise disjoint', () => {
+		expect(pairwiseDisjoint(setA, setD)).toBe(true);
+	});
+
+	it('disjoint sets with increasing cardinality are pairwise disjoint', () => {
+		expect(pairwiseDisjoint(setD, setA)).toBe(true);
+	});
+
 	it('many sets with some shared elements are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
 	it('many sets (reversed) with some shared elements are not pairwise disjoint', () => {
 		expect(pairwiseDisjoint(setF, setE, setD, setC, setB, setA)).toBe(false);
+	});
+
+	it('the empty set is pairwise disjoint with itself', () => {
+		expect(pairwiseDisjoint(empty, empty)).toBe(true);
 	});
 
 	it('any non-empty set and the empty set are pairwise disjoint', () => {
@@ -70,21 +82,11 @@ function pairwiseDisjointTests<T>(testSets: TestSets<T>): void {
 		expect(pairwiseDisjoint(universal, setA)).toBe(false);
 	});
 
-	it('the empty set is pairwise disjoint with itself', () => {
-		expect(pairwiseDisjoint(empty, empty)).toBe(true);
+	it('the empty set is not pairwise disjoint to every non-empty set and the universal set', () => {
+		expect(pairwiseDisjoint(empty, setA, setB, setC, setD, setE, setF, universal)).toBe(false);
 	});
 
-	/* custom pairwise disjoint tests */
-
-	it('two sets with no shared elements are pairwise disjoint', () => {
-		expect(pairwiseDisjoint(setA, setD)).toBe(true);
-	});
-
-	it('many sets with no shared elements are pairwise disjoint', () => {
-		expect(pairwiseDisjoint(setA, setD, setE, setF)).toBe(true);
-	});
-
-	it('a set & many of another set with no shared elements are not pairwise disjoint', () => {
-		expect(pairwiseDisjoint(setA, setD, setD, setD)).toBe(false);
+	it('the universal set is not pairwise disjoint to every non-universal set', () => {
+		expect(pairwiseDisjoint(universal, setF, setE, setD, setC, setB, setA, empty)).toBe(false);
 	});
 }

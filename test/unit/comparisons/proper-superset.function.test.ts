@@ -8,7 +8,7 @@ describe('proper superset', () => {
 });
 
 function properSupersetTests<T>(testSets: TestSets<T>): void {
-	const { empty, minimal, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
 
 	it('no sets are proper supersets', () => {
 		expect(properSuperset()).toBe(true);
@@ -46,12 +46,24 @@ function properSupersetTests<T>(testSets: TestSets<T>): void {
 		expect(properSuperset(setD, setE, setF)).toBe(false);
 	});
 
+	it('disjoint sets with decreasing cardinality are not proper supersets', () => {
+		expect(properSuperset(setA, setD)).toBe(false);
+	});
+
+	it('disjoint sets with increasing cardinality are not proper supersets', () => {
+		expect(properSuperset(setD, setA)).toBe(false);
+	});
+
 	it('many sets with different elements are not proper supersets', () => {
 		expect(properSuperset(setA, setB, setC, setD, setE, setF)).toBe(false);
 	});
 
 	it('many sets (reversed) with different elements are not proper supersets', () => {
 		expect(properSuperset(setF, setE, setD, setC, setB, setA)).toBe(false);
+	});
+
+	it('the empty set is not a proper superset of itself', () => {
+		expect(properSuperset(empty, empty)).toBe(false);
 	});
 
 	it('any non-empty set is a proper superset of the empty set', () => {
@@ -70,21 +82,11 @@ function properSupersetTests<T>(testSets: TestSets<T>): void {
 		expect(properSuperset(universal, setA)).toBe(true);
 	});
 
-	it('the empty set is not a proper superset of itself', () => {
-		expect(properSuperset(empty, empty)).toBe(false);
-	});
-
-	/* custom proper superset tests */
-
-	it('following sets with greater cardinalities are not proper supersets', () => {
-		expect(properSuperset(minimal, setA)).toBe(false);
-	});
-
-	it('sets without element bijection are not proper supersets', () => {
-		expect(properSuperset(setA, setD)).toBe(false);
+	it('the empty set is not a proper superset of every non-empty set', () => {
+		expect(properSuperset(empty, setA, setB, setC, setD, setE, setF, universal)).toBe(false);
 	});
 
 	it('the universal set is a proper superset of every non-universal set', () => {
-		expect(properSuperset(universal, setA, setB, setC, minimal, empty)).toBe(true);
+		expect(properSuperset(universal, setF, setE, setD, setC, setB, setA, empty)).toBe(true);
 	});
 }

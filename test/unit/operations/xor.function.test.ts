@@ -8,11 +8,12 @@ describe('xor', () => {
 });
 
 function xorTests<T>(testSets: TestSets<T>): void {
-	const { c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { a, b, c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
 	const xorAB = new Set<T>([ c, d, e, f ]);
 	const xorABC = new Set<T>([ e, f, g ]);
 	const xorDE = new Set<T>([ h, i ]);
 	const xorDEF = new Set<T>([ h, i, j ]);
+	const xorAD = new Set<T>([ a, b, c, e, h ]);
 	const xorABCDEF = new Set<T>([ e, f, g, h, i, j ]);
 	const xorAU = new Set<T>([ d, f, g, h, i, j ]);
 
@@ -61,6 +62,16 @@ function xorTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, xorDEF)).toBe(true);
 	});
 
+	it('the xor of disjoint sets with decreasing cardinality contains all elements from both sets', () => {
+		const result = xor(setA, setD);
+		expect(equivalence(result, xorAD)).toBe(true);
+	});
+
+	it('the xor of disjoint sets with increasing cardinality contains all elements from both sets', () => {
+		const result = xor(setD, setA);
+		expect(equivalence(result, xorAD)).toBe(true);
+	});
+
 	it('many different sets xor returns unique elements', () => {
 		const result = xor(setA, setB, setC, setD, setE, setF);
 		expect(equivalence(result, xorABCDEF)).toBe(true);
@@ -69,6 +80,11 @@ function xorTests<T>(testSets: TestSets<T>): void {
 	it('many different sets (reversed) xor returns unique elements', () => {
 		const result = xor(setF, setE, setD, setC, setB, setA);
 		expect(equivalence(result, xorABCDEF)).toBe(true);
+	});
+
+	it('the empty set\'s xor with itself is itself', () => {
+		const result = xor(empty, empty);
+		expect(equivalence(result, empty)).toBe(true);
 	});
 
 	it('any non-empty set\'s xor with the empty set is itself', () => {
@@ -91,8 +107,13 @@ function xorTests<T>(testSets: TestSets<T>): void {
 		expect(equivalence(result, xorAU)).toBe(true);
 	});
 
-	it('the empty set\'s xor with itself is itself', () => {
-		const result = xor(empty, empty);
+	it('the empty set\'s xor with all non-empty sets and the universal set is the empty set', () => {
+		const result = xor(empty, setA, setB, setC, setD, setE, setF, universal);
+		expect(equivalence(result, empty)).toBe(true);
+	});
+
+	it('the universal set\'s union with all non-universal sets is the empty set', () => {
+		const result = xor(universal, setF, setE, setD, setC, setB, setA, empty);
 		expect(equivalence(result, empty)).toBe(true);
 	});
 }
