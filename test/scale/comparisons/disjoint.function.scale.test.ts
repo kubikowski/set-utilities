@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('disjoint @ scale', () => {
-	describe('disjoint ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('disjoint ⋅ 2 large sets', () => {
+		const {multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('disjoint(of1):'.padEnd(padding), () => {
 			const result = Timer.time('disjoint', () => disjoint(multiplesOf1));
@@ -28,6 +28,16 @@ describe('disjoint @ scale', () => {
 			expect(result).toBe(false);
 		});
 
+		it('disjoint(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('disjoint', () => disjoint(multiplesOf2, multiplesOf2B));
+			expect(result).toBe(true);
+		});
+	});
+
+	describe('disjoint ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('disjoint'));
+
 		it('disjoint(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('disjoint', () => disjoint(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result).toBe(false);
@@ -41,6 +51,11 @@ describe('disjoint @ scale', () => {
 		it('disjoint(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('disjoint', () => disjoint(multiplesOf3, multiplesOf2, multiplesOf1));
 			expect(result).toBe(false);
+		});
+
+		it('disjoint(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('disjoint', () => disjoint(multiplesOf3, multiplesOf3B, multiplesOf3C));
+			expect(result).toBe(true);
 		});
 	});
 

@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('equivalence @ scale', () => {
-	describe('equivalence ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('equivalence ⋅ 2 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('equivalence(of1):'.padEnd(padding), () => {
 			const result = Timer.time('equivalence', () => equivalence(multiplesOf1));
@@ -28,6 +28,16 @@ describe('equivalence @ scale', () => {
 			expect(result).toBe(false);
 		});
 
+		it('equivalence(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('equivalence', () => equivalence(multiplesOf2, multiplesOf2B));
+			expect(result).toBe(false);
+		});
+	});
+
+	describe('equivalence ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('equivalence'));
+
 		it('equivalence(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('equivalence', () => equivalence(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result).toBe(true);
@@ -40,6 +50,11 @@ describe('equivalence @ scale', () => {
 
 		it('equivalence(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('equivalence', () => equivalence(multiplesOf3, multiplesOf2, multiplesOf1));
+			expect(result).toBe(false);
+		});
+
+		it('equivalence(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('equivalence', () => equivalence(multiplesOf3, multiplesOf3B, multiplesOf3C));
 			expect(result).toBe(false);
 		});
 	});

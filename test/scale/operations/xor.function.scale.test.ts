@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('xor @ scale', () => {
-	describe('xor ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('xor ⋅ 2 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('xor(of1):'.padEnd(padding), () => {
 			const result = Timer.time('xor', () => xor(multiplesOf1));
@@ -28,6 +28,16 @@ describe('xor @ scale', () => {
 			expect(result.size).toBe(7_500_000);
 		});
 
+		it('xor(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('xor', () => xor(multiplesOf2, multiplesOf2B));
+			expect(result.size).toBe(15_000_000);
+		});
+	});
+
+	describe('xor ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('xor'));
+
 		it('xor(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('xor', () => xor(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result.size).toBe(0);
@@ -41,6 +51,11 @@ describe('xor @ scale', () => {
 		it('xor(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('xor', () => xor(multiplesOf3, multiplesOf2, multiplesOf1));
 			expect(result.size).toBe(5_000_000);
+		});
+
+		it('xor(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('xor', () => xor(multiplesOf3, multiplesOf3B, multiplesOf3C));
+			expect(result.size).toBe(15_000_000);
 		});
 	});
 

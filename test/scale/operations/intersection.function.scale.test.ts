@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('intersection @ scale', () => {
-	describe('intersection ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('intersection ⋅ 2 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('intersection(of1):'.padEnd(padding), () => {
 			const result = Timer.time('intersection', () => intersection(multiplesOf1));
@@ -28,6 +28,16 @@ describe('intersection @ scale', () => {
 			expect(result.size).toBe(7_500_000);
 		});
 
+		it('intersection(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('intersection', () => intersection(multiplesOf2, multiplesOf2B));
+			expect(result.size).toBe(0);
+		});
+	});
+
+	describe('intersection ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('intersection'));
+
 		it('intersection(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('intersection', () => intersection(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result.size).toBe(15_000_000);
@@ -41,6 +51,11 @@ describe('intersection @ scale', () => {
 		it('intersection(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('intersection', () => intersection(multiplesOf3, multiplesOf2, multiplesOf1));
 			expect(result.size).toBe(2_500_000);
+		});
+
+		it('intersection(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('intersection', () => intersection(multiplesOf3, multiplesOf3B, multiplesOf3C));
+			expect(result.size).toBe(0);
 		});
 	});
 

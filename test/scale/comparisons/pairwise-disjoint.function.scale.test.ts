@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('pairwise disjoint @ scale', () => {
-	describe('pairwise disjoint ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('pairwise disjoint ⋅ 2 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('pairwiseDisjoint(of1):'.padEnd(padding), () => {
 			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf1));
@@ -28,6 +28,16 @@ describe('pairwise disjoint @ scale', () => {
 			expect(result).toBe(false);
 		});
 
+		it('pairwiseDisjoint(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf2, multiplesOf2B));
+			expect(result).toBe(true);
+		});
+	});
+
+	describe('pairwise disjoint ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('pairwiseDisjoint'));
+
 		it('pairwiseDisjoint(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result).toBe(false);
@@ -41,6 +51,11 @@ describe('pairwise disjoint @ scale', () => {
 		it('pairwiseDisjoint(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf3, multiplesOf2, multiplesOf1));
 			expect(result).toBe(false);
+		});
+
+		it('pairwiseDisjoint(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(multiplesOf3, multiplesOf3B, multiplesOf3C));
+			expect(result).toBe(true);
 		});
 	});
 

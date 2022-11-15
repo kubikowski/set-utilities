@@ -83,9 +83,9 @@ export abstract class Timer {
 			return AnsiFormat.fgMagenta(formattedTiming);
 		} else if (totalTiming < 5_000) {
 			return AnsiFormat.fgBlue(formattedTiming);
-		} else if (totalTiming < 20_000) {
+		} else if (totalTiming < 30_000) {
 			return AnsiFormat.fgGreen(formattedTiming);
-		} else if (totalTiming < 60_000) {
+		} else if (totalTiming < 75_000) {
 			return AnsiFormat.fgYellow(formattedTiming);
 		} else {
 			return AnsiFormat.fgRed(formattedTiming);

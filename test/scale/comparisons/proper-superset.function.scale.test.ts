@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('proper superset @ scale', () => {
-	describe('proper superset ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('proper superset ⋅ 2 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('properSuperset(of1):'.padEnd(padding), () => {
 			const result = Timer.time('properSuperset', () => properSuperset(multiplesOf1));
@@ -28,6 +28,16 @@ describe('proper superset @ scale', () => {
 			expect(result).toBe(false);
 		});
 
+		it('properSuperset(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('properSuperset', () => properSuperset(multiplesOf2, multiplesOf2B));
+			expect(result).toBe(false);
+		});
+	});
+
+	describe('proper superset ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('properSuperset'));
+
 		it('properSuperset(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('properSuperset', () => properSuperset(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result).toBe(false);
@@ -40,6 +50,11 @@ describe('proper superset @ scale', () => {
 
 		it('properSuperset(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('properSuperset', () => properSuperset(multiplesOf3, multiplesOf2, multiplesOf1));
+			expect(result).toBe(false);
+		});
+
+		it('properSuperset(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('properSuperset', () => properSuperset(multiplesOf3, multiplesOf3B, multiplesOf3C));
 			expect(result).toBe(false);
 		});
 	});
