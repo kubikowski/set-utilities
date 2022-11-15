@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('union @ scale', () => {
-	describe('union ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('union ⋅ 2 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('union(of1):'.padEnd(padding), () => {
 			const result = Timer.time('union', () => union(multiplesOf1));
@@ -28,6 +28,16 @@ describe('union @ scale', () => {
 			expect(result.size).toBe(15_000_000);
 		});
 
+		it('union(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('union', () => union(multiplesOf2, multiplesOf2B));
+			expect(result.size).toBe(15_000_000);
+		});
+	});
+
+	describe('union ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('union'));
+
 		it('union(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('union', () => union(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result.size).toBe(15_000_000);
@@ -40,6 +50,11 @@ describe('union @ scale', () => {
 
 		it('union(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('union', () => union(multiplesOf3, multiplesOf2, multiplesOf1));
+			expect(result.size).toBe(15_000_000);
+		});
+
+		it('union(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('union', () => union(multiplesOf3, multiplesOf3B, multiplesOf3C));
 			expect(result.size).toBe(15_000_000);
 		});
 	});

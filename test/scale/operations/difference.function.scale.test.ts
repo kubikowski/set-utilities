@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('difference @ scale', () => {
-	describe('difference ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('difference ⋅ 2 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('difference(of1):'.padEnd(padding), () => {
 			const result = Timer.time('difference', () => difference(multiplesOf1));
@@ -28,6 +28,16 @@ describe('difference @ scale', () => {
 			expect(result.size).toBe(0);
 		});
 
+		it('difference(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('difference', () => difference(multiplesOf2, multiplesOf2B));
+			expect(result.size).toBe(7_500_000);
+		});
+	});
+
+	describe('difference ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('difference'));
+
 		it('difference(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('difference', () => difference(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result.size).toBe(0);
@@ -41,6 +51,11 @@ describe('difference @ scale', () => {
 		it('difference(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('difference', () => difference(multiplesOf3, multiplesOf2, multiplesOf1));
 			expect(result.size).toBe(0);
+		});
+
+		it('difference(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('difference', () => difference(multiplesOf3, multiplesOf3B, multiplesOf3C));
+			expect(result.size).toBe(5_000_000);
 		});
 	});
 

@@ -32,6 +32,13 @@ export abstract class ScaleTestSets {
 	/* multiples of 3, contains (3 - 15M) */
 	public static readonly multiplesOf3 = ScaleTestSets.multiplesOf(3, 5_000_000);
 
+	/* multiples of 2, part B, contains (15M+2 - 30M) */
+	public static readonly multiplesOf2B = ScaleTestSets.multiplesOf(2, 7_500_000, 15_000_000);
+	/* multiples of 3, part B, contains (15M+3 - 30M) */
+	public static readonly multiplesOf3B = ScaleTestSets.multiplesOf(3, 5_000_000, 15_000_000);
+	/* multiples of 3, part C, contains (30M+3 - 45M) */
+	public static readonly multiplesOf3C = ScaleTestSets.multiplesOf(3, 5_000_000, 30_000_000);
+
 	/* 100 equivalent sets of 100k elements */
 	public static readonly someEquivalent = ScaleTestSets.manyOf(100, 100_000);
 	/* 10k equivalent sets of 1k elements */
@@ -65,6 +72,7 @@ export abstract class ScaleTestSets {
 	]);
 
 	private static multiplesOf(factor: number, size: number, offset = 0): ReadonlySet<number> {
+		ScaleTestSets.incrementMultiplesCopied();
 		return Timer.time('copying sets', () =>
 			new Set<number>(Array.from(
 				{ length: size },
@@ -73,7 +81,7 @@ export abstract class ScaleTestSets {
 	}
 
 	private static manyOf(quantity: number, size: number, offset = false): ReadonlyArray<ReadonlySet<number>> {
-		ScaleTestSets.incrementCopiedCounts();
+		ScaleTestSets.incrementManyCopied();
 		return Timer.time('copying sets', () =>
 			Array.from(
 				{ length: quantity },
@@ -84,8 +92,14 @@ export abstract class ScaleTestSets {
 			));
 	}
 
-	private static incrementCopiedCounts(): void {
-		if (ScaleTestSets.copiedMultiples++ === 0) {
+	private static incrementMultiplesCopied(): void {
+		if (ScaleTestSets.copiedMultiples++ === 3) {
+			Timer.nextLine('copying sets');
+		}
+	}
+
+	private static incrementManyCopied(): void {
+		if (ScaleTestSets.copiedMultiples++ === 6) {
 			Timer.nextLine('copying sets');
 		}
 

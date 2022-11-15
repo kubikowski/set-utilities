@@ -5,8 +5,8 @@ import { padding, times } from '../../util/scale/scale-test.constants';
 import { Timer } from '../../util/scale/timer.model';
 
 describe('subset @ scale', () => {
-	describe('subset ⋅ large sets', () => {
-		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;
+	describe('subset ⋅ 2 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('subset(of1):'.padEnd(padding), () => {
 			const result = Timer.time('subset', () => subset(multiplesOf1));
@@ -28,6 +28,16 @@ describe('subset @ scale', () => {
 			expect(result).toBe(true);
 		});
 
+		it('subset(of2, of2B):'.padEnd(padding), () => {
+			const result = Timer.time('subset', () => subset(multiplesOf2, multiplesOf2B));
+			expect(result).toBe(false);
+		});
+	});
+
+	describe('subset ⋅ 3 large sets', () => {
+		const { multiplesOf1, multiplesOf2, multiplesOf3, multiplesOf3B, multiplesOf3C } = ScaleTestSets;
+		beforeAll(() => Timer.nextLine('subset'));
+
 		it('subset(of1, of1, of1):'.padEnd(padding), () => {
 			const result = Timer.time('subset', () => subset(multiplesOf1, multiplesOf1, multiplesOf1));
 			expect(result).toBe(true);
@@ -40,6 +50,11 @@ describe('subset @ scale', () => {
 
 		it('subset(of3, of2, of1):'.padEnd(padding), () => {
 			const result = Timer.time('subset', () => subset(multiplesOf3, multiplesOf2, multiplesOf1));
+			expect(result).toBe(false);
+		});
+
+		it('subset(of3, of3B, of3C):'.padEnd(padding), () => {
+			const result = Timer.time('subset', () => subset(multiplesOf3, multiplesOf3B, multiplesOf3C));
 			expect(result).toBe(false);
 		});
 	});
