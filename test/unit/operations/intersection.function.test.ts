@@ -2,15 +2,15 @@ import { describe, expect, it } from '@jest/globals';
 import { equivalence, intersection } from '../../../src';
 import { TestSets } from '../../util/test-sets/test-sets.model';
 import { testSuite } from '../../util/test-suite.function';
+import { IntersectionTestSets } from '../../util/unit/intersection-test-sets.model';
 
 describe('intersection', () => {
 	testSuite('intersection', intersectionTests);
 });
 
 function intersectionTests<T>(testSets: TestSets<T>): void {
-	const { a, b, empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
-	const intersectionAB = new Set<T>([ a, b ]);
-	const intersectionABC = new Set<T>([ a ]);
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { intersectionAB, intersectionABC } = new IntersectionTestSets(testSets);
 
 	it('no sets intersection returns empty set', () => {
 		const result = intersection();

@@ -2,20 +2,15 @@ import { describe, expect, it } from '@jest/globals';
 import { equivalence, xor } from '../../../src';
 import { TestSets } from '../../util/test-sets/test-sets.model';
 import { testSuite } from '../../util/test-suite.function';
+import { XorTestSets } from '../../util/unit/xor-test-sets.model';
 
 describe('xor', () => {
 	testSuite('xor', xorTests);
 });
 
 function xorTests<T>(testSets: TestSets<T>): void {
-	const { a, b, c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
-	const xorAB = new Set<T>([ c, d, e, f ]);
-	const xorABC = new Set<T>([ e, f, g ]);
-	const xorDE = new Set<T>([ h, i ]);
-	const xorDEF = new Set<T>([ h, i, j ]);
-	const xorAD = new Set<T>([ a, b, c, e, h ]);
-	const xorABCDEF = new Set<T>([ e, f, g, h, i, j ]);
-	const xorAU = new Set<T>([ d, f, g, h, i, j ]);
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { xorAB, xorABC, xorDE, xorDEF, xorAD, xorABCDEF, xorAU } = new XorTestSets(testSets);
 
 	it('no sets xor returns empty set', () => {
 		const result = xor();
