@@ -2,18 +2,15 @@ import { describe, expect, it } from '@jest/globals';
 import { equivalence, union } from '../../../src';
 import { TestSets } from '../../util/test-sets/test-sets.model';
 import { testSuite } from '../../util/test-suite.function';
+import { UnionTestSets } from '../../util/unit/union-test-sets.model';
 
 describe('union', () => {
 	testSuite('union', unionTests);
 });
 
 function unionTests<T>(testSets: TestSets<T>): void {
-	const { a, b, c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
-	const unionAB = new Set<T>([ a, b, c, d, e, f ]);
-	const unionABC = new Set<T>([ a, b, c, d, e, f, g ]);
-	const unionDE = new Set<T>([ h, i ]);
-	const unionDEF = new Set<T>([ h, i, j ]);
-	const unionAD = new Set<T>([ a, b, c, e, h ]);
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { unionAB, unionABC, unionDE, unionDEF, unionAD } = new UnionTestSets(testSets);
 
 	it('no sets union returns empty set', () => {
 		const result = union();

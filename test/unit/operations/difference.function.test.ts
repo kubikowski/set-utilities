@@ -2,16 +2,15 @@ import { describe, expect, it } from '@jest/globals';
 import { difference, equivalence } from '../../../src';
 import { TestSets } from '../../util/test-sets/test-sets.model';
 import { testSuite } from '../../util/test-suite.function';
+import { DifferenceTestSets } from '../../util/unit/difference-test-sets.model';
 
 describe('difference', () => {
 	testSuite('difference', differenceTests);
 });
 
 function differenceTests<T>(testSets: TestSets<T>): void {
-	const { c, d, e, empty, f, g, h, i, j, setA, setB, setC, setD, setE, setF, universal } = testSets;
-	const differenceAB = new Set<T>([ c, e ]);
-	const differenceABC = new Set<T>([ e ]);
-	const differenceUA = new Set<T>([ d, f, g, h, i, j ]);
+	const { empty, setA, setB, setC, setD, setE, setF, universal } = testSets;
+	const { differenceAB, differenceABC, differenceUA } = new DifferenceTestSets(testSets);
 
 	it('no sets difference returns empty set', () => {
 		const result = difference();
