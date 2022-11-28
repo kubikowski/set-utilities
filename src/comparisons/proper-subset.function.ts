@@ -3,8 +3,8 @@ export function properSubset<T>(...sets: ReadonlySet<T>[]): boolean;
 
 /**
  * A set is a proper subset of another if all of its elements
- * are elements of the other set (and thereafter), and it has a
- * greater cardinality than the other set (and thereafter).
+ * are contained in the other set,
+ * and it has a lower cardinality than the other set.
  *
  * Proper subset is notated A ⊂ B,
  * and not proper subset is A ⊄ B.

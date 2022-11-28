@@ -2,9 +2,9 @@ export function properSuperset<T>(...sets: Set<T>[]): boolean;
 export function properSuperset<T>(...sets: ReadonlySet<T>[]): boolean;
 
 /**
- * A set is a proper subset of another if all of its elements
- * are elements of the other set (and thereafter), and it has a
- * greater cardinality than the other set (and thereafter).
+ * A set is a proper superset of another if it contains
+ * all the elements contained in the other set,
+ * and it has a greater cardinality than the other set.
  *
  * Proper superset is notated A ⊃ B,
  * and not proper superset is A ⊅ B.
