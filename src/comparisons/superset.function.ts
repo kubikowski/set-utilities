@@ -2,8 +2,8 @@ export function superset<T>(...sets: Set<T>[]): boolean;
 export function superset<T>(...sets: ReadonlySet<T>[]): boolean;
 
 /**
- * A set is a superset of another if it contains all the elements
- * contained in the other set (and thereafter).
+ * A set is a superset of another if it contains
+ * all the elements contained in the other set.
  *
  * Superset is notated A ⊇ B,
  * where not superset is A ⊉ B.

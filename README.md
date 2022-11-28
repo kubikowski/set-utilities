@@ -71,7 +71,7 @@ const xorABC = xor(setA, setB, setC);
 
 ### equivalence: `A ∼ B`
 Sets are equivalent if they have the same cardinality,
-and there is a bijection between the values contained in each set.
+and there is a bijection between the elements contained in each set.
 
 ![equivalence visual][]
 ```typescript
@@ -106,7 +106,7 @@ const isPairwiseDisjointABC = pairwiseDisjoint(setA, setB, setC);
 
 ### subset: `A ⊆ B`
 A set is a subset of another if all of its elements
-are elements of the other set.
+are contained in the other set.
 
 ![subset visual][]
 ```typescript
@@ -118,8 +118,8 @@ const isSubsetABC = subset(setA, setB, setC);
 
 ### proper subset: `A ⊂ B`
 A set is a proper subset of another if all of its elements
-are elements of the other set, and it has a lower cardinality
-than the other set.
+are contained in the other set,
+and it has a lower cardinality than the other set.
 
 ![proper subset visual][]
 ```typescript
@@ -130,8 +130,8 @@ const isProperSubsetABC = properSubset(setA, setB, setC);
 ```
 
 ### superset: `A ⊇ B`
-A set is a superset of another if it contains all the elements
-contained in the other set.
+A set is a superset of another if it contains
+all the elements contained in the other set.
 
 ![superset visual][]
 ```typescript
@@ -142,9 +142,9 @@ const isSupersetABC = superset(setA, setB, setC);
 ```
 
 ### proper superset: `A ⊃ B`
-A set is a proper superset of another if it contains all the elements
-contained in the other set, and it has a greater cardinality
-than the other set.
+A set is a proper superset of another if it contains
+all the elements contained in the other set,
+and it has a greater cardinality than the other set.
 
 ![proper superset visual][]
 ```typescript

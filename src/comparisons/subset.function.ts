@@ -3,7 +3,7 @@ export function subset<T>(...sets: ReadonlySet<T>[]): boolean;
 
 /**
  * A set is a subset of another if all of its elements
- * are elements of the other set (and thereafter).
+ * are contained in the other set.
  *
  * Subset is notated A ⊆ B,
  * where not subset is A ⊈ B.
