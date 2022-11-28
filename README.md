@@ -19,8 +19,8 @@ none of the input sets are modified in the process or result of calculation.
 ## Set Operations:
 
 ### difference: `A ∖ B`
-The difference of two sets contains all the elements of the first set
-that are not contained in the second (or thereafter).
+The difference of sets contains all the elements
+of the first set, not contained in other sets.
 
 ![difference visual][]
 ```typescript
@@ -31,7 +31,8 @@ const differenceABC = difference(setA, setB, setC);
 ```
 
 ### intersection: `A ∩ B`
-The intersection of two sets contains all the elements each contained in both of the sets.
+The intersection of sets contains all the elements
+each contained in every set.
 
 ![intersection visual][]
 ```typescript
@@ -42,7 +43,8 @@ const intersectionABC = intersection(setA, setB, setC);
 ```
 
 ### union: `A ∪ B`
-The union of two sets contains all the elements contained in either set (or both sets).
+The union of sets contains all the elements
+each contained in any set.
 
 ![union visual][]
 ```typescript
@@ -53,7 +55,8 @@ const unionABC = union(setA, setB, setC);
 ```
 
 ### symmetric difference _(xor)_: `A ∆ B`
-The symmetric difference of two sets contains only the unique elements of each set.
+The symmetric difference of sets contains
+only the unique elements of each set.
 
 ![xor visual][]
 ```typescript
@@ -90,8 +93,8 @@ const isDisjointABC = disjoint(setA, setB, setC);
 ```
 
 ### pairwise disjoint: `A ∩ B ∩ C = ∅`
-A Family of Sets are pairwise disjoint if
-none of the Sets share any elements in common.
+A family of sets are pairwise disjoint if
+none of the sets share any elements in common.
 
 ![pairwise disjoint visual][]
 ```typescript

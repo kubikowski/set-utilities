@@ -2,8 +2,8 @@ export function pairwiseDisjoint<T>(...sets: Set<T>[]): boolean;
 export function pairwiseDisjoint<T>(...sets: ReadonlySet<T>[]): boolean;
 
 /**
- * A Family of Sets are pairwise disjoint
- * if none of the Sets share any elements in common.
+ * A family of sets are pairwise disjoint
+ * if none of the sets share any elements in common.
  *
  * Set pairwise disjoint does not have a common notation.
  * However, the disjoint union of sets is notated as A ⊔ B.

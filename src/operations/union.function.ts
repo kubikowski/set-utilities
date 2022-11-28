@@ -2,7 +2,8 @@ export function union<T>(...sets: Set<T>[]): Set<T>;
 export function union<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
 
 /**
- * The union of two sets contains all the elements contained in either set (or both sets).
+ * The union of sets contains all the elements
+ * each contained in any set.
  *
  * Set union is notated A ∪ B.
  *
