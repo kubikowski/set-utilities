@@ -2,9 +2,11 @@ export function xor<T>(...sets: Set<T>[]): Set<T>;
 export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
 
 /**
- * The symmetric difference of two sets contains only the unique elements of each set.
+ * The symmetric difference of sets contains
+ * only the unique elements of each set.
  *
- * Note: the symmetric difference of 2 sets is trivially inferred from an element-wise xor.
+ * Note: the symmetric difference of 2 sets
+ * is trivially inferred from an element-wise xor.
  *
  * Set symmetric difference is notated A ⊖ B or A ∆ B.
  *
