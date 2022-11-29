@@ -3,10 +3,13 @@
 [![NPM Version][]][npm]
 [![MIT License][]][license]
 [![FOSSA Status][]][fossa]
-[![Install Size][]][package phobia]
 
-[![Test Job][]][github test]
+[![Build & Test Job][]][github build test]
+[![Scale Test Job][]][github scale test]
 [![Coverage][]][coveralls]
+
+[![Install Size][]][package phobia]
+[![Zipped Size][]][bundle phobia]
 [![Language][]][typescript]
 
 This library is a collection of high performance utilities from Set Theory,
@@ -180,14 +183,20 @@ const sortedB = sort(setB, compareFunction);
 [FOSSA Status]: https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities.svg?type=shield
 [fossa]: https://app.fossa.com/projects/git%2Bgithub.com%2Fkubikowski%2Fset-utilities?ref=badge_shield
 
-[Install Size]: https://packagephobia.com/badge?p=set-utilities
-[package phobia]: https://packagephobia.com/result?p=set-utilities
+[Build & Test Job]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml/badge.svg
+[github build test]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml
 
-[Test Job]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml/badge.svg
-[github test]: https://github.com/kubikowski/set-utilities/actions/workflows/test.yml
+[Scale Test Job]: https://github.com/kubikowski/set-utilities/actions/workflows/scale-test.yml/badge.svg
+[github scale test]: https://github.com/kubikowski/set-utilities/actions/workflows/scale-test.yml
 
 [Coverage]: https://coveralls.io/repos/github/kubikowski/set-utilities/badge.svg?branch=main
 [coveralls]: https://coveralls.io/github/kubikowski/set-utilities?branch=main
+
+[Install Size]: https://packagephobia.com/badge?p=set-utilities
+[package phobia]: https://packagephobia.com/result?p=set-utilities
+
+[Zipped Size]: https://img.shields.io/bundlephobia/minzip/set-utilities?color=success
+[bundle phobia]: https://bundlephobia.com/package/set-utilities
 
 [Language]: https://img.shields.io/github/languages/top/kubikowski/set-utilities
 [typescript]: https://www.typescriptlang.org
