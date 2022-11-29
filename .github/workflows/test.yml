@@ -1,11 +1,11 @@
-name: Test
+name: Build & Test
 
 on:
   push:
 
 jobs:
   test:
-    name: Test
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Branch
