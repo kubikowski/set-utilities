@@ -157,13 +157,15 @@ const isProperSupersetABC = properSuperset(setA, setB, setC);
 
 ## Set Ordering:
 
-### sort:
+### sort: `A ⇅`
 An immutable sorting operation for sets.
+
+![sort visual][]
 ```typescript
 import { sort } from 'set-utilities';
 
-const sorted = sort(setA);
-const sortedByComparator = sort(setA, comparatorFunction);
+const sortedA = sort(setA);
+const sortedB = sort(setB, compareFunction);
 ```
 
 
@@ -205,3 +207,5 @@ const sortedByComparator = sort(setA, comparatorFunction);
 [proper subset visual]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-subset.svg
 [superset visual]: https://github.com/kubikowski/set-utilities/wiki/assets/superset.svg
 [proper superset visual]: https://github.com/kubikowski/set-utilities/wiki/assets/proper-superset.svg
+
+[sort visual]: https://github.com/kubikowski/set-utilities/wiki/assets/sort.svg
