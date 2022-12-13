@@ -10,15 +10,10 @@ jobs:
     name: Build & Test
     runs-on: ubuntu-latest
     steps:
-      - name: Environment Variables
-        id: env
-        run: echo "branch=${GITHUB_HEAD_REF:="main"}" >> $GITHUB_OUTPUT
-
       - name: Checkout Branch
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ steps.env.outputs.branch }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
