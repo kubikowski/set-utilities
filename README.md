@@ -1,4 +1,4 @@
-# Set Utilities
+# ![set utilities][]
 
 [![NPM Version][]][npm]
 [![MIT License][]][license]
@@ -203,6 +203,8 @@ const sortedB = sort(setB, compareFunction);
 
 
 <!-- Assets -->
+
+[set utilities]: https://github.com/kubikowski/set-utilities/wiki/assets/set-utilities.svg
 
 [difference visual]: https://github.com/kubikowski/set-utilities/wiki/assets/difference.svg
 [intersection visual]: https://github.com/kubikowski/set-utilities/wiki/assets/intersection.svg
