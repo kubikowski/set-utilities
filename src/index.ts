@@ -1,14 +1,14 @@
-export { disjoint } from './comparisons/disjoint.function';
-export { equivalence } from './comparisons/equivalence.function';
-export { pairwiseDisjoint } from './comparisons/pairwise-disjoint.function';
-export { properSubset } from './comparisons/proper-subset.function';
-export { properSuperset } from './comparisons/proper-superset.function';
-export { subset } from './comparisons/subset.function';
-export { superset } from './comparisons/superset.function';
+export { disjoint } from './comparisons/disjoint.function.js';
+export { equivalence } from './comparisons/equivalence.function.js';
+export { pairwiseDisjoint } from './comparisons/pairwise-disjoint.function.js';
+export { properSubset } from './comparisons/proper-subset.function.js';
+export { properSuperset } from './comparisons/proper-superset.function.js';
+export { subset } from './comparisons/subset.function.js';
+export { superset } from './comparisons/superset.function.js';
 
-export { difference } from './operations/difference.function';
-export { intersection } from './operations/intersection.function';
-export { union } from './operations/union.function';
-export { xor } from './operations/xor.function';
+export { difference } from './operations/difference.function.js';
+export { intersection } from './operations/intersection.function.js';
+export { union } from './operations/union.function.js';
+export { xor } from './operations/xor.function.js';
 
-export { sort } from './ordering/sort.function';
+export { sort } from './ordering/sort.function.js';
