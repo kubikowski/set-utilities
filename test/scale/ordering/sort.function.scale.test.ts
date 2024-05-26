@@ -6,7 +6,8 @@ import { Timer } from '../../util/scale/timer.model';
 import { NumberTestSets } from '../../util/test-sets/number-test-sets.model';
 
 describe('sort @ scale', () => {
-	const { defaultComparator, reverseComparator } = new NumberTestSets();
+	const defaultComparator = new NumberTestSets().defaultComparator.bind(null);
+	const reverseComparator = new NumberTestSets().reverseComparator.bind(null);
 
 	describe('sort ⋅ large sets', () => {
 		const { multiplesOf1, multiplesOf2, multiplesOf3 } = ScaleTestSets;

@@ -41,7 +41,7 @@ export abstract class Timer {
 
 	public static logAll(): void {
 		const logs = Array.from(Timer.timings.keys())
-			.map(Timer.getLogs)
+			.map(methodName => Timer.getLogs(methodName))
 			.join('');
 
 		process.stdout.write(`\n${ logs }\n`);
@@ -70,7 +70,7 @@ export abstract class Timer {
 	private static allTimings(timings: number[][]): string {
 		return timings.map(singleTimings => {
 			const formattedTimings = singleTimings
-				.map(Timer.formatSingleTiming);
+				.map(timing => Timer.formatSingleTiming(timing));
 
 			return ` → ( ${ formattedTimings.join(', ') } )\n`;
 		}).join('');
