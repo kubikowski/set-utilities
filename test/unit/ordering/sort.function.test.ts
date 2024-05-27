@@ -8,7 +8,9 @@ describe('sort', () => {
 });
 
 function sortTests<T>(testSets: TestSets<T>): void {
-	const { a, b, c, d, defaultComparator, e, empty, f, g, h, i, j, reverseComparator, setA, universal } = testSets;
+	const { a, b, c, d, e, empty, f, g, h, i, j, setA, universal } = testSets;
+	const defaultComparator = testSets.defaultComparator.bind(null);
+	const reverseComparator = testSets.reverseComparator.bind(null);
 	const unordered = new Set<T>([ e, j, g, b, i, c, f, h, a, d ]);
 
 	it('sorting the empty set returns the empty set', () => {
