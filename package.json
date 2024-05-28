@@ -19,6 +19,7 @@
 		"disjoint",
 		"subset",
 		"superset",
+		"performance",
 		"utilities",
 		"util"
 	],
