@@ -3,7 +3,7 @@
 	"version": "1.5.6",
 	"author": "Nathaniel Holden <holden@inanity.io> (https://inanity.io)",
 	"homepage": "https://github.com/kubikowski/set-utilities",
-	"description": "A collection of high performance utilities from Set Theory, which operate on an arbitrary number of Sets.",
+	"description": "High performance set theory - functional utilities which operate on arbitrary input sets.",
 	"license": "MIT",
 	"keywords": [
 		"set",
@@ -19,9 +19,9 @@
 		"disjoint",
 		"subset",
 		"superset",
+		"performance",
+		"fast",
 		"utilities",
-		"utility",
-		"utils",
 		"util"
 	],
 	"repository": {

@@ -12,11 +12,13 @@
 [![Zipped Size][]][bundle phobia]
 [![Language][]][typescript]
 
-This library is a collection of high performance utilities from Set Theory,
-which operate on an arbitrary number of Sets by each accepting variable arguments.
+High performance set theory.
 
-Each utility function operates with the principals of immutability:
-none of the input sets are modified in the process or result of calculation.
+This library is a collection of functional utilities from set theory,
+each of which operate on an arbitrary number of input sets.
+
+Each function accepts variable arguments and operates with the principals of immutability:
+none of the input sets are modified in the process of calculation.
 
 
 ## Set Operations:
