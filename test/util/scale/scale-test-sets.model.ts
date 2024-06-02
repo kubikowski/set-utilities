@@ -1,3 +1,5 @@
+import { Random } from './random.model';
+import { times } from './scale-test.constants';
 import { Timer } from './timer.model';
 
 /**
@@ -16,7 +18,7 @@ import { Timer } from './timer.model';
  * total of `100` elements between all the sets.
  *
  * Note: Sets of `size > 16,777,216` will fail to instantiate,
- * or will fail to add elements afterwards, with the following error message:
+ * or will fail to add elements afterward, with the following error message:
  * ```
  * RangeError: Value undefined out of range for undefined options property undefined
  * ```
@@ -47,6 +49,10 @@ export abstract class ScaleTestSets {
 	public static readonly someDisjoint = ScaleTestSets.manyOf(100, 100_000, true);
 	/* 10k disjoint sets of 1k elements */
 	public static readonly manyDisjoint = ScaleTestSets.manyOf(10_000, 1_000, true);
+	/* 100 random sets of ~100k elements */
+	public static readonly someRandom = ScaleTestSets.randomOf(100, 100_000);
+	/* 10k random sets of ~1k elements */
+	public static readonly manyRandom = ScaleTestSets.randomOf(10_000, 1_000);
 
 	/* 2 equivalent sets of 50 elements */
 	public static readonly coupleEquivalent = ScaleTestSets.manyOf(2, 50);
@@ -56,6 +62,10 @@ export abstract class ScaleTestSets {
 	public static readonly coupleDisjoint = ScaleTestSets.manyOf(2, 50, true);
 	/* 5 disjoint sets of 20 elements */
 	public static readonly fewDisjoint = ScaleTestSets.manyOf(5, 20, true);
+	/* 2 random sets of <= 50 elements */
+	public static readonly coupleRandom = ScaleTestSets.manyRandomOf(2, 50);
+	/* 5 random sets of <= 20 elements */
+	public static readonly fewRandom = ScaleTestSets.manyRandomOf(5, 20);
 
 	/* unordered set of 100 elements, contains: 0 - 99 */
 	public static readonly manyUnordered = new Set<number>([
@@ -92,6 +102,35 @@ export abstract class ScaleTestSets {
 			));
 	}
 
+	private static randomOf(quantity: number, size: number): ReadonlyArray<ReadonlySet<number>> {
+		ScaleTestSets.incrementManyCopied();
+		return Timer.time('copying sets', () => ScaleTestSets.randomSets(quantity, size));
+	}
+
+	private static manyRandomOf(quantity: number, size: number): ReadonlyArray<ReadonlyArray<ReadonlySet<number>>> {
+		ScaleTestSets.incrementManyCopied();
+		return Timer.time('copying sets', () =>
+			Array.from(
+				{ length: times },
+				() => ScaleTestSets.randomSets(quantity, size),
+			));
+	}
+
+	private static randomSets(quantity: number, size: number): ReadonlyArray<ReadonlySet<number>> {
+		return Array.from(
+			{ length: quantity },
+			() => ScaleTestSets.randomSet(size),
+		);
+	}
+
+	private static randomSet(approximateSize: number): ReadonlySet<number> {
+		const maxSize = Random.normal(0, approximateSize * 2);
+		return new Set<number>(Array.from(
+			{ length: maxSize },
+			() => Random.uniform(0, approximateSize * 5),
+		));
+	}
+
 	private static incrementMultiplesCopied(): void {
 		if (ScaleTestSets.copiedMultiples++ === 3) {
 			Timer.nextLine('copying sets');
@@ -103,7 +142,7 @@ export abstract class ScaleTestSets {
 			Timer.nextLine('copying sets');
 		}
 
-		if (ScaleTestSets.copiedMany++ === 4) {
+		if (ScaleTestSets.copiedMany++ === 6) {
 			Timer.nextLine('copying sets');
 		}
 	}

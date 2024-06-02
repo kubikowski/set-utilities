@@ -60,7 +60,7 @@ describe('equivalence @ scale', () => {
 	});
 
 	describe('equivalence ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('equivalence'));
 
 		it('equivalence(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('equivalence @ scale', () => {
 			const result = Timer.time('equivalence', () => equivalence(...manyDisjoint));
 			expect(result).toBe(false);
 		});
+
+		it('equivalence(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('equivalence', () => equivalence(...someRandom));
+			expect(result).toBe(false);
+		});
+
+		it('equivalence(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('equivalence', () => equivalence(...manyRandom));
+			expect(result).toBe(false);
+		});
 	});
 
 	describe('equivalence ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('equivalence'));
 
 		it('100k ⋅ equivalence(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('equivalence @ scale', () => {
 		it('100k ⋅ equivalence(5 Disjoint):'.padEnd(padding), () => {
 			const equivalenceMock = jest.fn(equivalence);
 			Timer.manyTimes('equivalence', () => equivalenceMock(...fewDisjoint), times);
+			expect(equivalenceMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ equivalence(2 Random):'.padEnd(padding), () => {
+			const equivalenceMock = jest.fn(equivalence);
+			Timer.time('equivalence', () => coupleRandom.forEach(sets => equivalenceMock(...sets)));
+			expect(equivalenceMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ equivalence(5 Random):'.padEnd(padding), () => {
+			const equivalenceMock = jest.fn(equivalence);
+			Timer.time('equivalence', () => fewRandom.forEach(sets => equivalenceMock(...sets)));
 			expect(equivalenceMock).toHaveBeenCalledTimes(times);
 		});
 	});

@@ -60,7 +60,7 @@ describe('proper subset @ scale', () => {
 	});
 
 	describe('proper subset ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('properSubset'));
 
 		it('properSubset(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('proper subset @ scale', () => {
 			const result = Timer.time('properSubset', () => properSubset(...manyDisjoint));
 			expect(result).toBe(false);
 		});
+
+		it('properSubset(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('properSubset', () => properSubset(...someRandom));
+			expect(result).toBe(false);
+		});
+
+		it('properSubset(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('properSubset', () => properSubset(...manyRandom));
+			expect(result).toBe(false);
+		});
 	});
 
 	describe('proper subset ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('properSubset'));
 
 		it('100k ⋅ properSubset(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('proper subset @ scale', () => {
 		it('100k ⋅ properSubset(5 Disjoint):'.padEnd(padding), () => {
 			const properSubsetMock = jest.fn(properSubset);
 			Timer.manyTimes('properSubset', () => properSubsetMock(...fewDisjoint), times);
+			expect(properSubsetMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ properSubset(2 Random):'.padEnd(padding), () => {
+			const properSubsetMock = jest.fn(properSubset);
+			Timer.time('properSubset', () => coupleRandom.forEach(sets => properSubsetMock(...sets)));
+			expect(properSubsetMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ properSubset(5 Random):'.padEnd(padding), () => {
+			const properSubsetMock = jest.fn(properSubset);
+			Timer.time('properSubset', () => fewRandom.forEach(sets => properSubsetMock(...sets)));
 			expect(properSubsetMock).toHaveBeenCalledTimes(times);
 		});
 	});

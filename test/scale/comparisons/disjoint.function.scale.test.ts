@@ -6,7 +6,7 @@ import { Timer } from '../../util/scale/timer.model';
 
 describe('disjoint @ scale', () => {
 	describe('disjoint ⋅ 2 large sets', () => {
-		const {multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
+		const { multiplesOf1, multiplesOf2, multiplesOf2B } = ScaleTestSets;
 
 		it('disjoint(of1):'.padEnd(padding), () => {
 			const result = Timer.time('disjoint', () => disjoint(multiplesOf1));
@@ -60,7 +60,7 @@ describe('disjoint @ scale', () => {
 	});
 
 	describe('disjoint ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('disjoint'));
 
 		it('disjoint(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('disjoint @ scale', () => {
 			const result = Timer.time('disjoint', () => disjoint(...manyDisjoint));
 			expect(result).toBe(true);
 		});
+
+		it('disjoint(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('disjoint', () => disjoint(...someRandom));
+			expect(result).toBe(false);
+		});
+
+		it('disjoint(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('disjoint', () => disjoint(...manyRandom));
+			expect(result).toBe(false);
+		});
 	});
 
 	describe('disjoint ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('disjoint'));
 
 		it('100k ⋅ disjoint(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('disjoint @ scale', () => {
 		it('100k ⋅ disjoint(5 Disjoint):'.padEnd(padding), () => {
 			const disjointMock = jest.fn(disjoint);
 			Timer.manyTimes('disjoint', () => disjointMock(...fewDisjoint), times);
+			expect(disjointMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ disjoint(2 Random):'.padEnd(padding), () => {
+			const disjointMock = jest.fn(disjoint);
+			Timer.time('disjoint', () => coupleRandom.forEach(sets => disjointMock(...sets)));
+			expect(disjointMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ disjoint(5 Random):'.padEnd(padding), () => {
+			const disjointMock = jest.fn(disjoint);
+			Timer.time('disjoint', () => fewRandom.forEach(sets => disjointMock(...sets)));
 			expect(disjointMock).toHaveBeenCalledTimes(times);
 		});
 	});

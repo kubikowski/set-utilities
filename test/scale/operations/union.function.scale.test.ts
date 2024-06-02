@@ -60,7 +60,7 @@ describe('union @ scale', () => {
 	});
 
 	describe('union ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('union'));
 
 		it('union(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('union @ scale', () => {
 			const result = Timer.time('union', () => union(...manyDisjoint));
 			expect(result.size).toBe(10_000_000);
 		});
+
+		it('union(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('union', () => union(...someRandom));
+			expect(result.size).toBe(500_000);
+		});
+
+		it('union(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('union', () => union(...manyRandom));
+			expect(result.size).toBe(5_000);
+		});
 	});
 
 	describe('union ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('union'));
 
 		it('100k ⋅ union(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('union @ scale', () => {
 		it('100k ⋅ union(5 Disjoint):'.padEnd(padding), () => {
 			const unionMock = jest.fn(union);
 			Timer.manyTimes('union', () => unionMock(...fewDisjoint), times);
+			expect(unionMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ union(2 Random):'.padEnd(padding), () => {
+			const unionMock = jest.fn(union);
+			Timer.time('union', () => coupleRandom.forEach(sets => unionMock(...sets)));
+			expect(unionMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ union(5 Random):'.padEnd(padding), () => {
+			const unionMock = jest.fn(union);
+			Timer.time('union', () => fewRandom.forEach(sets => unionMock(...sets)));
 			expect(unionMock).toHaveBeenCalledTimes(times);
 		});
 	});
