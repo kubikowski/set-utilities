@@ -33,19 +33,22 @@ export abstract class Random {
 	}
 
 	// Box-Muller normal distribution
-	public static normal(min: number, max: number, /* skew = 1 */): number {
+	public static normal(min: number, max: number, skew = 1): number {
 		const u = this.float();
 		const v = this.float();
 
 		const r = Math.sqrt(-2.0 * Math.log(u));
 		const theta = 2.0 * Math.PI * v;
-		const sigma = r * Math.cos(theta);
-		const percentile = sigma / 10.0 + 0.5;
+		const percentile = (r * Math.cos(theta)) / 10.0 + 0.5;
 
 		if (percentile < 0 || percentile > 1) {
 			return this.normal(min, max);
 		}
 
-		return Math.floor(percentile * (max - min) + min);
+		const skewed = (skew !== 1)
+			? Math.pow(percentile, skew)
+			: percentile;
+
+		return Math.floor(skewed * (max - min) + min);
 	}
 }
