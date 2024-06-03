@@ -60,7 +60,7 @@ describe('superset @ scale', () => {
 	});
 
 	describe('superset ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('superset'));
 
 		it('superset(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('superset @ scale', () => {
 			const result = Timer.time('superset', () => superset(...manyDisjoint));
 			expect(result).toBe(false);
 		});
+
+		it('superset(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('superset', () => superset(...someRandom));
+			expect(result).toBe(false);
+		});
+
+		it('superset(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('superset', () => superset(...manyRandom));
+			expect(result).toBe(false);
+		});
 	});
 
 	describe('superset ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('superset'));
 
 		it('100k ⋅ superset(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('superset @ scale', () => {
 		it('100k ⋅ superset(5 Disjoint):'.padEnd(padding), () => {
 			const supersetMock = jest.fn(superset);
 			Timer.manyTimes('superset', () => supersetMock(...fewDisjoint), times);
+			expect(supersetMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ superset(2 Random):'.padEnd(padding), () => {
+			const supersetMock = jest.fn(superset);
+			Timer.time('superset', () => coupleRandom.forEach(sets => supersetMock(...sets)));
+			expect(supersetMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ superset(5 Random):'.padEnd(padding), () => {
+			const supersetMock = jest.fn(superset);
+			Timer.time('superset', () => fewRandom.forEach(sets => supersetMock(...sets)));
 			expect(supersetMock).toHaveBeenCalledTimes(times);
 		});
 	});

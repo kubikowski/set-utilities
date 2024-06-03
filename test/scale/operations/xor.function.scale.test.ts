@@ -60,7 +60,7 @@ describe('xor @ scale', () => {
 	});
 
 	describe('xor ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('xor'));
 
 		it('xor(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('xor @ scale', () => {
 			const result = Timer.time('xor', () => xor(...manyDisjoint));
 			expect(result.size).toBe(10_000_000);
 		});
+
+		it('xor(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('xor', () => xor(...someRandom));
+			expect(result.size).toBe(0);
+		});
+
+		it('xor(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('xor', () => xor(...manyRandom));
+			expect(result.size).toBe(0);
+		});
 	});
 
 	describe('xor ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('xor'));
 
 		it('100k ⋅ xor(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('xor @ scale', () => {
 		it('100k ⋅ xor(5 Disjoint):'.padEnd(padding), () => {
 			const xorMock = jest.fn(xor);
 			Timer.manyTimes('xor', () => xorMock(...fewDisjoint), times);
+			expect(xorMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ xor(2 Random):'.padEnd(padding), () => {
+			const xorMock = jest.fn(xor);
+			Timer.time('xor', () => coupleRandom.forEach(sets => xorMock(...sets)));
+			expect(xorMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ xor(5 Random):'.padEnd(padding), () => {
+			const xorMock = jest.fn(xor);
+			Timer.time('xor', () => fewRandom.forEach(sets => xorMock(...sets)));
 			expect(xorMock).toHaveBeenCalledTimes(times);
 		});
 	});

@@ -60,7 +60,7 @@ describe('subset @ scale', () => {
 	});
 
 	describe('subset ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('subset'));
 
 		it('subset(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('subset @ scale', () => {
 			const result = Timer.time('subset', () => subset(...manyDisjoint));
 			expect(result).toBe(false);
 		});
+
+		it('subset(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('subset', () => subset(...someRandom));
+			expect(result).toBe(false);
+		});
+
+		it('subset(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('subset', () => subset(...manyRandom));
+			expect(result).toBe(false);
+		});
 	});
 
 	describe('subset ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('subset'));
 
 		it('100k ⋅ subset(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('subset @ scale', () => {
 		it('100k ⋅ subset(5 Disjoint):'.padEnd(padding), () => {
 			const subsetMock = jest.fn(subset);
 			Timer.manyTimes('subset', () => subsetMock(...fewDisjoint), times);
+			expect(subsetMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ subset(2 Random):'.padEnd(padding), () => {
+			const subsetMock = jest.fn(subset);
+			Timer.time('subset', () => coupleRandom.forEach(sets => subsetMock(...sets)));
+			expect(subsetMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ subset(5 Random):'.padEnd(padding), () => {
+			const subsetMock = jest.fn(subset);
+			Timer.time('subset', () => fewRandom.forEach(sets => subsetMock(...sets)));
 			expect(subsetMock).toHaveBeenCalledTimes(times);
 		});
 	});

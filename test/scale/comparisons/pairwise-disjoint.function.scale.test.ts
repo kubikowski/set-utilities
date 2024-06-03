@@ -60,7 +60,7 @@ describe('pairwise disjoint @ scale', () => {
 	});
 
 	describe('pairwise disjoint ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('pairwiseDisjoint'));
 
 		it('pairwiseDisjoint(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('pairwise disjoint @ scale', () => {
 			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...manyDisjoint));
 			expect(result).toBe(true);
 		});
+
+		it('pairwiseDisjoint(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...someRandom));
+			expect(result).toBe(false);
+		});
+
+		it('pairwiseDisjoint(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('pairwiseDisjoint', () => pairwiseDisjoint(...manyRandom));
+			expect(result).toBe(false);
+		});
 	});
 
 	describe('pairwise disjoint ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('pairwiseDisjoint'));
 
 		it('100k ⋅ pairwiseDisjoint(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('pairwise disjoint @ scale', () => {
 		it('100k ⋅ pairwiseDisjoint(5 Disjoint):'.padEnd(padding), () => {
 			const pairwiseDisjointMock = jest.fn(pairwiseDisjoint);
 			Timer.manyTimes('pairwiseDisjoint', () => pairwiseDisjointMock(...fewDisjoint), times);
+			expect(pairwiseDisjointMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ pairwiseDisjointMock(2 Random):'.padEnd(padding), () => {
+			const pairwiseDisjointMock = jest.fn(pairwiseDisjoint);
+			Timer.time('pairwiseDisjoint', () => coupleRandom.forEach(sets => pairwiseDisjointMock(...sets)));
+			expect(pairwiseDisjointMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ pairwiseDisjointMock(5 Random):'.padEnd(padding), () => {
+			const pairwiseDisjointMock = jest.fn(pairwiseDisjoint);
+			Timer.time('pairwiseDisjoint', () => fewRandom.forEach(sets => pairwiseDisjointMock(...sets)));
 			expect(pairwiseDisjointMock).toHaveBeenCalledTimes(times);
 		});
 	});

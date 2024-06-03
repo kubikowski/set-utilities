@@ -60,7 +60,7 @@ describe('proper superset @ scale', () => {
 	});
 
 	describe('proper superset ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('properSuperset'));
 
 		it('properSuperset(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('proper superset @ scale', () => {
 			const result = Timer.time('properSuperset', () => properSuperset(...manyDisjoint));
 			expect(result).toBe(false);
 		});
+
+		it('properSuperset(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('properSuperset', () => properSuperset(...someRandom));
+			expect(result).toBe(false);
+		});
+
+		it('properSuperset(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('properSuperset', () => properSuperset(...manyRandom));
+			expect(result).toBe(false);
+		});
 	});
 
 	describe('proper superset ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('properSuperset'));
 
 		it('100k ⋅ properSuperset(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('proper superset @ scale', () => {
 		it('100k ⋅ properSuperset(5 Disjoint):'.padEnd(padding), () => {
 			const properSupersetMock = jest.fn(properSuperset);
 			Timer.manyTimes('properSuperset', () => properSupersetMock(...fewDisjoint), times);
+			expect(properSupersetMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ properSuperset(2 Random):'.padEnd(padding), () => {
+			const properSupersetMock = jest.fn(properSuperset);
+			Timer.time('properSuperset', () => coupleRandom.forEach(sets => properSupersetMock(...sets)));
+			expect(properSupersetMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ properSuperset(5 Random):'.padEnd(padding), () => {
+			const properSupersetMock = jest.fn(properSuperset);
+			Timer.time('properSuperset', () => fewRandom.forEach(sets => properSupersetMock(...sets)));
 			expect(properSupersetMock).toHaveBeenCalledTimes(times);
 		});
 	});

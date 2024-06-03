@@ -60,7 +60,7 @@ describe('difference @ scale', () => {
 	});
 
 	describe('difference ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('difference'));
 
 		it('difference(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('difference @ scale', () => {
 			const result = Timer.time('difference', () => difference(...manyDisjoint));
 			expect(result.size).toBe(1_000);
 		});
+
+		it('difference(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('difference', () => difference(...someRandom));
+			expect(result.size).toBe(0);
+		});
+
+		it('difference(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('difference', () => difference(...manyRandom));
+			expect(result.size).toBe(0);
+		});
 	});
 
 	describe('difference ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('difference'));
 
 		it('100k ⋅ difference(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('difference @ scale', () => {
 		it('100k ⋅ difference(5 Disjoint):'.padEnd(padding), () => {
 			const differenceMock = jest.fn(difference);
 			Timer.manyTimes('difference', () => differenceMock(...fewDisjoint), times);
+			expect(differenceMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ difference(2 Random):'.padEnd(padding), () => {
+			const differenceMock = jest.fn(difference);
+			Timer.time('difference', () => coupleRandom.forEach(sets => differenceMock(...sets)));
+			expect(differenceMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ difference(5 Random):'.padEnd(padding), () => {
+			const differenceMock = jest.fn(difference);
+			Timer.time('difference', () => fewRandom.forEach(sets => differenceMock(...sets)));
 			expect(differenceMock).toHaveBeenCalledTimes(times);
 		});
 	});

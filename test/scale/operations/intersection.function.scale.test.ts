@@ -60,7 +60,7 @@ describe('intersection @ scale', () => {
 	});
 
 	describe('intersection ⋅ many sets', () => {
-		const { manyDisjoint, manyEquivalent, someDisjoint, someEquivalent } = ScaleTestSets;
+		const { manyDisjoint, manyEquivalent, manyRandom, someDisjoint, someEquivalent, someRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('intersection'));
 
 		it('intersection(100 Equivalent):'.padEnd(padding), () => {
@@ -82,10 +82,20 @@ describe('intersection @ scale', () => {
 			const result = Timer.time('intersection', () => intersection(...manyDisjoint));
 			expect(result.size).toBe(0);
 		});
+
+		it('intersection(100 Random):'.padEnd(padding), () => {
+			const result = Timer.time('intersection', () => intersection(...someRandom));
+			expect(result.size).toBe(0);
+		});
+
+		it('intersection(10k Random):'.padEnd(padding), () => {
+			const result = Timer.time('intersection', () => intersection(...manyRandom));
+			expect(result.size).toBe(0);
+		});
 	});
 
 	describe('intersection ⋅ many times', () => {
-		const { coupleDisjoint, coupleEquivalent, fewDisjoint, fewEquivalent } = ScaleTestSets;
+		const { coupleDisjoint, coupleEquivalent, coupleRandom, fewDisjoint, fewEquivalent, fewRandom } = ScaleTestSets;
 		beforeAll(() => Timer.nextLine('intersection'));
 
 		it('100k ⋅ intersection(2 Equivalent):'.padEnd(padding), () => {
@@ -109,6 +119,18 @@ describe('intersection @ scale', () => {
 		it('100k ⋅ intersection(5 Disjoint):'.padEnd(padding), () => {
 			const intersectionMock = jest.fn(intersection);
 			Timer.manyTimes('intersection', () => intersectionMock(...fewDisjoint), times);
+			expect(intersectionMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ intersection(2 Random):'.padEnd(padding), () => {
+			const intersectionMock = jest.fn(intersection);
+			Timer.time('intersection', () => coupleRandom.forEach(sets => intersectionMock(...sets)));
+			expect(intersectionMock).toHaveBeenCalledTimes(times);
+		});
+
+		it('100k ⋅ intersection(5 Random):'.padEnd(padding), () => {
+			const intersectionMock = jest.fn(intersection);
+			Timer.time('intersection', () => fewRandom.forEach(sets => intersectionMock(...sets)));
 			expect(intersectionMock).toHaveBeenCalledTimes(times);
 		});
 	});
