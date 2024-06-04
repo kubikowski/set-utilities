@@ -1,5 +1,6 @@
 import { describe } from '@jest/globals';
 import { ArrayTestSets } from './test-sets/array-test-sets.model';
+import { BigIntTestSets } from './test-sets/big-int-test-sets.model';
 import { DateTestSets } from './test-sets/date-test-sets.model';
 import { EnumTestSets } from './test-sets/enum-test-sets.model';
 import { ErrorTestSets } from './test-sets/error-test-sets.model';
@@ -15,6 +16,7 @@ import { TestSets } from './test-sets/test-sets.model';
 
 export function testSuite(name: string, tests: (testSets: TestSets<unknown>) => void): void {
 	describe(`${ name } ⋅ array`, () => tests(new ArrayTestSets()));
+	describe(`${ name } ⋅ bigint`, () => tests(new BigIntTestSets()));
 	describe(`${ name } ⋅ date`, () => tests(new DateTestSets()));
 	describe(`${ name } ⋅ enum`, () => tests(new EnumTestSets()));
 	describe(`${ name } ⋅ error`, () => tests(new ErrorTestSets()));
