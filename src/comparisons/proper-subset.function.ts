@@ -11,7 +11,7 @@ export function properSubset<T>(...sets: ReadonlySet<T>[]): boolean;
  *
  * @description A ⊂ B ⇔ (|A| < |B|) ∧ (∀x : (x ∈ A ⇒ x ∈ B))
  */
-export function properSubset<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
+export function properSubset<T>(...sets: ReadonlySet<T>[]): boolean {
 	if (sets.length < 2) {
 		return true;
 	}

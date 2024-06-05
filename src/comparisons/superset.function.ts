@@ -10,7 +10,7 @@ export function superset<T>(...sets: ReadonlySet<T>[]): boolean;
  *
  * @description A ⊇ B ⇔ ∀x : (x ∈ B ⇒ x ∈ A)
  */
-export function superset<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
+export function superset<T>(...sets: ReadonlySet<T>[]): boolean {
 	if (sets.length < 2) {
 		return true;
 	}

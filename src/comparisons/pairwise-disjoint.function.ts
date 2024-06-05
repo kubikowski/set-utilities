@@ -10,7 +10,7 @@ export function pairwiseDisjoint<T>(...sets: ReadonlySet<T>[]): boolean;
  *
  * @description pairwise disjoint F ⇔ (∀A,B ∈ F) ⇒ (A ∩ B = ∅)
  */
-export function pairwiseDisjoint<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
+export function pairwiseDisjoint<T>(...sets: ReadonlySet<T>[]): boolean {
 	if (sets.length < 2) {
 		return true;
 	}

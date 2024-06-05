@@ -11,7 +11,7 @@ export function equivalence<T>(...sets: ReadonlySet<T>[]): boolean;
  *
  * @description A ∼ B ⇔ (A ⊆ B) ∧ (B ⊆ A)
  */
-export function equivalence<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
+export function equivalence<T>(...sets: ReadonlySet<T>[]): boolean {
 	if (sets.length < 2) {
 		return true;
 	}

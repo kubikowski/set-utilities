@@ -12,6 +12,6 @@ export function sort<T>(set: ReadonlySet<T>, compareFunction?: (a: T, b: T) => n
  * or specifically as A ↑ or A ↓ depending on whether
  * the sort order is ascending or descending respectively.
  */
-export function sort<T, S extends ReadonlySet<T>>(set: S, compareFunction?: (a: T, b: T) => number): S {
-	return new Set<T>(Array.from(set).sort(compareFunction)) as ReadonlySet<T> as S;
+export function sort<T>(set: ReadonlySet<T>, compareFunction?: (a: T, b: T) => number): ReadonlySet<T> {
+	return new Set<T>(Array.from(set).sort(compareFunction));
 }
