@@ -12,9 +12,9 @@ export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  *
  * @description A ∆ B ≔ { x : (x ∈ A) ⊕ (x ∈ B) }
  */
-export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
+export function xor<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T> {
 	if (sets.length < 2) {
-		return new Set<T>(sets.shift()) as ReadonlySet<T> as S;
+		return new Set<T>(sets.shift());
 	}
 
 	const resultSet = new Set<T>();
@@ -24,7 +24,7 @@ export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 
 	primaryLoop(primarySet, secondarySet);
 	primaryLoop(secondarySet, primarySet);
-	function primaryLoop(primary: S, secondary: S): void {
+	function primaryLoop(primary: ReadonlySet<T>, secondary: ReadonlySet<T>): void {
 		if (sets.length !== 0) {
 			for (const element of primary) {
 				if (!secondary.has(element)) {
@@ -43,7 +43,7 @@ export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 	}
 
 	sets.forEach(tertiaryLoop);
-	function tertiaryLoop(set: S, index: number): void {
+	function tertiaryLoop(set: ReadonlySet<T>, index: number): void {
 		if (index < sets.length - 1) {
 			for (const element of set) {
 				if (resultSet.has(element)) {
@@ -64,5 +64,5 @@ export function xor<T, S extends ReadonlySet<T>>(...sets: S[]): S {
 		}
 	}
 
-	return resultSet as ReadonlySet<T> as S;
+	return resultSet;
 }

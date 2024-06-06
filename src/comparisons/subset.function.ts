@@ -10,7 +10,7 @@ export function subset<T>(...sets: ReadonlySet<T>[]): boolean;
  *
  * @description A ⊆ B ⇔ ∀x : (x ∈ A ⇒ x ∈ B)
  */
-export function subset<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
+export function subset<T>(...sets: ReadonlySet<T>[]): boolean {
 	if (sets.length < 2) {
 		return true;
 	}

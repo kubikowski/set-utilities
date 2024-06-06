@@ -12,7 +12,7 @@ export function disjoint<T>(...sets: ReadonlySet<T>[]): boolean;
  *
  * @description A disjoint B ⇔ A ∩ B = ∅
  */
-export function disjoint<T, S extends ReadonlySet<T>>(...sets: S[]): boolean {
+export function disjoint<T>(...sets: ReadonlySet<T>[]): boolean {
 	if (sets.length < 2) {
 		return true;
 	}
