@@ -23,7 +23,7 @@ export abstract class Timer {
 
 	private static add(methodName: string, timing: number): void {
 		if (!Timer.timings.has(methodName)) {
-			Timer.timings.set(methodName, [[]]);
+			Timer.timings.set(methodName, [ [] ]);
 		}
 
 		Timer.timings.get(methodName)?.slice(-1)[0]?.push(timing);
@@ -87,8 +87,10 @@ export abstract class Timer {
 			return AnsiFormat.fgGreen(formattedTiming);
 		} else if (totalTiming < 75_000) {
 			return AnsiFormat.fgYellow(formattedTiming);
-		} else {
+		} else if (totalTiming < 150_000) {
 			return AnsiFormat.fgRed(formattedTiming);
+		} else {
+			return AnsiFormat.fgWhite(formattedTiming);
 		}
 	}
 

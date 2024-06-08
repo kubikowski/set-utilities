@@ -19,6 +19,10 @@
 				"import"
 			],
 			"rules": {
+				"array-bracket-spacing": [
+					"error",
+					"always"
+				],
 				"arrow-body-style": [
 					"error",
 					"as-needed"
@@ -50,6 +54,10 @@
 					"tab"
 				],
 				"max-len": "off",
+				"object-curly-spacing": [
+					"error",
+					"always"
+				],
 				"quotes": [
 					"error",
 					"single"
@@ -266,6 +274,10 @@
 				"@typescript-eslint/no-explicit-any": "error",
 				"@typescript-eslint/no-non-null-assertion": "off",
 				"@typescript-eslint/no-shadow": "error",
+				"array-bracket-spacing": [
+					"error",
+					"always"
+				],
 				"arrow-body-style": [
 					"error",
 					"as-needed"
@@ -295,6 +307,10 @@
 				],
 				"max-len": "off",
 				"no-shadow": "off",
+				"object-curly-spacing": [
+					"error",
+					"always"
+				],
 				"quotes": [
 					"error",
 					"single"

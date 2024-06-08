@@ -8,16 +8,16 @@ export class MapTestSets extends TestSets<TestMap> {
 
 	public constructor() {
 		super(
-			new Map([[ 'id', 0 ]]),
-			new Map([[ 'id', 1 ]]),
-			new Map([[ 'id', 2 ]]),
-			new Map([[ 'id', 3 ]]),
-			new Map([[ 'id', 4 ]]),
-			new Map([[ 'id', 5 ]]),
-			new Map([[ 'id', 6 ]]),
-			new Map([[ 'id', 7 ]]),
-			new Map([[ 'id', 8 ]]),
-			new Map([[ 'id', 9 ]]),
+			new Map([ [ 'id', 0 ] ]),
+			new Map([ [ 'id', 1 ] ]),
+			new Map([ [ 'id', 2 ] ]),
+			new Map([ [ 'id', 3 ] ]),
+			new Map([ [ 'id', 4 ] ]),
+			new Map([ [ 'id', 5 ] ]),
+			new Map([ [ 'id', 6 ] ]),
+			new Map([ [ 'id', 7 ] ]),
+			new Map([ [ 'id', 8 ] ]),
+			new Map([ [ 'id', 9 ] ]),
 		);
 	}
 
