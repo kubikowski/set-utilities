@@ -10,7 +10,7 @@ export function union<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  * @description A ∪ B ≔ { x : (x ∈ A) ∨ (x ∈ B) }
  */
 export function union<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T> {
-	const resultSet = new Set<T>(sets.shift());
+	const resultSet = new Set<T>();
 
 	for (const set of sets) {
 		for (const element of set) {

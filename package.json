@@ -47,6 +47,7 @@
 		"pretest:coverage": "rimraf coverage",
 		"test": "jest --testPathIgnorePatterns=scale",
 		"test:coverage": "jest --collect-coverage --testPathIgnorePatterns=scale",
+		"test:metrics": "jest test/scale/performance-metrics.scale.test.ts",
 		"test:scale": "jest test/scale/scale.test.ts"
 	},
 	"dependencies": {},

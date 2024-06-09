@@ -6,6 +6,7 @@
       <script value="test:scale" />
     </scripts>
     <node-interpreter value="project" />
+    <node-options value="--max-old-space-size=8192" />
     <envs />
     <method v="2" />
   </configuration>

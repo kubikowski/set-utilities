@@ -11,4 +11,7 @@ export { intersection } from './operations/intersection.function.js';
 export { union } from './operations/union.function.js';
 export { xor } from './operations/xor.function.js';
 
-export { sort } from './ordering/sort.function.js';
+export { copy } from './unary/copy.function.js';
+export { map } from './unary/map.function.js';
+export { filter } from './unary/filter.function.js';
+export { sort } from './unary/sort.function.js';

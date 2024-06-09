@@ -1,3 +1,5 @@
+import { copy } from '../unary/copy.function';
+
 export function difference<T>(...sets: Set<T>[]): Set<T>;
 export function difference<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
 
@@ -12,7 +14,7 @@ export function difference<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  */
 export function difference<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T> {
 	if (sets.length < 2) {
-		return new Set<T>(sets.shift());
+		return copy(sets.shift() ?? new Set<T>());
 	}
 
 	const resultSet = new Set<T>();

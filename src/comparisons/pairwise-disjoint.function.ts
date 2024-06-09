@@ -27,13 +27,19 @@ export function pairwiseDisjoint<T>(...sets: ReadonlySet<T>[]): boolean {
 		return true;
 	}
 
-	const allElements = new Set<T>([ ...primarySet, ...secondarySet ]);
+	const disjointUnion = new Set<T>();
+	for (const set of [ primarySet, secondarySet ]) {
+		for (const element of set) {
+			disjointUnion.add(element);
+		}
+	}
+
 	for (const set of sets) {
 		for (const element of set) {
-			if (allElements.has(element)) {
+			if (disjointUnion.has(element)) {
 				return false;
 			} else {
-				allElements.add(element);
+				disjointUnion.add(element);
 			}
 		}
 	}

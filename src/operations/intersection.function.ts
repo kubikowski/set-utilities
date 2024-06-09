@@ -1,3 +1,5 @@
+import { copy } from '../unary/copy.function';
+
 export function intersection<T>(...sets: Set<T>[]): Set<T>;
 export function intersection<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
 
@@ -11,7 +13,7 @@ export function intersection<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T>;
  */
 export function intersection<T>(...sets: ReadonlySet<T>[]): ReadonlySet<T> {
 	if (sets.length < 2) {
-		return new Set<T>(sets.shift());
+		return copy(sets.shift() ?? new Set<T>());
 	}
 
 	const resultSet = new Set<T>();
