@@ -54,7 +54,7 @@
 					"tab"
 				],
 				"max-len": "off",
-				"no-shadow": "off",
+				"no-shadow": "error",
 				"no-var": "error",
 				"no-void": "error",
 				"no-undefined": "error",
