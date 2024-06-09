@@ -54,10 +54,16 @@
 					"tab"
 				],
 				"max-len": "off",
+				"no-shadow": "off",
+				"no-var": "error",
+				"no-void": "error",
+				"no-undefined": "error",
 				"object-curly-spacing": [
 					"error",
 					"always"
 				],
+				"prefer-const": "error",
+				"prefer-template": "error",
 				"quotes": [
 					"error",
 					"single"
@@ -307,10 +313,15 @@
 				],
 				"max-len": "off",
 				"no-shadow": "off",
+				"no-var": "error",
+				"no-void": "error",
+				"no-undefined": "error",
 				"object-curly-spacing": [
 					"error",
 					"always"
 				],
+				"prefer-const": "error",
+				"prefer-template": "error",
 				"quotes": [
 					"error",
 					"single"

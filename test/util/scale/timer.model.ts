@@ -113,11 +113,6 @@ export abstract class Timer {
 	}
 
 	private static formatTiming(timing: number): string {
-		const options: Intl.NumberFormatOptions = {
-			minimumFractionDigits: 3,
-			maximumFractionDigits: 3,
-		};
-
-		return timing.toLocaleString(undefined, options) + 'ms';
+		return `${ timing.toFixed(3) }ms`;
 	}
 }
