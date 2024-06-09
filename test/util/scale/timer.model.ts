@@ -23,7 +23,7 @@ export abstract class Timer {
 
 	private static add(methodName: string, timing: number): void {
 		if (!Timer.timings.has(methodName)) {
-			Timer.timings.set(methodName, [[]]);
+			Timer.timings.set(methodName, [ [] ]);
 		}
 
 		Timer.timings.get(methodName)?.slice(-1)[0]?.push(timing);
@@ -87,8 +87,10 @@ export abstract class Timer {
 			return AnsiFormat.fgGreen(formattedTiming);
 		} else if (totalTiming < 75_000) {
 			return AnsiFormat.fgYellow(formattedTiming);
-		} else {
+		} else if (totalTiming < 150_000) {
 			return AnsiFormat.fgRed(formattedTiming);
+		} else {
+			return AnsiFormat.fgWhite(formattedTiming);
 		}
 	}
 
@@ -111,11 +113,6 @@ export abstract class Timer {
 	}
 
 	private static formatTiming(timing: number): string {
-		const options: Intl.NumberFormatOptions = {
-			minimumFractionDigits: 3,
-			maximumFractionDigits: 3,
-		};
-
-		return timing.toLocaleString(undefined, options) + 'ms';
+		return `${ timing.toFixed(3) }ms`;
 	}
 }
